@@ -128,30 +128,30 @@ jobs:
   #        name: mac
   #        path: build/mac
 
-  deploy-itch:
-    name: deploy to itch.io
-    needs: [export-web, export-windows] #, export-linux, export-mac]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        channel: ["web", "windows"] #, "linux", "mac"]
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+  # deploy-itch:
+    # name: deploy to itch.io
+    # needs: [export-web, export-windows] #, export-linux, export-mac]
+    # runs-on: ubuntu-latest
+    # strategy:
+      # matrix:
+        # channel: ["web", "windows"] #, "linux", "mac"]
+    # steps:
+      # - name: Checkout Code
+        # uses: actions/checkout@v4
 
-      - name: Download Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ matrix.channel }}
-          path: archives/${{ matrix.channel }}
+      # - name: Download Artifacts
+        # uses: actions/download-artifact@v4
+        # with:
+          # name: ${{ matrix.channel }}
+          # path: archives/${{ matrix.channel }}
 
-      - name: Deploy to Itch.io [${{ matrix.channel }}]
-        uses: manleydev/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
-          CHANNEL: ${{ matrix.channel }}
-          ITCH_GAME: ${{ secrets.ITCHIO_GAME }}
-          ITCH_USER: ${{ secrets.ITCHIO_USERNAME }}
-          PACKAGE: ${{ github.workspace }}/archives/${{ matrix.channel }}
+      # - name: Deploy to Itch.io [${{ matrix.channel }}]
+        # uses: manleydev/butler-publish-itchio-action@master
+        # env:
+          # BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          # CHANNEL: ${{ matrix.channel }}
+          # ITCH_GAME: ${{ secrets.ITCHIO_GAME }}
+          # ITCH_USER: ${{ secrets.ITCHIO_USERNAME }}
+          # PACKAGE: ${{ github.workspace }}/archives/${{ matrix.channel }}
 
 
