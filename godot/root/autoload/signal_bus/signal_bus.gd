@@ -9,4 +9,3 @@ signal language_changed(locale: String)
 signal number_format_changed(number_format: NumberUtils.NumberFormat)
 
 # Game
-signal clicks_per_second_updated(cps: int)
