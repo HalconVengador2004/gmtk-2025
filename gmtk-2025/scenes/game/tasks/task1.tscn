@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://pqstkb1uaw28"]
+
+[ext_resource type="PackedScene" uid="uid://btwaf8cd1om5v" path="res://scenes/components/task_click_component.tscn" id="1_e6yb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf4a3"]
+size = Vector2(100, 102)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_37pkp"]
+
+[node name="Task1" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jf4a3")
+
+[node name="TaskClickComponent" parent="Area2D" instance=ExtResource("1_e6yb3")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(100, 100)
+texture = SubResource("PlaceholderTexture2D_37pkp")
