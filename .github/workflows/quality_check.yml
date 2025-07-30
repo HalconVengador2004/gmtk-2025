@@ -43,7 +43,7 @@ jobs:
       # Parse the output and compare with the threshold
       - name: Check linter results
         run: |
-          cd godot
+          cd gmtk-2025
           PROBLEMS=$(grep -oP 'Failure: \K\d+' gdlint_output.txt || echo "0")
           echo "Problems found: $PROBLEMS"
           echo "Threshold is: $PROBLEMS_THRESHOLD"
