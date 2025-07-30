@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdk4b5s1i5ayq"]
+[gd_scene load_steps=6 format=3 uid="uid://bdk4b5s1i5ayq"]
 
-[ext_resource type="PackedScene" uid="uid://vq8euwe72r6f" path="res://scenes/components/clickable_component.tscn" id="1_4n0ys"]
+[ext_resource type="Script" uid="uid://daolbep4aok41" path="res://scripts/worker.gd" id="1_7xepq"]
+[ext_resource type="PackedScene" uid="uid://vq8euwe72r6f" path="res://scenes/components/clickable_component.tscn" id="1_dfmub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ddj3k"]
 radius = 57.85
@@ -10,7 +11,9 @@ radius = 57.85
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwx2a"]
 radius = 0.77026
 
-[node name="Worker" type="CharacterBody2D"]
+[node name="Worker" type="CharacterBody2D" node_paths=PackedStringArray("nav") groups=["worker"]]
+script = ExtResource("1_7xepq")
+nav = NodePath("NavigationAgent2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ddj3k")
@@ -25,6 +28,11 @@ scale = Vector2(100, 100)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDetectionArea"]
 shape = SubResource("CircleShape2D_vwx2a")
 
-[node name="ClickableComponent" parent="ClickDetectionArea" instance=ExtResource("1_4n0ys")]
+[node name="ClickableComponent" parent="ClickDetectionArea" instance=ExtResource("1_dfmub")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="input_event" from="ClickDetectionArea" to="ClickDetectionArea" method="_on_input_event"]
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
