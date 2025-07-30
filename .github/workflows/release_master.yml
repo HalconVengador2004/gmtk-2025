@@ -8,8 +8,8 @@ on:
 
 env:
   GODOT_VERSION: 4.4
-  EXPORT_NAME: takin-godot-template
-  PROJECT_PATH: godot
+  EXPORT_NAME: gmtk-godot-release
+  PROJECT_PATH: gmtk-2025
 
 jobs:
   export-web:
