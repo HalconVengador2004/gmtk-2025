@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://btwaf8cd1om5v"]
+
+[ext_resource type="Script" uid="uid://decwsll3db8if" path="res://scenes/components/task_click_component.gd" id="1_p488l"]
+
+[node name="TaskClickComponent" type="Node"]
+script = ExtResource("1_p488l")

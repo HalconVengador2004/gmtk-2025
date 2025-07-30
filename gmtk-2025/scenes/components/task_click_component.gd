@@ -8,8 +8,8 @@ func _ready():
 	click_area.input_event.connect(_on_Area2D_input_event)
 
 func _on_Area2D_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("Sprite clicked!")
-			SignalBus.emit_signal("entity_clicked", get_parent().get_parent())
+	if event is InputEventMouseButton:	
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			print("Task clicked!")
+			SignalBus.emit_signal("task_clicked", get_parent().get_parent())
 			
