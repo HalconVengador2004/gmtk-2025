@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdk4b5s1i5ayq"]
+
+[ext_resource type="PackedScene" uid="uid://vq8euwe72r6f" path="res://scenes/components/clickable_component.tscn" id="1_4n0ys"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ddj3k"]
+radius = 57.85
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mj6w4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwx2a"]
+radius = 0.77026
+
+[node name="Worker" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ddj3k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(100, 100)
+texture = SubResource("PlaceholderTexture2D_mj6w4")
+
+[node name="ClickDetectionArea" type="Area2D" parent="."]
+scale = Vector2(100, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickDetectionArea"]
+shape = SubResource("CircleShape2D_vwx2a")
+
+[node name="ClickableComponent" parent="ClickDetectionArea" instance=ExtResource("1_4n0ys")]
+
+[connection signal="input_event" from="ClickDetectionArea" to="ClickDetectionArea" method="_on_input_event"]
