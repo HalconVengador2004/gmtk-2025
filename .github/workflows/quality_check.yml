@@ -1,8 +1,7 @@
 ﻿# Workflow to ensure quality of the code.
 name: quality-check
 
-on:
-  [push, pull_request]
+on: [push, pull_request]
 
 jobs:
   # Job to automatically lint gdscript code
@@ -35,12 +34,12 @@ jobs:
       # "|| true" make sure the github action doesn't stop when there are problems
       - name: Lint code
         run: |
-          cd godot
+          cd gmtk-2025
             find . -type f -name "*.gd" -not -path "./addons/*" > gd_files.txt
             echo "Number of files to lint: $(wc -l < gd_files.txt)"
             gdlint $(cat gd_files.txt) > gdlint_output.txt 2>&1 || true
             cat gdlint_output.txt
-  
+
       # Parse the output and compare with the threshold
       - name: Check linter results
         run: |
