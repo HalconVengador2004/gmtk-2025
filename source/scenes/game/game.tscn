@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=4 uid="uid://b58v1t1mtnwc7"]
 
-[ext_resource type="Script" uid="uid://bhjfjn6rwynsg" path="res://scenes/game/worker_manager.gd" id="1_sul5r"]
-[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://scenes/game/tasks/task1.tscn" id="2_0sr1o"]
-[ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://scenes/game/worker.tscn" id="3_kelw5"]
+[ext_resource type="Script" uid="uid://bhjfjn6rwynsg" path="res://source/scenes/game/worker_manager.gd" id="1_sul5r"]
+[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/game/tasks/task1.tscn" id="2_0sr1o"]
+[ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/game/worker.tscn" id="3_kelw5"]
 [ext_resource type="Texture2D" uid="uid://b2foiq4fc6wop" path="res://assets/Terrain (32x32).png" id="4_kelw5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]

@@ -14,9 +14,18 @@ config/name="gmtk"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+SignalBus="*res://source/autoload/signal_bus.gd"
+
 [dotnet]
 
 project/assembly_name="gmtk"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 
 [rendering]
 
