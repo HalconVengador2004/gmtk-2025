@@ -27,6 +27,11 @@ project/assembly_name="gmtk"
 
 enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 
+[global_group]
+
+task=""
+worker=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
