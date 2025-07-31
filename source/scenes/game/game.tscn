@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=6 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://bhjfjn6rwynsg" path="res://source/scenes/game/worker_manager.gd" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/game/worker.tscn" id="3_kelw5"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/game/task.tscn" id="3_xh4q7"]
+[ext_resource type="Script" uid="uid://d2s6615i61cga" path="res://source/scripts/task_manager.gd" id="4_u6050"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]
 vertices = PackedVector2Array(1237.27, 649.992, 84.7422, 649, 87.5234, 631.898, 662.109, 632.969, 1237.7, 634.961, 194.313, 82.1172, 193.742, 74.1094, 1229.34, 84.8906, 655.883, 86.8438, 642.172, 625.891, 632.828, 88.1328, 1228.63, 95.8516)
@@ -30,8 +31,11 @@ zoom = Vector2(0.645, 0.645)
 [node name="Task" parent="." instance=ExtResource("3_xh4q7")]
 position = Vector2(213, 79)
 
+[node name="task_manager" type="Node2D" parent="."]
+script = ExtResource("4_u6050")
+
 [node name="Task2" parent="." instance=ExtResource("3_xh4q7")]
-position = Vector2(1207, 90)
+position = Vector2(1185, 90)
 
 [node name="Task3" parent="." instance=ExtResource("3_xh4q7")]
-position = Vector2(1202, 642)
+position = Vector2(1164, 645)
