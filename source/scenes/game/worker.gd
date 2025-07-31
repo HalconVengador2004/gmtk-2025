@@ -1,10 +1,26 @@
-extends CharacterBody2D
-
+extends Node2D
+class_name Worker
 
 @export var nav: NavigationAgent2D
-@export var speed: float = 100
+@export var speed: float = 200
+
+@onready var interactable_component = $InteractableComponent
 
 var finished_moving = false
+var assigned_task : Node = null
+
+func set_assigned_task(task_instance):
+	assigned_task = task_instance
+
+func get_assigned_task():
+	return assigned_task
+
+func get_interactable_component():
+	return interactable_component
+
+func set_navigation_destination(pos):
+	nav.target_position = pos
+	finished_moving = false
 
 func _ready():
 	if not nav:
@@ -14,13 +30,6 @@ func _physics_process(delta):
 	if not finished_moving:
 		var direction = (nav.get_next_path_position() - global_position).normalized()
 		translate(direction * speed * delta)
-
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			print("set new position for navigation")
-			nav.target_position = get_global_mouse_position()
-			finished_moving = false
 
 
 func _on_navigation_agent_2d_navigation_finished():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dii7qi13k27ui"]
+[gd_scene load_steps=2 format=3 uid="uid://d0pwfqhof1ujn"]
 
 [sub_resource type="GDScript" id="GDScript_k1rmj"]
 script/source = "extends Node2D
@@ -56,4 +56,3 @@ func _process(delta):
 
 [node name="ControlableComponent" type="Node"]
 script = SubResource("GDScript_k1rmj")
-speed = null
