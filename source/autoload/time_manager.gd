@@ -3,11 +3,15 @@ extends Node
 var time : float = 0.0
 var paused : bool = false
 var speed : float = 1.0
-
-var hour_number : int = 12
-var game_hour_real_duration_seconds : float = 30.0
+var hour_number : float = 12.0
+var game_day_real_duration_seconds : float = 30.0
+var game_hour_real_duration_seconds : float 
+var game_hour_game_minutes_duration : float = 60.0
 
 var current_day : int = 0
+
+func _ready():
+	game_hour_real_duration_seconds = game_day_real_duration_seconds / float(hour_number)
 
 func _process(delta: float):
 	if paused:
@@ -32,6 +36,17 @@ func set_speed(new_speed: float):
 
 func get_day() -> int:
 	return floor(time / (game_hour_real_duration_seconds * hour_number))
+	
+# [0,1]
+func get_day_progress() -> float:
+	return time / (game_hour_real_duration_seconds * hour_number) - get_day()
+	
+func get_hour() -> float:
+	return time / game_hour_real_duration_seconds - current_day * hour_number
+
+func get_minute() -> float:
+	var fractional_hour = get_hour() - floor(get_hour())
+	return fractional_hour * game_hour_game_minutes_duration
 
 func _check_day():
 	if get_day() > current_day:
