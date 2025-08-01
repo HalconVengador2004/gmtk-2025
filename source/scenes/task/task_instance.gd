@@ -11,6 +11,7 @@ var timer: Timer
 func _ready():
 	task_data = Task.new(task_resource)
 	SignalBus.task_activated.connect(_start_timer)
+	interactable_component.connect("clicked", _on_interactable_clicked)
 
 func get_interactable_component():
 	return interactable_component
@@ -28,3 +29,19 @@ func _start_timer(task):
 func break_task():
 	task_data.set_is_broken(true)
 	print("task broken")
+
+func _on_interactable_clicked(_node):
+	var overlapping = check_for_overlapping_worker()
+	if overlapping:
+		SignalBus.emit_signal("worker_clicked", overlapping)
+	else:
+		SignalBus.emit_signal("task_clicked", self)
+
+func check_for_overlapping_worker():
+	var overlapping_areas = interactable_component.get_overlapping_areas()
+	
+	for area in overlapping_areas:
+		if area.get_parent().is_in_group("worker"):
+			return area.get_parent()
+	
+	return null

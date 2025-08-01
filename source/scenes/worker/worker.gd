@@ -32,6 +32,9 @@ func set_navigation_destination(pos):
 func _ready():
 	if not nav:
 		push_warning("Warning: worker doesnt have a navigation agent")
+	if not interactable_component:
+		push_warning("Warning: worker doesnt have a navigation agent")
+	interactable_component.connect("clicked", _on_interactable_clicked)
 
 func _physics_process(delta):
 	if not finished_moving:
@@ -49,3 +52,6 @@ func _physics_process(delta):
 
 func _on_navigation_agent_2d_navigation_finished():
 	finished_moving = true
+
+func _on_interactable_clicked(node):
+	SignalBus.emit_signal("worker_clicked", self)
