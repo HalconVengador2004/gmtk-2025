@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://g7lgprbnm54"]
+[gd_scene load_steps=9 format=3 uid="uid://g7lgprbnm54"]
 
 [ext_resource type="Script" uid="uid://cmp2unfa36hk8" path="res://source/scenes/item/storage.gd" id="1_tfynq"]
 [ext_resource type="Resource" uid="uid://dfnp4s3aspluc" path="res://source/scenes/item/resource/oil.tres" id="2_bys4w"]
@@ -22,13 +22,10 @@ noise = SubResource("FastNoiseLite_l4bvc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qarm4"]
 size = Vector2(34, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_my2fg"]
-size = Vector2(70, 34)
-
-[node name="Storage" type="Node2D" node_paths=PackedStringArray("areaToInteract")]
+[node name="Storage" type="Node2D"]
+scale = Vector2(3, 3)
 script = ExtResource("1_tfynq")
 item_resource = ExtResource("2_bys4w")
-areaToInteract = NodePath("AreaToGetItem")
 
 [node name="HighlightableComponent" parent="." instance=ExtResource("3_350af")]
 texture = SubResource("NoiseTexture2D_46km6")
@@ -39,8 +36,5 @@ texture = SubResource("NoiseTexture2D_46km6")
 z_index = 1
 shape = SubResource("RectangleShape2D_qarm4")
 
-[node name="AreaToGetItem" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaToGetItem"]
-z_index = 1
-shape = SubResource("RectangleShape2D_my2fg")
+[connection signal="mouse_entered" from="InteractableComponent" to="HighlightableComponent" method="add_highlight"]
+[connection signal="mouse_exited" from="InteractableComponent" to="HighlightableComponent" method="remove_highlight"]

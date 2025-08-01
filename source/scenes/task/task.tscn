@@ -1,23 +1,23 @@
 [gd_scene load_steps=11 format=3 uid="uid://pqstkb1uaw28"]
 
-[ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="1_rjrvb"]
-[ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="2_0vqf8"]
-[ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="2_iud3l"]
-[ext_resource type="Texture2D" uid="uid://qerrdprec4ob" path="res://assets/image/sprite/task_placeholder.png" id="4_jyf8y"]
-[ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_dagay"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="6_jyf8y"]
-[ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="7_dagay"]
+[ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="1_nhd34"]
+[ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="2_i2sdy"]
+[ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3ie11"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="4_0nj4n"]
+[ext_resource type="Texture2D" uid="uid://qerrdprec4ob" path="res://assets/image/Sprites/task_placeholder.png" id="5_yqxiq"]
+[ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_hdkhs"]
+[ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="7_eatda"]
 
 [sub_resource type="Resource" id="Resource_0avis"]
-script = ExtResource("2_0vqf8")
+script = ExtResource("2_i2sdy")
 time_to_finish = 5.0
 metadata/_custom_type_script = "uid://cy8gvonh0ybjw"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yyo3q"]
 radius = 62.514
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dagay"]
-shader = ExtResource("6_dagay")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhd34"]
+shader = ExtResource("6_hdkhs")
 shader_parameter/primary_color = Color(1, 0, 0, 1)
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/unfilled_color = Color(0.443, 0.443, 0.443, 1)
@@ -28,26 +28,29 @@ shader_parameter/width_out = 0.95
 shader_parameter/border_width = 0.03
 
 [node name="Task" type="Node2D" node_paths=PackedStringArray("progress_bar") groups=["task"]]
-script = ExtResource("1_rjrvb")
+script = ExtResource("1_nhd34")
 task_resource = SubResource("Resource_0avis")
-progress_bar = NodePath("HighlightableComponent/CircularProgressBar")
+progress_bar = NodePath("CircularProgressBar")
 
-[node name="InteractableComponent" parent="." instance=ExtResource("2_iud3l")]
+[node name="InteractableComponent" parent="." instance=ExtResource("3_3ie11")]
 position = Vector2(-49, -49)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 position = Vector2(49, 49)
 shape = SubResource("CircleShape2D_yyo3q")
 
-[node name="HighlightableComponent" parent="." instance=ExtResource("6_jyf8y")]
+[node name="HighlightableComponent" parent="." instance=ExtResource("4_0nj4n")]
 scale = Vector2(3, 3)
-texture = ExtResource("4_jyf8y")
+texture = ExtResource("5_yqxiq")
 
-[node name="CircularProgressBar" type="ColorRect" parent="HighlightableComponent"]
+[node name="CircularProgressBar" type="ColorRect" parent="."]
 visible = false
 top_level = true
-material = SubResource("ShaderMaterial_dagay")
+material = SubResource("ShaderMaterial_nhd34")
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("7_dagay")
+script = ExtResource("7_eatda")
 offset = Vector2(0, -1)
+
+[connection signal="mouse_entered" from="InteractableComponent" to="HighlightableComponent" method="add_highlight"]
+[connection signal="mouse_exited" from="InteractableComponent" to="HighlightableComponent" method="remove_highlight"]

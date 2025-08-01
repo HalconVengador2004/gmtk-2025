@@ -2,28 +2,26 @@ extends Node
 class_name Storage
 
 @export var item_resource : ItemResource
-@export var cooldown_time : float = 1
-@export var areaToInteract : Area2D #Area define how close an worker need to be to get item 
+@export var time_to_grab: float = 1.0
 
-var is_cooldown : bool = false
-var current_time : float = 0
+var is_grabbing: bool = false
+var can_collect: bool = false
 
-# Todo: How should I make worker spawn item?
-func spawn_item():
-	if is_cooldown:
+func get_item():
+	if is_grabbing:
 		return
-		
-	var item : Item = Item.new()
-	item.resource = item_resource
-	item.add_to_group("item")
 	
-	is_cooldown = true
-	current_time = cooldown_time
-	
-func _process(delta: float) -> void:
-	if is_cooldown:
-		current_time += delta
-		if current_time > cooldown_time:
-			current_time = 0
-			is_cooldown = false
-			
+	is_grabbing = true
+	var tween = get_tree().create_tween()
+	tween.tween_interval(time_to_grab)
+	tween.tween_callback(func(): 
+		can_collect = true
+	)
+
+func collect_item() -> ItemResource:
+	if not can_collect:
+		return null
+
+	is_grabbing = false
+	can_collect = false
+	return item_resource

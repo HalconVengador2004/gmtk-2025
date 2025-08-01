@@ -5,7 +5,11 @@ class_name Item
 var sprite: Sprite2D;
 
 func _ready():
-	assert(resource != null, "resource must be set in the Item node")
 	sprite = Sprite2D.new()
-	sprite.texture = resource.texture
 	add_child(sprite)
+	if resource:
+		init(resource)
+
+func init(new_resource: ItemResource):
+	resource = new_resource
+	sprite.texture = resource.texture
