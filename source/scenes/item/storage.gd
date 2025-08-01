@@ -31,5 +31,18 @@ func collect_item() -> ItemResource:
 	can_collect = false
 	return item_resource
 
-func _on_interactable_clicked(node):
-	SignalBus.emit_signal("storage_clicked", self)
+func _on_interactable_clicked(_node):
+	var overlapping = check_for_overlapping_worker()
+	if overlapping:
+		SignalBus.emit_signal("worker_clicked", overlapping)
+	else:
+		SignalBus.emit_signal("storage_clicked", self)
+
+func check_for_overlapping_worker():
+	var overlapping_areas = interactable_component.get_overlapping_areas()
+	
+	for area in overlapping_areas:
+		if area.get_parent().is_in_group("worker"):
+			return area.get_parent()
+	
+	return null

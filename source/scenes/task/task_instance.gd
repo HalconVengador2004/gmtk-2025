@@ -1,11 +1,13 @@
 extends Node2D
 class_name TaskInstance
 
+@export var progress_bar_offset: Vector2 = Vector2(0, 0)
 @export var task_resource: TaskResource
 @export var progress_bar: ColorRect
 var task_data: Task
 @onready var interactable_component = $InteractableComponent
 var timer: Timer
+signal activate_random_task()
 
 
 func _ready():
@@ -23,12 +25,13 @@ func _start_timer(task):
 		add_child(timer)
 		timer.wait_time = task_data.resource.time_to_finish
 		timer.start()
-		timer.timeout.connect(break_task)
+		timer.timeout.connect(activate_task)
 		progress_bar.timer = timer
 
-func break_task():
+func activate_task():
 	task_data.set_is_broken(true)
-	print("task broken")
+	emit_signal("activate_random_task") #Chain reaction
+	print("Broke a task by chain reaction")
 
 func _on_interactable_clicked(_node):
 	var overlapping = check_for_overlapping_worker()

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://qerrdprec4ob" path="res://assets/image/Sprites/task_placeholder.png" id="4_jyf8y"]
 [ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_dagay"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="6_jyf8y"]
-[ext_resource type="Script" path="res://source/scripts/circular_progress_bar.gd" id="7_dagay"]
+[ext_resource type="Script" uid="uid://ckap73mxepres" path="res://source/scripts/circular_progress_bar.gd" id="7_dagay"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yyo3q"]
 radius = 62.514
@@ -39,7 +39,5 @@ texture = ExtResource("4_jyf8y")
 visible = false
 top_level = true
 material = SubResource("ShaderMaterial_jyf8y")
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("7_dagay")
 offset = Vector2(0, -1)

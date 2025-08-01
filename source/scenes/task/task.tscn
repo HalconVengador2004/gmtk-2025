@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="2_i2sdy"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3ie11"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="4_0nj4n"]
-[ext_resource type="Texture2D" uid="uid://qerrdprec4ob" path="res://assets/image/Sprites/task_placeholder.png" id="5_yqxiq"]
+[ext_resource type="Texture2D" uid="uid://qerrdprec4ob" path="res://assets/image/sprite/task_placeholder.png" id="5_yqxiq"]
 [ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_hdkhs"]
 [ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="7_eatda"]
 
@@ -44,13 +44,12 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_yqxiq")
 
 [node name="CircularProgressBar" type="ColorRect" parent="."]
-visible = false
-top_level = true
 material = SubResource("ShaderMaterial_nhd34")
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -21.0
+offset_top = -95.0
+offset_right = 19.0
+offset_bottom = -55.0
 script = ExtResource("7_eatda")
-offset = Vector2(0, -1)
 
 [connection signal="mouse_entered" from="InteractableComponent" to="HighlightableComponent" method="add_highlight"]
 [connection signal="mouse_exited" from="InteractableComponent" to="HighlightableComponent" method="remove_highlight"]

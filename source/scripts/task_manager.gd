@@ -7,6 +7,9 @@ var tasks: Array[Node] = []
 func _ready():
 	tasks = get_tree().get_nodes_in_group("task")
 	_start_activate_loop()
+	var children = get_children()
+	for task in tasks:
+		task.connect("activate_random_task", _activate_random_task)
 
 func _start_activate_loop():
 	randomize()
