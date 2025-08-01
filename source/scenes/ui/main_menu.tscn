@@ -69,6 +69,7 @@ layout_mode = 2
 text = "Play"
 
 [node name="Options Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
+visible = false
 layout_mode = 2
 text = "Options"
 
