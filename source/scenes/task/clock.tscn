@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dss2o32s1jiv3"]
+
+[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task.tscn" id="1_3df3a"]
+[ext_resource type="Script" uid="uid://txwpdn5jqp7" path="res://source/scenes/components/clock_hand_manager_component.gd" id="2_dq7ak"]
+
+[node name="Task" instance=ExtResource("1_3df3a")]
+
+[node name="HandManager" type="Node2D" parent="." index="3"]
+script = ExtResource("2_dq7ak")
+
+[node name="MinuteHand" type="Sprite2D" parent="HandManager" index="0"]
+
+[node name="HourHand" type="Sprite2D" parent="HandManager" index="1"]

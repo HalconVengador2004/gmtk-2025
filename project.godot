@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 SignalBus="*res://source/autoload/signal_bus.gd"
+TimeManager="*res://source/autoload/time_manager.gd"
 
 [dotnet]
 
