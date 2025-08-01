@@ -4,14 +4,11 @@ var time : float = 0.0
 var paused : bool = false
 var speed : float = 1.0
 var hour_number : float = 12.0
-var game_day_real_duration_seconds : float = 30.0
-var game_hour_real_duration_seconds : float 
+var game_hour_real_duration_seconds : float = 30.0
 var game_hour_game_minutes_duration : float = 60.0
 
 var current_day : int = 0
 
-func _ready():
-	game_hour_real_duration_seconds = game_day_real_duration_seconds / float(hour_number)
 
 func _process(delta: float):
 	if paused:
