@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=8 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task.tscn" id="3_xh4q7"]
 [ext_resource type="Script" uid="uid://d2s6615i61cga" path="res://source/scripts/task_manager.gd" id="4_u6050"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
+[ext_resource type="Script" uid="uid://cawx4cr5ai0ks" path="res://source/scripts/day_text.gd" id="6_lop5m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]
 vertices = PackedVector2Array(1237.27, 649.992, 84.7422, 649, 87.5234, 631.898, 662.109, 632.969, 1237.7, 634.961, 194.313, 82.1172, 193.742, 74.1094, 1229.34, 84.8906, 655.883, 86.8438, 642.172, 625.891, 632.828, 88.1328, 1228.63, 95.8516)
@@ -46,3 +47,26 @@ position = Vector2(1185, 90)
 
 [node name="Storage_oil" parent="storage_manager" instance=ExtResource("5_2v631")]
 position = Vector2(863, 84)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="DayText" type="Label" parent="UILayer/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "Day ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_lop5m")
