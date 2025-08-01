@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=7 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task.tscn" id="3_xh4q7"]
 [ext_resource type="Script" path="res://source/scripts/task_manager.gd" id="4_u6050"]
+[ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]
 vertices = PackedVector2Array(1237.27, 649.992, 84.7422, 649, 87.5234, 631.898, 662.109, 632.969, 1237.7, 634.961, 194.313, 82.1172, 193.742, 74.1094, 1229.34, 84.8906, 655.883, 86.8438, 642.172, 625.891, 632.828, 88.1328, 1228.63, 95.8516)
@@ -42,3 +43,6 @@ position = Vector2(1164, 645)
 position = Vector2(1185, 90)
 
 [node name="storage_manager" type="Node2D" parent="."]
+
+[node name="Storage_oil" parent="storage_manager" instance=ExtResource("5_2v631")]
+position = Vector2(863, 84)

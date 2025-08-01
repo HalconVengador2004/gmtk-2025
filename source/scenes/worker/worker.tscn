@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdk4b5s1i5ayq"]
+[gd_scene load_steps=7 format=3 uid="uid://bdk4b5s1i5ayq"]
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
-[ext_resource type="Texture2D" uid="uid://cjd3enrj42qoe" path="res://assets/image/sprite/worker_placeholder.png" id="2_3eqk0"]
+[ext_resource type="Texture2D" uid="uid://cjd3enrj42qoe" path="res://assets/image/Sprites/worker_placeholder.png" id="2_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="3_ij7vr"]
+[ext_resource type="PackedScene" uid="uid://74t8ubc72osw" path="res://source/scenes/item/item.tscn" id="5_gtu4y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3eqk0"]
 radius = 62.0725
 
-[node name="Worker" type="Node2D" node_paths=PackedStringArray("nav") groups=["worker"]]
+[node name="Worker" type="Node2D" node_paths=PackedStringArray("nav", "item") groups=["worker"]]
 z_index = 1
 script = ExtResource("1_7xepq")
 nav = NodePath("NavigationAgent2D")
+item = NodePath("Item")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
@@ -25,4 +27,9 @@ shape = SubResource("CircleShape2D_3eqk0")
 scale = Vector2(3, 3)
 texture = ExtResource("2_3eqk0")
 
+[node name="Item" parent="." instance=ExtResource("5_gtu4y")]
+position = Vector2(53, -25)
+
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="mouse_entered" from="InteractableComponent" to="HighlightableComponent" method="add_highlight"]
+[connection signal="mouse_exited" from="InteractableComponent" to="HighlightableComponent" method="remove_highlight"]

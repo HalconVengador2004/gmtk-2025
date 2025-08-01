@@ -15,13 +15,14 @@ func _input_event(_viewport, event, _shape_idx):
 			
 			if get_parent().is_in_group("worker"):
 				SignalBus.emit_signal("worker_clicked", get_parent())
-			# If this is a task, check if there's an overlapping worker
 			elif get_parent().is_in_group("task"):
 				var overlapping_worker = check_for_overlapping_worker()
 				if overlapping_worker:
 					SignalBus.emit_signal("worker_clicked", overlapping_worker)
 				else:
 					SignalBus.emit_signal("task_clicked", get_parent())
+			elif get_parent() is Storage:
+				SignalBus.emit_signal("storage_clicked", get_parent())
 
 func _process(_delta):
 	if not is_pressed:
