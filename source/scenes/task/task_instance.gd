@@ -7,31 +7,15 @@ class_name TaskInstance
 var task_data: Task
 @onready var interactable_component = $InteractableComponent
 var timer: Timer
-signal activate_random_task()
+signal break_random_task()
 
 
 func _ready():
 	task_data = Task.new(task_resource)
-	SignalBus.task_activated.connect(_start_timer)
 	interactable_component.connect("clicked", _on_interactable_clicked)
 
 func get_interactable_component():
 	return interactable_component
-
-func _start_timer(task):
-	print(task, self)
-	if task == self:
-		timer = Timer.new()
-		add_child(timer)
-		timer.wait_time = task_data.resource.time_to_finish
-		timer.start()
-		timer.timeout.connect(activate_task)
-		progress_bar.timer = timer
-
-func activate_task():
-	task_data.set_is_broken(true)
-	emit_signal("activate_random_task") #Chain reaction
-	print("Broke a task by chain reaction")
 
 func _on_interactable_clicked(_node):
 	var overlapping = check_for_overlapping_worker()
@@ -48,3 +32,15 @@ func check_for_overlapping_worker():
 			return area.get_parent()
 	
 	return null
+	
+func break_task():
+	if not timer:
+		timer = Timer.new()
+		add_child(timer)
+	timer.wait_time = task_data.resource.time_to_finish
+	timer.start()
+	timer.timeout.connect(func():
+		emit_signal("break_random_task")
+	)
+	progress_bar.timer = timer
+	task_data.set_is_broken(true)

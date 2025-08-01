@@ -10,9 +10,6 @@ func _init(task_resource: TaskResource):
 
 func is_complete() -> bool:
 	return progress >= resource.time_to_finish
-
-func is_available() -> bool:
-	return not is_complete() and not is_assigned
 	
 func set_progress(prog):
 	progress = prog

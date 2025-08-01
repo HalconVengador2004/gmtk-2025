@@ -1,37 +1,32 @@
 extends Node2D
 class_name TaskManager
 
-@export var break_interval: float = 5.0
+@export var break_interval: float = 6.0
 var tasks: Array[Node] = []
+var timer: Timer
 
 func _ready():
 	tasks = get_tree().get_nodes_in_group("task")
-	_start_activate_loop()
-	var children = get_children()
 	for task in tasks:
-		task.connect("activate_random_task", _activate_random_task)
+		task.connect("break_random_task", _break_random_task)
+	start_default_breaking_timer()
 
-func _start_activate_loop():
-	randomize()
-	activate_tasks_loop()
-
-func activate_tasks_loop() -> void:
-	await get_tree().create_timer(break_interval).timeout
-	_activate_random_task()
-	activate_tasks_loop()
-
-func _activate_random_task():
-	var available_tasks = []
+func _break_random_task():
+	var breakable_tasks = []
 	for task in tasks:
-		# we only activate the tasks where there is no worker assigned
-		if not task.task_data.get_is_assigned() and not task.task_data.get_is_broken():
-			available_tasks.append(task)
+		if not task.task_data.get_is_broken():
+			breakable_tasks.append(task)
+	if not breakable_tasks.is_empty():
+		var pick = breakable_tasks[randi() % breakable_tasks.size()]
+		pick.break_task()
+		print("breaking task")
+	else:
+		print("YOU LOST")
 
-	if available_tasks.is_empty():
-		print("No tasks to activate.")
-		return
-
-	var random_task = available_tasks[randi() % available_tasks.size()]
-	random_task.task_data.progress = 0.0
-	SignalBus.task_activated.emit(random_task)
-	print("Activated task:", random_task.name)
+func start_default_breaking_timer() -> void:
+	if not timer:
+		timer = Timer.new()
+		add_child(timer)
+	timer.wait_time = break_interval
+	timer.start()
+	timer.timeout.connect(_break_random_task)
