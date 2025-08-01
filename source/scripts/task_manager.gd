@@ -2,7 +2,7 @@ extends Node2D
 class_name TaskManager
 
 @export var initial_break_interval: float = 10.0
-@export var interval_decay_factor: float = 0.99
+@export var interval_decay_factor: float = 0.9
 var tasks: Array[Node] = []
 var timer: Timer
 var current_break_interval: float
@@ -11,6 +11,7 @@ func _ready():
 	tasks = get_tree().get_nodes_in_group("task")
 	for task in tasks:
 		task.connect("break_random_task", _break_random_task)
+	SignalBus.connect("day_changed", _increase_difficulty)
 	current_break_interval = initial_break_interval
 	start_default_breaking_timer()
 
@@ -35,12 +36,12 @@ func start_default_breaking_timer():
 	timer.start()
 	timer.timeout.connect(_on_timer_timeout)
 	
-func increase_difficulty():
+func _increase_difficulty(_new_day = 0):
 	current_break_interval *= interval_decay_factor
 	
 func _on_timer_timeout():
 	_break_random_task()
-	increase_difficulty()
 	# restart with new break interval
 	timer.wait_time = current_break_interval
+	print(timer.wait_time)
 	timer.start()
