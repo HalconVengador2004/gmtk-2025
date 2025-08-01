@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhwgd4glhplao"
-path="res://.godot/imported/addition_symbol.png-68f51aae472c2e82eb03aad30dab4d7a.ctex"
+uid="uid://cjd3enrj42qoe"
+path="res://.godot/imported/worker_placeholder.png-5609c5d3d16a6c04074a72bdb15a0d27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/image/ui/symbol_icons/png/addition_symbol.png"
-dest_files=["res://.godot/imported/addition_symbol.png-68f51aae472c2e82eb03aad30dab4d7a.ctex"]
+source_file="res://assets/image/sprite/worker_placeholder.png"
+dest_files=["res://.godot/imported/worker_placeholder.png-5609c5d3d16a6c04074a72bdb15a0d27.ctex"]
 
 [params]
 

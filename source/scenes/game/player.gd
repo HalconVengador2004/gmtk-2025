@@ -1,8 +1,8 @@
-extends Node2D
-class_name WorkerManager
+﻿extends Node
 
 var selected_worker
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalBus.connect("worker_clicked", select_worker)
 	SignalBus.connect("task_clicked", move_worker_to_task)

@@ -4,8 +4,6 @@ class_name InteractableComponent
 
 var is_pressed: bool = false
 
-
-
 func _ready():
 	input_pickable = true
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdk4b5s1i5ayq"]
 
-[ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/game/worker.gd" id="1_7xepq"]
-[ext_resource type="Texture2D" uid="uid://cjd3enrj42qoe" path="res://assets/image/Sprites/worker_placeholder.png" id="2_3eqk0"]
+[ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
+[ext_resource type="Texture2D" uid="uid://cjd3enrj42qoe" path="res://assets/image/sprite/worker_placeholder.png" id="2_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="3_ij7vr"]
 

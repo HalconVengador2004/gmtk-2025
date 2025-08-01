@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://pqstkb1uaw28"]
 
-[ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/interactable/task_instance.gd" id="1_rjrvb"]
-[ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/interactable/task_resource.gd" id="2_0vqf8"]
+[ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="1_rjrvb"]
+[ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="2_0vqf8"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="2_iud3l"]
-[ext_resource type="Texture2D" uid="uid://qerrdprec4ob" path="res://assets/image/Sprites/task_placeholder.png" id="4_jyf8y"]
+[ext_resource type="Texture2D" uid="uid://qerrdprec4ob" path="res://assets/image/sprite/task_placeholder.png" id="4_jyf8y"]
 [ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_dagay"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="6_jyf8y"]
-[ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scripts/circular_progress_bar.gd" id="7_dagay"]
+[ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="7_dagay"]
 
 [sub_resource type="Resource" id="Resource_0avis"]
 script = ExtResource("2_0vqf8")

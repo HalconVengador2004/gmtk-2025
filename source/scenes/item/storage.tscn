@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://g7lgprbnm54"]
+
+[ext_resource type="Script" uid="uid://cmp2unfa36hk8" path="res://source/scenes/item/storage.gd" id="1_tfynq"]
+[ext_resource type="Resource" uid="uid://dfnp4s3aspluc" path="res://source/scenes/item/resource/oil.tres" id="2_bys4w"]
+[ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="2_q2yg0"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="3_350af"]
+
+[sub_resource type="Gradient" id="Gradient_6or2f"]
+offsets = PackedFloat32Array(0, 0.651852)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l4bvc"]
+noise_type = 3
+frequency = 0.1064
+fractal_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_46km6"]
+width = 32
+height = 32
+color_ramp = SubResource("Gradient_6or2f")
+noise = SubResource("FastNoiseLite_l4bvc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qarm4"]
+size = Vector2(34, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my2fg"]
+size = Vector2(70, 34)
+
+[node name="Storage" type="Node2D" node_paths=PackedStringArray("areaToInteract")]
+script = ExtResource("1_tfynq")
+item_resource = ExtResource("2_bys4w")
+areaToInteract = NodePath("AreaToGetItem")
+
+[node name="HighlightableComponent" parent="." instance=ExtResource("3_350af")]
+texture = SubResource("NoiseTexture2D_46km6")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_q2yg0")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+z_index = 1
+shape = SubResource("RectangleShape2D_qarm4")
+
+[node name="AreaToGetItem" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaToGetItem"]
+z_index = 1
+shape = SubResource("RectangleShape2D_my2fg")
