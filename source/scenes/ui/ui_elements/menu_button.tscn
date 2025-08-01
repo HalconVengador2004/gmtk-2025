@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlfl6l7r45xo5"]
+
+[ext_resource type="Script" uid="uid://n0wyqufrlfix" path="res://source/scripts/main_menu/ui_elements/menu_button.gd" id="1_68qh2"]
+[ext_resource type="FontFile" uid="uid://qstvlpi1u0nx" path="res://assets/font/noto_sans/woff/noto_sans.woff" id="1_gvlhu"]
+[ext_resource type="AudioStream" uid="uid://dfav3vjy5h6iw" path="res://assets/audio/sfx/kenney_interface-sounds/Audio/select_001.ogg" id="3_q65te"]
+[ext_resource type="AudioStream" uid="uid://hljqr7xoy3nl" path="res://assets/audio/sfx/kenney_interface-sounds/Audio/glass_006.ogg" id="4_q65te"]
+
+[node name="Menu Button" type="Button"]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_gvlhu")
+text = "Button"
+script = ExtResource("1_68qh2")
+
+[node name="Press Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q65te")
+
+[node name="Hover Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_q65te")

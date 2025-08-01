@@ -1,9 +1,157 @@
-[gd_scene format=3 uid="uid://b82k7yangq4r0"]
+[gd_scene load_steps=8 format=3 uid="uid://b82k7yangq4r0"]
 
-[node name="main_menu" type="Control"]
+[ext_resource type="Texture2D" uid="uid://bqcbe3uucptmc" path="res://assets/image/boot_splash/png/GMTK2025_logo.png" id="1_6qg5j"]
+[ext_resource type="Script" uid="uid://cej1wbu4i2oop" path="res://source/scripts/main_menu/title&buttons.gd" id="1_a6bij"]
+[ext_resource type="PackedScene" uid="uid://dlfl6l7r45xo5" path="res://source/scenes/ui/ui_elements/menu_button.tscn" id="1_hu2hv"]
+[ext_resource type="Script" uid="uid://yiabtrcic1yc" path="res://source/scripts/main_menu/main_menu.gd" id="1_lw8qq"]
+[ext_resource type="Script" uid="uid://d4ll1k3dkmykx" path="res://source/scripts/main_menu/other_menu.gd" id="5_84hj8"]
+[ext_resource type="FontFile" uid="uid://qstvlpi1u0nx" path="res://assets/font/noto_sans/woff/noto_sans.woff" id="5_sk0n2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84hj8"]
+bg_color = Color(0.385493, 0.385493, 0.385492, 1)
+
+[node name="main_menu" type="Control" node_paths=PackedStringArray("start_focused_button", "menus")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lw8qq")
+start_focused_button = NodePath("Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Play Button")
+menus = [NodePath("Title&Buttons"), NodePath("OptionsMenu")]
+
+[node name="DarkBG" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Title&Buttons" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 110
+script = ExtResource("1_a6bij")
+
+[node name="Title&Buttons" type="VBoxContainer" parent="Title&Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="TextureRect" type="TextureRect" parent="Title&Buttons/Title&Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_6qg5j")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonMarginContainer" type="MarginContainer" parent="Title&Buttons/Title&Buttons"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Play Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
+layout_mode = 2
+text = "Play"
+
+[node name="Options Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
+layout_mode = 2
+text = "Quit"
+
+[node name="OptionsMenu" type="MarginContainer" parent="." node_paths=PackedStringArray("element_to_focused")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 180
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 180
+theme_override_constants/margin_bottom = 60
+script = ExtResource("5_84hj8")
+element_to_focused = NodePath("MenuBackground/MenuMarginContainer/MenuVBoxContainer/Audio/HSlider")
+
+[node name="MenuBackground" type="Panel" parent="OptionsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_84hj8")
+
+[node name="MenuMarginContainer" type="MarginContainer" parent="OptionsMenu/MenuBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 40
+
+[node name="MenuVBoxContainer" type="VBoxContainer" parent="OptionsMenu/MenuBackground/MenuMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_sk0n2")
+theme_override_font_sizes/font_size = 60
+text = "Options"
+horizontal_alignment = 1
+
+[node name="Audio" type="VBoxContainer" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Audio"]
+layout_mode = 2
+text = "Audio"
+
+[node name="HSlider" type="HSlider" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Audio"]
+layout_mode = 2
+value = 60.0
+
+[node name="Music" type="VBoxContainer" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Music"]
+layout_mode = 2
+text = "Music"
+
+[node name="HSlider" type="HSlider" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Music"]
+layout_mode = 2
+value = 60.0
+
+[node name="Back" type="MarginContainer" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="Back Button" parent="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back" instance=ExtResource("1_hu2hv")]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Back"
+
+[connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Play Button" to="." method="change_scene_to_game"]
+[connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Options Button" to="Title&Buttons" method="options_menu"]
+[connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Quit Button" to="." method="quit_game"]
+[connection signal="pressed_after_wait_time_" from="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back/Back Button" to="OptionsMenu" method="back_to_main_menu"]
