@@ -11,6 +11,3 @@ func add_highlight():
 
 func remove_highlight():
 	highlighter.remove_highlight()
-
-func play_animation(anim: String):
-	play(anim)

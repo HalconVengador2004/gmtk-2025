@@ -1,11 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://bdk4b5s1i5ayq"]
+[gd_scene load_steps=27 format=3 uid="uid://bdk4b5s1i5ayq"]
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://b3x1psvnbu4k3" path="res://source/scenes/components/HighlightableAnimatedSprite.tscn" id="4_umj4u"]
 [ext_resource type="PackedScene" uid="uid://74t8ubc72osw" path="res://source/scenes/item/item.tscn" id="5_gtu4y"]
 [ext_resource type="Texture2D" uid="uid://bk5d46ynlvb22" path="res://assets/image/Sprites/worker/worker_idle/worker_idle00.png" id="5_vl70o"]
-[ext_resource type="Material" uid="uid://cijv5jdbon53h" path="res://source/shaders/selected_material.tres" id="6_jxro3"]
 [ext_resource type="Texture2D" uid="uid://bk5x2a3jh1dt7" path="res://assets/image/Sprites/worker/worker_idle/worker_idle01.png" id="6_qkgd5"]
 [ext_resource type="Texture2D" uid="uid://r38axm3751u7" path="res://assets/image/Sprites/worker/worker_idle/worker_idle02.png" id="7_gkby0"]
 [ext_resource type="Texture2D" uid="uid://du246jly82b5l" path="res://assets/image/Sprites/worker/worker_idle/worker_idle03.png" id="8_8mbrc"]
@@ -151,11 +150,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Worker" type="Node2D" node_paths=PackedStringArray("nav", "item") groups=["worker"]]
+[node name="Worker" type="Node2D" node_paths=PackedStringArray("nav", "anim_sprite", "item") groups=["worker"]]
 z_index = 1
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_7xepq")
 nav = NodePath("NavigationAgent2D")
+anim_sprite = NodePath("HighlightableAnimatedSprite")
 item = NodePath("Item")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -185,10 +185,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HighlightableAnimatedSprite" parent="." instance=ExtResource("4_umj4u")]
-material = ExtResource("6_jxro3")
 position = Vector2(6.66667, -68.3333)
 sprite_frames = SubResource("SpriteFrames_eec18")
-animation = &"tired"
-frame_progress = 0.472938
+animation = &"idle"
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

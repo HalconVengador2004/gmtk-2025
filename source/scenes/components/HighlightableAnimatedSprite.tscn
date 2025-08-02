@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3x1psvnbu4k3"]
+[gd_scene load_steps=3 format=3 uid="uid://b3x1psvnbu4k3"]
 
 [ext_resource type="Script" uid="uid://cnphm6pv3k5ue" path="res://source/scenes/components/highlightable_animated_sprite.gd" id="1_7hp25"]
+[ext_resource type="Material" uid="uid://cijv5jdbon53h" path="res://source/shaders/selected_material.tres" id="1_dt337"]
 
 [node name="HighlightableAnimatedSprite" type="AnimatedSprite2D"]
+material = ExtResource("1_dt337")
 animation = &""
 script = ExtResource("1_7hp25")
