@@ -58,9 +58,15 @@ func _physics_process(delta):
 			if collected_resource:
 				item.init(collected_resource)
 				assigned_storage = null
+			elif assigned_storage is TrashCan:
+				clear_carried_item()
 
 func rest():
 	energy = max_energy
+	
+func clear_carried_item():
+	if item:
+		item.clear()
 
 
 func _on_navigation_agent_2d_navigation_finished():

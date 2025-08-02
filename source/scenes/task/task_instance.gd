@@ -13,6 +13,7 @@ func _ready():
 
 func _on_task_started(task):
 	task_data = task
+	print("progress_bar visible")
 	progress_bar.visible = true
 
 func _process(_delta):
@@ -22,5 +23,6 @@ func _process(_delta):
 		if time_to_finish > 0:
 			progress_bar.size.x = (progress / time_to_finish) * 100
 		if task_data.is_complete():
+			print("progress_bar not visible")
 			progress_bar.visible = false
 			task_data = null

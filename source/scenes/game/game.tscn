@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=19 format=3 uid="uid://b58v1t1mtnwc7"]
 
-[ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
+[ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
@@ -8,9 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
 [ext_resource type="Texture2D" uid="uid://dikqa0hbfbkpv" path="res://assets/storage/clockhand-texture-32x32.png" id="9_k03wk"]
+[ext_resource type="Script" uid="uid://7d2d0cqrjcsl" path="res://source/scenes/item/StorageTypes/trash_can.gd" id="9_q0opv"]
 [ext_resource type="PackedScene" uid="uid://criqg4x7hjoxn" path="res://source/scenes/smartObject/clock.tscn" id="10_q0opv"]
 [ext_resource type="Texture2D" uid="uid://bi5fct2vi3uyh" path="res://assets/so/trashcan-texture-32x32.png" id="10_ulasf"]
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
+[ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2v631"]
@@ -20,9 +22,9 @@ size = Vector2(1150, 10)
 size = Vector2(60, 210)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]
-vertices = PackedVector2Array(1101.1, 427.07, 1102, 427, 1235.51, 427, 1235.46, 428.039, 855.148, 430.047, 853.156, 429, 849.852, 642.977, 851.844, 641.969, 95.4063, 212, 94.8906, 209.023, 471.844, 209.672, 471.938, 212, 1231.86, 210.977, 1232.04, 212.906, 1102, 211.922, 475.141, 209.672, 263.047, 429, 98.9531, 429, 99.1406, 426.922, 470.953, 423.922, 1098.9, 212, 475.141, 212, 477.094, 422.93, 98.5313, 645.008, 98.4922, 644, 264.047, 644, 265.953, 644.023, 471.852, 208.578, 475.117, 208.43, 1233, 642.969, 1233, 646.977, 266.953, 429)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 5, 0), PackedInt32Array(6, 5, 4, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(15, 12, 14), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(1, 0, 20, 14), PackedInt32Array(15, 14, 20, 21), PackedInt32Array(22, 0, 5, 19), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(11, 10, 27, 28, 15, 21), PackedInt32Array(6, 29, 30, 23, 26), PackedInt32Array(19, 11, 21, 22), PackedInt32Array(6, 7, 29), PackedInt32Array(31, 26, 25, 16), PackedInt32Array(31, 16, 19), PackedInt32Array(5, 31, 19)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(89, 655, 1243, 657, 1243, 633, 862, 632, 865, 440, 1245, 438, 1246, 417, 1112, 417, 1112, 222, 1243, 223, 1241, 201, 83, 199, 87, 222, 1089, 222, 1091, 417, 487, 413, 485, 198, 462, 199, 461, 414, 90, 417, 88, 439, 843, 439, 840, 633, 276, 634, 277, 417, 253, 417, 254, 634, 88, 634)])
+vertices = PackedVector2Array(1101.1, 427.07, 1102, 427, 1235.51, 427, 1235.46, 428.039, 95.4063, 212, 94.8906, 209.023, 471.844, 209.672, 471.938, 212, 1231.86, 210.977, 1232.04, 212.906, 1102, 211.922, 475.141, 209.672, 263.039, 428.758, 98.9531, 428.977, 99.1406, 426.922, 470.953, 423.922, 266.953, 428.75, 1098.9, 212, 475.141, 212, 855, 430.047, 848.953, 427.992, 98.5313, 645.008, 98.4922, 644, 264.047, 644, 265.953, 644.023, 471.852, 208.578, 475.117, 208.43, 855, 643, 850.047, 642.977, 1233, 643, 1233, 646.977, 477.094, 422.93)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10), PackedInt32Array(11, 8, 10), PackedInt32Array(12, 13, 14, 15, 16), PackedInt32Array(1, 0, 17, 10), PackedInt32Array(11, 10, 17, 18), PackedInt32Array(0, 3, 19, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(7, 6, 25, 26, 11, 18), PackedInt32Array(19, 27, 28, 20), PackedInt32Array(29, 30, 21, 27), PackedInt32Array(28, 27, 21, 24), PackedInt32Array(16, 24, 23, 12), PackedInt32Array(20, 16, 15), PackedInt32Array(15, 7, 18, 31), PackedInt32Array(20, 15, 31, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(89, 655, 1243, 657, 1243, 633, 865, 633, 865, 440, 1245, 438, 1246, 417, 1112, 417, 1112, 222, 1243, 223, 1241, 201, 83, 199, 87, 222, 1089, 222, 1091, 417, 487, 413, 485, 198, 462, 199, 461, 414, 90, 417, 88, 439, 839, 438, 840, 633, 276, 634, 277, 417, 253, 417, 254, 634, 88, 634)])
 parsed_geometry_type = 1
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0qhwn"]
@@ -107,18 +109,20 @@ sprite_texture = ExtResource("9_k03wk")
 position = Vector2(108, 408)
 texture = SubResource("PlaceholderTexture2D_0qhwn")
 
+[node name="trash_can" parent="storage_manager" instance=ExtResource("5_2v631")]
+position = Vector2(1096, 611)
+scale = Vector2(2, 2)
+script = ExtResource("9_q0opv")
+sprite_texture = ExtResource("10_ulasf")
+item_resource = ExtResource("11_so03b")
+
 [node name="so_manager" type="Node2D" parent="."]
 
 [node name="gear" parent="so_manager" instance=ExtResource("10_wcho7")]
-position = Vector2(218, 150)
+position = Vector2(213, 144)
 
 [node name="Clock" parent="so_manager" groups=["smart_object"] instance=ExtResource("10_q0opv")]
 position = Vector2(540, 380)
-
-[node name="TrashCan" type="Sprite2D" parent="so_manager"]
-position = Vector2(1092, 612)
-scale = Vector2(2, 2)
-texture = ExtResource("10_ulasf")
 
 [node name="Bed" parent="so_manager" instance=ExtResource("12_q0opv")]
 position = Vector2(391, 612)
