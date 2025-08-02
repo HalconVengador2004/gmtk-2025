@@ -43,4 +43,5 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_6t22p")
 
 [node name="TaskInstance" parent="." instance=ExtResource("6_653d1")]
-position = Vector2(65, 0)
+offset_left = 65.0
+offset_right = 65.0

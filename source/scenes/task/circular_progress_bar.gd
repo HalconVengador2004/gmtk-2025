@@ -1,15 +1,11 @@
 extends ColorRect
-
-var timer
+class_name circular_progress_bar
 
 func _ready():
 	var original_material = material
 	var unique_material = original_material.duplicate() # each progress bar can have its own progress visually
 	material = unique_material
+	
 
-func _process(delta):
-	if timer:
-		visible = true
-		material.set("shader_parameter/value", timer.time_left / timer.wait_time)
-	else:
-		visible = false
+func update_progress_bar(new_value):
+	material.set("shader_parameter/value", new_value)
