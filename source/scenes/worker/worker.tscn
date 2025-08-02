@@ -1,13 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdk4b5s1i5ayq"]
+[gd_scene load_steps=9 format=3 uid="uid://bdk4b5s1i5ayq"]
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
 [ext_resource type="Texture2D" uid="uid://cjd3enrj42qoe" path="res://assets/image/Sprites/worker_placeholder.png" id="2_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="3_ij7vr"]
+[ext_resource type="Shader" path="res://source/shaders/worker_energy_bar.gdshader" id="4_abcde"]
 [ext_resource type="PackedScene" uid="uid://74t8ubc72osw" path="res://source/scenes/item/item.tscn" id="5_gtu4y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3eqk0"]
 radius = 62.0725
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abcde"]
+shader = ExtResource("4_abcde")
+shader_parameter/progress_color = Color(0, 1, 0, 1)
+shader_parameter/mid_energy_color = Color(1, 1, 0, 1)
+shader_parameter/low_energy_color = Color(1, 0, 0, 1)
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/progress = 1.0
+shader_parameter/threshold = 0.2
+shader_parameter/fade_smoothness = 0.1
 
 [node name="Worker" type="Node2D" node_paths=PackedStringArray("nav", "item") groups=["worker"]]
 z_index = 1
@@ -30,6 +41,20 @@ texture = ExtResource("2_3eqk0")
 
 [node name="Item" parent="." instance=ExtResource("5_gtu4y")]
 position = Vector2(53, -25)
+
+[node name="ProgressBar" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_abcde")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 60.0
+offset_top = -30.0
+offset_right = 80.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="mouse_entered" from="InteractableComponent" to="HighlightableComponent" method="add_highlight"]

@@ -18,7 +18,8 @@ func _ready():
 	task = Task.new(task_resource)
 	if not interactable_component:
 		push_warning("Warning: so doesnt have a interactable_component")
-	interactable_component.connect("clicked", _on_interactable_clicked)
+	var interactalbe: InteractableComponent = interactable_component as InteractableComponent	
+	interactalbe.clicked.connect(_on_interactable_clicked)
 
 func create_task():
 	task = Task.new(task_resource)

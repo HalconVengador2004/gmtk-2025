@@ -1,30 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv78rckmlb4wv"]
+[gd_scene load_steps=7 format=3 uid="uid://bv78rckmlb4wv"]
 
-[ext_resource type="Script" uid="uid://dnvpy2n0jj4tw" path="res://source/scenes/smartObject/smart_object.gd" id="1_jro8c"]
-[ext_resource type="Script" uid="uid://cm1c1ie6dlmwq" path="res://source/scenes/components/interactable_component.gd" id="2_jro8c"]
+[ext_resource type="Script" uid="uid://dnvpy2n0jj4tw" path="res://source/scenes/smartObject/smart_object.gd" id="1_nysu0"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_0gtgy"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="2_nysu0"]
-[ext_resource type="Resource" uid="uid://brgqfsf1djlgw" path="res://source/scenes/task/resource/gear_broke.tres" id="2_sj8ud"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="3_0gtgy"]
-[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="5_fdy3x"]
+[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_fdy3x"]
+[ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_fdy3x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(129, 129)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
+size = Vector2(98, 98)
 
-[node name="gear" type="Node2D" groups=["smart_object"]]
-script = ExtResource("1_jro8c")
-task_resource = ExtResource("2_sj8ud")
+[node name="gear" type="Node2D"]
+script = ExtResource("1_nysu0")
 
-[node name="HighlightableSprite" parent="." instance=ExtResource("3_0gtgy")]
-scale = Vector2(4, 4)
+[node name="HighlightableSprite" parent="." instance=ExtResource("2_0gtgy")]
+scale = Vector2(3, 3)
 texture = ExtResource("2_nysu0")
 
-[node name="InteractableComponent" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("2_jro8c")
+[node name="TaskInstance" parent="." instance=ExtResource("4_fdy3x")]
+
+[node name="InteractableComponent" parent="." instance=ExtResource("5_fdy3x")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_1")
-
-[node name="TaskInstance" parent="." instance=ExtResource("5_fdy3x")]
+z_index = 1
+shape = SubResource("RectangleShape2D_sj8ud")

@@ -6,6 +6,7 @@ func _ready():
 	SignalBus.connect("worker_clicked", select_worker)
 	SignalBus.connect("task_clicked_instance", move_worker_to_task)
 	SignalBus.connect("storage_clicked", move_worker_to_storage)
+	SignalBus.connect("bed_clicked", move_worker_to_bed)
 
 func select_worker(clicked_worker):
 	selected_worker = clicked_worker
@@ -18,9 +19,20 @@ func move_worker_to_storage(storage_instance):
 	selected_worker.set_assigned_storage(storage_instance)
 	selected_worker.set_is_walking_towards_a_task(false)
 
+func move_worker_to_bed(bed_instance):
+	if not selected_worker:
+		return
+
+	selected_worker.set_navigation_destination(bed_instance.global_position)
+	selected_worker.set_assigned_bed(bed_instance)	
+	
+
 func move_worker_to_task(task_instance: TaskInstance):
 	if not selected_worker or not task_instance:
 		return
+		
+	if selected_worker.assigned_bed:
+		selected_worker.assigned_bed = null
 	
 	if selected_worker.assigned_storage:
 		selected_worker.assigned_storage = null
