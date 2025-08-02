@@ -40,7 +40,7 @@ func move_worker_to_task(task_instance: TaskInstance):
 
 	if task_instance.task_data.resource.required_item != worker_item.resource:
 		return
-		
+
 	print("Sending worker to:", task_instance)
 	selected_worker.set_navigation_destination(task_instance.global_position)
 	task_instance.task_data.set_is_assigned(true)

@@ -8,4 +8,5 @@ script = ExtResource("1_374fl")
 name = "Gear"
 description = "A metallic piece that spins inside a mechanism"
 texture = ExtResource("2_xy4ys")
+
 metadata/_custom_type_script = "uid://ds33rdl6hjvy3"
