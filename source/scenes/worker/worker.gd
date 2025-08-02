@@ -4,9 +4,13 @@ class_name Worker
 @export var nav: NavigationAgent2D
 @export var speed: float = 200
 @export var item: Item
+@export var max_energy: float = 100.0
+@export var tired_speed_multiplier: float = 0.3
+@export var energy_threshold: float = 20.0
 
 @onready var interactable_component = $InteractableComponent
 
+var energy: float
 var finished_moving = false
 var assigned_task : Node = null
 var assigned_storage: Storage = null
@@ -30,6 +34,7 @@ func set_navigation_destination(pos):
 	finished_moving = false
 
 func _ready():
+	energy = max_energy
 	if not nav:
 		push_warning("Warning: worker doesnt have a navigation agent")
 	if not interactable_component:
@@ -37,9 +42,14 @@ func _ready():
 	interactable_component.connect("clicked", _on_interactable_clicked)
 
 func _physics_process(delta):
+	energy -= delta
+	var current_speed = speed
+	if energy < energy_threshold:
+		current_speed *= tired_speed_multiplier
+
 	if not finished_moving:
 		var direction: Vector2 = (nav.get_next_path_position() - global_position).normalized()
-		translate(direction * speed * delta)
+		translate(direction * current_speed * delta)
 	elif finished_moving and assigned_storage:
 		if not assigned_storage.is_grabbing:
 			assigned_storage.get_item()
@@ -48,6 +58,9 @@ func _physics_process(delta):
 			if collected_resource:
 				item.init(collected_resource)
 				assigned_storage = null
+
+func rest():
+	energy = max_energy
 
 
 func _on_navigation_agent_2d_navigation_finished():

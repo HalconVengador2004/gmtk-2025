@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name HighlightableSprite
 
 func _ready():
 	var original_material = material
