@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
+[ext_resource type="Script" uid="uid://cawx4cr5ai0ks" path="res://source/scripts/day_text.gd" id="6_lop5m"]
 [ext_resource type="Texture2D" uid="uid://b8ylq4nrhotcr" path="res://assets/storage/pen-ink-texture-32x32.png" id="6_lop5m"]
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
@@ -127,3 +128,26 @@ scale = Vector2(2, 2)
 [node name="Bed2" parent="so_manager" instance=ExtResource("12_q0opv")]
 position = Vector2(492, 612)
 scale = Vector2(2, 2)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="DayText" type="Label" parent="UILayer/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "Day ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_lop5m")
