@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv78rckmlb4wv"]
+
+[ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="2_nysu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(129, 129)
+
+[node name="gear" type="Node2D" groups=["smart_object"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_nysu0")
+
+[node name="InteractableComponent" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_1")

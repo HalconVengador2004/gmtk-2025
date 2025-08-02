@@ -1,12 +1,15 @@
-extends Node2D
+extends SmartObject
+class_name Clock
 
 @onready var minute_hand = $MinuteHand
 @onready var hour_hand = $HourHand
 
-func _process(delta):
+func _ready():
+	task = null
+
+func _process(_delta):
 	minute_hand.rotation = deg_to_rad(minute_to_deg(TimeManager.get_minute()))
 	hour_hand.rotation = deg_to_rad(hour_to_deg(TimeManager.get_hour()))
-	
 	
 func hour_to_deg(game_hour: float) -> float:
 	return game_hour * (360.0 / TimeManager.hour_number)

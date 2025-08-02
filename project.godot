@@ -34,6 +34,7 @@ enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 task=""
 worker=""
 storage=""
+smart_object=""
 
 [rendering]
 

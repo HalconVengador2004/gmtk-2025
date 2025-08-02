@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmdx58voo712c"]
+[gd_scene load_steps=6 format=3 uid="uid://bjmdgm7g0a38b"]
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_mw84s"]
 [ext_resource type="Texture2D" uid="uid://cjd3enrj42qoe" path="res://assets/image/Sprites/worker_placeholder.png" id="2_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="3_ij7vr"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="3_ij7vr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3eqk0"]
 radius = 62.0725
