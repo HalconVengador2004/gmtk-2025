@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
-[ext_resource type="Shader" path="res://source/shaders/worker_energy_bar.gdshader" id="4_abcde"]
 [ext_resource type="PackedScene" uid="uid://b3x1psvnbu4k3" path="res://source/scenes/components/HighlightableAnimatedSprite.tscn" id="4_umj4u"]
 [ext_resource type="PackedScene" uid="uid://74t8ubc72osw" path="res://source/scenes/item/item.tscn" id="5_gtu4y"]
 [ext_resource type="Texture2D" uid="uid://bk5d46ynlvb22" path="res://assets/image/Sprites/worker/worker_idle/worker_idle00.png" id="5_vl70o"]
@@ -29,15 +28,51 @@
 radius = 55.0
 height = 196.667
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_abcde"]
-shader = ExtResource("4_abcde")
+[sub_resource type="Shader" id="Shader_gtu4y"]
+code = "shader_type canvas_item;
+
+uniform vec4 progress_color : source_color = vec4(0.0, 1.0, 0.0, 1.0);
+uniform vec4 mid_energy_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+uniform vec4 low_energy_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+uniform vec4 background_color : source_color = vec4(0.2, 0.2, 0.2, 1.0);
+uniform float progress : hint_range(0.0, 1.0) = 1.0;
+uniform float threshold : hint_range(0.0, 1.0) = 0.2;
+uniform float fade_smoothness : hint_range(0.0, 1.0) = 0.5;
+
+void fragment() {
+    vec4 color = background_color;
+    vec4 current_progress_color;
+
+    float y = 1.0 - UV.y;
+    float yellow_pos = threshold + 0.1;
+
+    if (y < threshold) {
+        current_progress_color = low_energy_color;
+    } else if (y < yellow_pos) {
+        float gradient_factor = smoothstep(threshold, yellow_pos, y);
+        current_progress_color = mix(low_energy_color, mid_energy_color, gradient_factor);
+    } else {
+        float gradient_factor = smoothstep(yellow_pos, 1.0, y);
+        current_progress_color = mix(mid_energy_color, progress_color, gradient_factor);
+    }
+
+    if (UV.y > (1.0 - progress)) {
+        color = current_progress_color;
+    }
+    
+    COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pa7e"]
+shader = SubResource("Shader_gtu4y")
 shader_parameter/progress_color = Color(0, 1, 0, 1)
 shader_parameter/mid_energy_color = Color(1, 1, 0, 1)
 shader_parameter/low_energy_color = Color(1, 0, 0, 1)
 shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
 shader_parameter/progress = 1.0
 shader_parameter/threshold = 0.2
-shader_parameter/fade_smoothness = 0.1
+shader_parameter/fade_smoothness = 0.5
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eec18"]
 animations = [{
@@ -136,7 +171,7 @@ shape = SubResource("CapsuleShape2D_umj4u")
 position = Vector2(53, -25)
 
 [node name="ProgressBar" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_abcde")
+material = SubResource("ShaderMaterial_8pa7e")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

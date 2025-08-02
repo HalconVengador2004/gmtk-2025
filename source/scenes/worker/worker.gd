@@ -69,6 +69,7 @@ func set_navigation_destination(pos):
 	finished_moving = false
 
 func _ready():
+	progress_bar.material = progress_bar.material.duplicate()
 	nav.path_desired_distance = 4
 	energy = max_energy
 	if not nav:
