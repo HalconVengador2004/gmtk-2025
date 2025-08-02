@@ -14,6 +14,9 @@ func _ready():
 func _on_task_started(task):
 	task_data = task
 	progress_bar.visible = true
+	create_timer()
+	
+func create_timer():
 	if timer:
 		timer.queue_free()
 	timer = Timer.new()
