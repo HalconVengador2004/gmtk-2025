@@ -22,7 +22,7 @@ size = Vector2(97, 96)
 script = ExtResource("1_1")
 task_resource = ExtResource("2_xhqqp")
 
-[node name="HighlightableSprite" parent="." groups=["smart_object"] instance=ExtResource("3_653d1")]
+[node name="HighlightableSprite" parent="." instance=ExtResource("3_653d1")]
 scale = Vector2(3, 3)
 texture = ExtResource("3_twhb7")
 
@@ -43,5 +43,3 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_6t22p")
 
 [node name="TaskInstance" parent="." instance=ExtResource("6_653d1")]
-offset_left = 65.0
-offset_right = 65.0
