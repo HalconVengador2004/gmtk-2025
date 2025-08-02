@@ -5,6 +5,7 @@ class_name Clock
 @onready var hour_hand = $HourHand
 
 func _ready():
+	super()
 	task = null
 
 func _process(_delta):

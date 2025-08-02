@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnvpy2n0jj4tw" path="res://source/scenes/smartObject/smart_object.gd" id="1_ox26j"]
 
-[node name="SmartObject" type="Node2D"]
+[node name="SmartObject" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_ox26j")
 
 [node name="InteractableComponent" parent="." instance=ExtResource("uid://buqvsj41ewcdi")]

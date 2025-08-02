@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TaskResource" load_steps=3 format=3 uid="uid://brgqfsf1djlgw"]
+
+[ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="1_jh7pl"]
+[ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="1_lci7s"]
+
+[resource]
+script = ExtResource("1_jh7pl")
+required_item = ExtResource("1_lci7s")
+time_to_finish = 4.0
+deadline = 25.0
+metadata/_custom_type_script = "uid://btdq7a3vfb7fa"

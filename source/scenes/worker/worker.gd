@@ -15,15 +15,17 @@ class_name Worker
 
 var energy: float
 
-
 # worker state
 var is_resting = false
 var finished_moving = false
+var is_walking_towards_a_task: bool = false
 var assigned_task : Node = null
 var assigned_storage: Storage = null
 var assigned_bed: Bed = null
 
 func set_assigned_task(task_instance):
+	if assigned_task and assigned_task.task_data:
+		assigned_task.task_data.set_is_assigned(false)
 	assigned_task = task_instance
 	assigned_storage = null
 	assigned_bed = null
@@ -31,6 +33,8 @@ func set_assigned_task(task_instance):
 		is_resting = false
 
 func set_assigned_storage(storage_instance: Storage):
+	if assigned_task and assigned_task.task_data:
+		assigned_task.task_data.set_is_assigned(false)
 	assigned_storage = storage_instance
 	assigned_task = null
 	assigned_bed = null
@@ -38,6 +42,8 @@ func set_assigned_storage(storage_instance: Storage):
 		is_resting = false
 
 func set_assigned_bed(bed_instance: Bed):
+	if assigned_task and assigned_task.task_data:
+		assigned_task.task_data.set_is_assigned(false)
 	assigned_bed = bed_instance
 	assigned_storage = null
 	assigned_task = null
@@ -45,6 +51,12 @@ func set_assigned_bed(bed_instance: Bed):
 
 func get_assigned_task():
 	return assigned_task
+
+func get_item():
+	return item
+	
+func set_is_walking_towards_a_task(walking):
+	is_walking_towards_a_task = walking
 
 func get_interactable_component():
 	return interactable_component
@@ -76,6 +88,7 @@ func _physics_process(delta):
 	
 	energy -= energy_spent_per_second * delta
 	update_progress_bar()
+	
 	var current_speed = speed
 	if energy < energy_threshold:
 		current_speed *= tired_speed_multiplier
@@ -95,6 +108,7 @@ func _physics_process(delta):
 				assigned_storage = null
 			elif assigned_storage is TrashCan:
 				clear_carried_item()
+				assigned_storage = null
 
 func rest():
 	is_resting = true
@@ -110,11 +124,15 @@ func clear_carried_item():
 	if item:
 		item.clear()
 
+func work():
+	print("Worker", self, "is working")
 
 func _on_navigation_agent_2d_navigation_finished():
 	finished_moving = true
 	if assigned_bed:
 		rest()
+	if is_walking_towards_a_task:
+		work()
 
 func _on_interactable_clicked(node):
 	SignalBus.emit_signal("worker_clicked", self)

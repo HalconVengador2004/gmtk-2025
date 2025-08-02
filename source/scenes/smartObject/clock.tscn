@@ -18,7 +18,7 @@ height = 32
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t22p"]
 size = Vector2(97, 96)
 
-[node name="Clock" type="Node2D"]
+[node name="Clock" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_1")
 task_resource = ExtResource("2_xhqqp")
 

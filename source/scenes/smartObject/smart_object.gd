@@ -31,4 +31,7 @@ func _physics_process(_delta):
 		is_broken = true
 
 func _on_interactable_clicked(_node):
-	SignalBus.emit_signal("task_clicked", task, self)
+	for child in get_children():
+		if child is TaskInstance and child.task_data:
+			SignalBus.task_clicked_instance.emit(child)
+			return
