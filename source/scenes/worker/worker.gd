@@ -2,6 +2,7 @@ extends Node2D
 class_name Worker
 
 @export var nav: NavigationAgent2D
+@export var anim_sprite: HighlightableAnimatedSprite
 @export var speed: float = 200
 @export var item: Item
 @export var max_energy: float = 100.0
@@ -9,6 +10,8 @@ class_name Worker
 @export var energy_threshold: float = 20.0
 
 @onready var interactable_component = $InteractableComponent
+
+enum States {IDLE, RUNNING, RUNNING_TIRED, TIRED, WORKING}
 
 var energy: float
 var finished_moving = false

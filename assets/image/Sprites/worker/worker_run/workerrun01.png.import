@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qerrdprec4ob"
-path="res://.godot/imported/task_placeholder.png-9f306b2b2cd7a9fe0f8ce436a6aec74f.ctex"
+uid="uid://ec7nwa3fxarn"
+path="res://.godot/imported/workerrun01.png-9cf91128c2066014e860ddb798a4fc9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/image/sprite/task_placeholder.png"
-dest_files=["res://.godot/imported/task_placeholder.png-9f306b2b2cd7a9fe0f8ce436a6aec74f.ctex"]
+source_file="res://assets/image/Sprites/worker/worker_run/workerrun01.png"
+dest_files=["res://.godot/imported/workerrun01.png-9cf91128c2066014e860ddb798a4fc9c.ctex"]
 
 [params]
 
