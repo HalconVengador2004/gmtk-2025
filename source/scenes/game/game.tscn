@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=22 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
 [ext_resource type="Texture2D" uid="uid://b8ylq4nrhotcr" path="res://assets/storage/pen-ink-texture-32x32.png" id="6_lop5m"]
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
-[ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
+[ext_resource type="Resource" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
 [ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="9_e10du"]
 [ext_resource type="Texture2D" uid="uid://dikqa0hbfbkpv" path="res://assets/storage/clockhand-texture-32x32.png" id="9_k03wk"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
+[ext_resource type="PackedScene" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2v631"]
 size = Vector2(1150, 10)
@@ -123,7 +124,7 @@ item_resource = ExtResource("11_so03b")
 [node name="so_manager" type="Node2D" parent="."]
 
 [node name="gear" parent="so_manager" instance=ExtResource("10_wcho7")]
-position = Vector2(213, 144)
+position = Vector2(213, 172)
 
 [node name="Clock" parent="so_manager" instance=ExtResource("10_q0opv")]
 position = Vector2(540, 380)
@@ -135,3 +136,5 @@ scale = Vector2(2, 2)
 [node name="Bed2" parent="so_manager" instance=ExtResource("12_q0opv")]
 position = Vector2(492, 612)
 scale = Vector2(2, 2)
+
+[node name="HUD" parent="." instance=ExtResource("17_7mye2")]

@@ -125,7 +125,20 @@ func clear_carried_item():
 		item.clear()
 
 func work():
-	print("Worker", self, "is working")
+	if assigned_task:
+		var task_instance = assigned_task
+		var task_data = task_instance.task_data
+		var time_to_finish = task_data.resource.time_to_finish
+		
+		var tween = create_tween()
+		tween.tween_property(task_data, "progress", time_to_finish, time_to_finish).set_ease(Tween.EASE_IN_OUT)
+		await tween.finished
+		
+		if task_data.is_complete():
+			task_instance.queue_free()
+			assigned_task = null
+			is_walking_towards_a_task = false
+			SignalBus.task_completed.emit(task_data)
 
 func _on_navigation_agent_2d_navigation_finished():
 	finished_moving = true
