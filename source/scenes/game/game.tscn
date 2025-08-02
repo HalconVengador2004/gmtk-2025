@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=21 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
 [ext_resource type="Texture2D" uid="uid://b8ylq4nrhotcr" path="res://assets/storage/pen-ink-texture-32x32.png" id="6_lop5m"]
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
+[ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
+[ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="9_e10du"]
 [ext_resource type="Texture2D" uid="uid://dikqa0hbfbkpv" path="res://assets/storage/clockhand-texture-32x32.png" id="9_k03wk"]
 [ext_resource type="Script" uid="uid://7d2d0cqrjcsl" path="res://source/scenes/item/StorageTypes/trash_can.gd" id="9_q0opv"]
 [ext_resource type="PackedScene" uid="uid://criqg4x7hjoxn" path="res://source/scenes/smartObject/clock.tscn" id="10_q0opv"]
@@ -99,11 +101,13 @@ sprite_texture = ExtResource("7_0qhwn")
 position = Vector2(1015, 611)
 scale = Vector2(2, 2)
 sprite_texture = ExtResource("8_fy7qm")
+item_resource = ExtResource("8_1txuv")
 
 [node name="handClock" parent="storage_manager" instance=ExtResource("5_2v631")]
 position = Vector2(934, 611)
 scale = Vector2(2, 2)
 sprite_texture = ExtResource("9_k03wk")
+item_resource = ExtResource("9_e10du")
 
 [node name="table" type="Sprite2D" parent="storage_manager"]
 position = Vector2(108, 408)

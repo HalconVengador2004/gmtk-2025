@@ -1,6 +1,6 @@
 extends Node
 
-var selected_worker
+var selected_worker: Worker
 
 func _ready():
 	SignalBus.connect("worker_clicked", select_worker)
@@ -16,12 +16,14 @@ func move_worker_to_storage(storage_instance):
 	
 	selected_worker.set_navigation_destination(storage_instance.global_position)
 	selected_worker.set_assigned_storage(storage_instance)
+	selected_worker.set_is_walking_towards_a_task(false)
 
 func move_worker_to_task(task_instance: TaskInstance):
 	if not selected_worker or not task_instance:
-		print("selected_worker", selected_worker != null)
-		print("task_instance", task_instance != null)
 		return
+	
+	if selected_worker.assigned_storage:
+		selected_worker.assigned_storage = null
 		
 	var previous_task = selected_worker.get_assigned_task()
 	if previous_task:
@@ -30,7 +32,17 @@ func move_worker_to_task(task_instance: TaskInstance):
 	if task_instance.task_data.get_is_assigned():
 		print("task is not available")
 		return
+
+	var worker_item = selected_worker.get_item()
+	if not worker_item or not worker_item.resource:
+		print("Worker has no item or item has no resource")
+		return
+
+	if task_instance.task_data.resource.required_item != worker_item.resource:
+		return
+		
 	print("Sending worker to:", task_instance)
 	selected_worker.set_navigation_destination(task_instance.global_position)
 	task_instance.task_data.set_is_assigned(true)
 	selected_worker.set_assigned_task(task_instance)
+	selected_worker.set_is_walking_towards_a_task(true)
