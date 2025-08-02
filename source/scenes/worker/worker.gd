@@ -34,6 +34,7 @@ func set_navigation_destination(pos):
 	finished_moving = false
 
 func _ready():
+	nav.path_desired_distance = 4
 	energy = max_energy
 	if not nav:
 		push_warning("Warning: worker doesnt have a navigation agent")
@@ -49,7 +50,9 @@ func _physics_process(delta):
 
 	if not finished_moving:
 		var direction: Vector2 = (nav.get_next_path_position() - global_position).normalized()
-		translate(direction * current_speed * delta)
+		var velocity = direction * current_speed
+		global_position += velocity * delta
+		
 	elif finished_moving and assigned_storage:
 		if not assigned_storage.is_grabbing:
 			assigned_storage.get_item()

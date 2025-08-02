@@ -22,9 +22,9 @@ size = Vector2(1150, 10)
 size = Vector2(60, 210)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]
-vertices = PackedVector2Array(1101.1, 427.07, 1102, 427, 1235.51, 427, 1235.46, 428.039, 95.4063, 212, 94.8906, 209.023, 471.844, 209.672, 471.938, 212, 1231.86, 210.977, 1232.04, 212.906, 1102, 211.922, 475.141, 209.672, 263.039, 428.758, 98.9531, 428.977, 99.1406, 426.922, 470.953, 423.922, 266.953, 428.75, 1098.9, 212, 475.141, 212, 855, 430.047, 848.953, 427.992, 98.5313, 645.008, 98.4922, 644, 264.047, 644, 265.953, 644.023, 471.852, 208.578, 475.117, 208.43, 855, 643, 850.047, 642.977, 1233, 643, 1233, 646.977, 477.094, 422.93)
+vertices = PackedVector2Array(1101.1, 427.07, 1102, 427, 1235.59, 427, 1235.39, 431.938, 95.4063, 212, 94.8906, 209.023, 471.844, 209.672, 471.938, 212, 1231.86, 210.977, 1232.04, 212.906, 1102, 211.922, 475.141, 209.672, 263.039, 428.758, 98.9531, 428.977, 99.1406, 426.922, 470.953, 423.922, 266.953, 428.75, 1098.9, 212, 475.141, 212, 855, 429.953, 848.953, 427.992, 98.5313, 645.008, 98.4922, 644, 264.047, 644, 265.953, 644.023, 471.852, 208.578, 475.117, 208.43, 855, 643, 850.047, 642.977, 1233, 643, 1233, 646.977, 477.094, 422.93)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10), PackedInt32Array(11, 8, 10), PackedInt32Array(12, 13, 14, 15, 16), PackedInt32Array(1, 0, 17, 10), PackedInt32Array(11, 10, 17, 18), PackedInt32Array(0, 3, 19, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(7, 6, 25, 26, 11, 18), PackedInt32Array(19, 27, 28, 20), PackedInt32Array(29, 30, 21, 27), PackedInt32Array(28, 27, 21, 24), PackedInt32Array(16, 24, 23, 12), PackedInt32Array(20, 16, 15), PackedInt32Array(15, 7, 18, 31), PackedInt32Array(20, 15, 31, 0)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(89, 655, 1243, 657, 1243, 633, 865, 633, 865, 440, 1245, 438, 1246, 417, 1112, 417, 1112, 222, 1243, 223, 1241, 201, 83, 199, 87, 222, 1089, 222, 1091, 417, 487, 413, 485, 198, 462, 199, 461, 414, 90, 417, 88, 439, 839, 438, 840, 633, 276, 634, 277, 417, 253, 417, 254, 634, 88, 634)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(89, 655, 1243, 657, 1243, 633, 865, 633, 865, 440, 1245, 442, 1246, 417, 1112, 417, 1112, 222, 1243, 223, 1241, 201, 83, 199, 87, 222, 1089, 222, 1091, 417, 487, 413, 485, 198, 462, 199, 461, 414, 90, 417, 88, 439, 839, 438, 840, 633, 276, 634, 277, 417, 253, 417, 254, 634, 88, 634)])
 parsed_geometry_type = 1
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0qhwn"]
@@ -74,7 +74,7 @@ navigation_polygon = SubResource("NavigationPolygon_lfrn8")
 [node name="worker_manager" type="Node2D" parent="."]
 
 [node name="Worker" parent="worker_manager" instance=ExtResource("3_kelw5")]
-position = Vector2(664, 395)
+position = Vector2(664, 396)
 
 [node name="Worker2" parent="worker_manager" instance=ExtResource("3_kelw5")]
 position = Vector2(286, 612)
