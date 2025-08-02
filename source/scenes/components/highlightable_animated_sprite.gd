@@ -1,6 +1,5 @@
-extends Sprite2D
-class_name HighlightableSprite
-
+extends AnimatedSprite2D
+class_name HighlightableAnimatedSprite
 
 @onready var highlighter = Highlightable.new()
 

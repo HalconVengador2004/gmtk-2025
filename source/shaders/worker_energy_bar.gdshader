@@ -28,6 +28,6 @@ void fragment() {
     if (UV.y > (1.0 - progress)) {
         color = current_progress_color;
     }
-    
+
     COLOR = color;
 }

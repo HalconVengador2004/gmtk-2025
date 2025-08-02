@@ -9,7 +9,10 @@ func _ready():
 	SignalBus.connect("bed_clicked", move_worker_to_bed)
 
 func select_worker(clicked_worker):
+	if selected_worker and selected_worker != clicked_worker:
+		selected_worker.anim_sprite.remove_highlight()
 	selected_worker = clicked_worker
+	selected_worker.anim_sprite.add_highlight()
 
 func move_worker_to_storage(storage_instance):
 	if not selected_worker:
