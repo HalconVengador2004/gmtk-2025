@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
 [ext_resource type="PackedScene" uid="uid://b3x1psvnbu4k3" path="res://source/scenes/components/HighlightableAnimatedSprite.tscn" id="4_umj4u"]
+[ext_resource type="Shader" path="res://source/shaders/worker_energy_bar.gdshader" id="4_abcde"]
 [ext_resource type="PackedScene" uid="uid://74t8ubc72osw" path="res://source/scenes/item/item.tscn" id="5_gtu4y"]
 [ext_resource type="Texture2D" uid="uid://bk5d46ynlvb22" path="res://assets/image/Sprites/worker/worker_idle/worker_idle00.png" id="5_vl70o"]
 [ext_resource type="Texture2D" uid="uid://bk5x2a3jh1dt7" path="res://assets/image/Sprites/worker/worker_idle/worker_idle01.png" id="6_qkgd5"]
@@ -26,6 +27,16 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umj4u"]
 radius = 55.0
 height = 196.667
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abcde"]
+shader = ExtResource("4_abcde")
+shader_parameter/progress_color = Color(0, 1, 0, 1)
+shader_parameter/mid_energy_color = Color(1, 1, 0, 1)
+shader_parameter/low_energy_color = Color(1, 0, 0, 1)
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/progress = 1.0
+shader_parameter/threshold = 0.2
+shader_parameter/fade_smoothness = 0.1
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eec18"]
 animations = [{
@@ -122,6 +133,20 @@ shape = SubResource("CapsuleShape2D_umj4u")
 
 [node name="Item" parent="." instance=ExtResource("5_gtu4y")]
 position = Vector2(53, -25)
+
+[node name="ProgressBar" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_abcde")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 60.0
+offset_top = -30.0
+offset_right = 80.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HighlightableAnimatedSprite" parent="." instance=ExtResource("4_umj4u")]
 position = Vector2(6.66667, -68.3333)
