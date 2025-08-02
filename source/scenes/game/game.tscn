@@ -121,7 +121,7 @@ item_resource = ExtResource("11_so03b")
 [node name="gear" parent="so_manager" instance=ExtResource("10_wcho7")]
 position = Vector2(213, 144)
 
-[node name="Clock" parent="so_manager" groups=["smart_object"] instance=ExtResource("10_q0opv")]
+[node name="Clock" parent="so_manager" instance=ExtResource("10_q0opv")]
 position = Vector2(540, 380)
 
 [node name="Bed" parent="so_manager" instance=ExtResource("12_q0opv")]

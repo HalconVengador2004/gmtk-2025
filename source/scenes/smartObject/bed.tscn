@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2d2s5sbhsax0"]
+[gd_scene load_steps=6 format=3 uid="uid://b2d2s5sbhsax0"]
 
 [ext_resource type="Script" uid="uid://drwwt8oj2c1v" path="res://source/scenes/smartObject/bed.gd" id="1_1"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ub1ir"]
 [ext_resource type="Texture2D" uid="uid://b78jxfxb2i3mk" path="res://assets/so/bed-texture-32x32.png" id="2_vxooe"]
+[ext_resource type="Script" uid="uid://cm1c1ie6dlmwq" path="res://source/scenes/components/interactable_component.gd" id="3_o0pf7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(64, 32)
@@ -9,12 +11,13 @@ size = Vector2(64, 32)
 [node name="Bed" type="Node2D"]
 script = ExtResource("1_1")
 
-[node name="Sprite2D" type="Sprite2D" parent="." groups=["smart_object"]]
+[node name="HighlightableSprite" parent="." instance=ExtResource("2_ub1ir")]
 texture = ExtResource("2_vxooe")
 
 [node name="InteractableComponent" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
+script = ExtResource("3_o0pf7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 shape = SubResource("RectangleShape2D_1")

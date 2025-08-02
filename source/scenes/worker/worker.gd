@@ -16,10 +16,14 @@ var assigned_task : Node = null
 var assigned_storage: Storage = null
 
 func set_assigned_task(task_instance):
+	if assigned_task and assigned_task.task_data:
+		assigned_task.task_data.set_is_assigned(false)
 	assigned_task = task_instance
 	assigned_storage = null
 
 func set_assigned_storage(storage_instance: Storage):
+	if assigned_task and assigned_task.task_data:
+		assigned_task.task_data.set_is_assigned(false)
 	assigned_storage = storage_instance
 	assigned_task = null
 
