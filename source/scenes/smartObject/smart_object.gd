@@ -21,19 +21,13 @@ func _ready():
 	interactable_component.connect("clicked", _on_interactable_clicked)
 
 func create_task():
+	task = Task.new(task_resource)
 	has_task = true
+	emit_signal("task_started", task)
 
 func _physics_process(_delta):
 	if has_task and task.is_overdue() and not task.is_complete():
 		is_broken = true
 
 func _on_interactable_clicked(_node):
-	if is_broken:
-		var fix_task_resource = TaskResource.new()
-		fix_task_resource.time_to_finish = 10
-		var fix_task = Task.new(fix_task_resource)
-		SignalBus.emit_signal("task_clicked", fix_task, self)
-		emit_signal("task_started", fix_task)
-	else:
-		SignalBus.emit_signal("task_clicked", task, self)
-		emit_signal("task_started", task)
+	SignalBus.emit_signal("task_clicked", task, self)

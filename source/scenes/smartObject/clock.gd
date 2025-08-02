@@ -1,4 +1,4 @@
-extends SmartObject
+extends  SmartObject
 class_name Clock
 
 @onready var minute_hand = $MinuteHand

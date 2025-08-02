@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=17 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
-[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task.tscn" id="3_xh4q7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
 [ext_resource type="Texture2D" uid="uid://b8ylq4nrhotcr" path="res://assets/storage/pen-ink-texture-32x32.png" id="6_lop5m"]
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
@@ -81,18 +80,6 @@ position = Vector2(286, 612)
 [node name="task_manager" type="Node2D" parent="."]
 script = ExtResource("3_wcho7")
 
-[node name="Task" parent="task_manager" instance=ExtResource("3_xh4q7")]
-visible = false
-position = Vector2(213, 79)
-
-[node name="Task3" parent="task_manager" instance=ExtResource("3_xh4q7")]
-visible = false
-position = Vector2(1164, 645)
-
-[node name="Task2" parent="task_manager" instance=ExtResource("3_xh4q7")]
-visible = false
-position = Vector2(1185, 90)
-
 [node name="storage_manager" type="Node2D" parent="."]
 
 [node name="Storage_oil" parent="storage_manager" instance=ExtResource("5_2v631")]
@@ -125,7 +112,7 @@ texture = SubResource("PlaceholderTexture2D_0qhwn")
 [node name="gear" parent="so_manager" instance=ExtResource("10_wcho7")]
 position = Vector2(218, 150)
 
-[node name="Clock" parent="so_manager" instance=ExtResource("10_q0opv")]
+[node name="Clock" parent="so_manager" groups=["smart_object"] instance=ExtResource("10_q0opv")]
 position = Vector2(540, 380)
 
 [node name="TrashCan" type="Sprite2D" parent="so_manager"]
