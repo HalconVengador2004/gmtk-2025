@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b82k7yangq4r0"]
+[gd_scene load_steps=13 format=3 uid="uid://b82k7yangq4r0"]
 
 [ext_resource type="Script" uid="uid://cej1wbu4i2oop" path="res://source/scripts/main_menu/title&buttons.gd" id="1_a6bij"]
 [ext_resource type="PackedScene" uid="uid://dlfl6l7r45xo5" path="res://source/scenes/ui/ui_elements/menu_button.tscn" id="1_hu2hv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b0y3nkanms7ro" path="res://source/scenes/ui/ui_elements/credits_person.tscn" id="7_xwrg4"]
 [ext_resource type="FontFile" uid="uid://xka673onxgrd" path="res://assets/font/Be_Vietnam_Pro/BeVietnamPro-Black.ttf" id="8_eqpe7"]
 [ext_resource type="FontFile" uid="uid://c8ymla34m4y5x" path="res://assets/font/Be_Vietnam_Pro/BeVietnamPro-Bold.ttf" id="9_b7uhg"]
+[ext_resource type="AudioStream" uid="uid://g7q0kw0852i3" path="res://assets/audio/music/menu_doodle_2_loop/ogg/menu_doodle_2_loop.ogg" id="10_06to0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84hj8"]
 bg_color = Color(0.385493, 0.385493, 0.385492, 1)
@@ -315,6 +316,10 @@ theme_override_constants/margin_right = 260
 layout_mode = 2
 size_flags_vertical = 10
 text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_06to0")
+autoplay = true
 
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Play Button" to="." method="change_scene_to_game"]
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/HowToPlay Button" to="Title&Buttons" method="_on_how_to_play_button_pressed_after_wait_time_"]

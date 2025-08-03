@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://b58v1t1mtnwc7"]
 
-[ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
-[ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
+[ext_resource type="Script" path="res://source/scenes/game/game.gd" id="1_f72de"]
+[ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://nx33b8xv04wa" path="res://source/scenes/miscelaneous/stairs.tscn" id="3_55dgt"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://emehtxgbwxyc" path="res://assets/image/Sprites/Tools/item_oil_canister.png" id="10_tfnqs"]
 [ext_resource type="Resource" uid="uid://dfnp4s3aspluc" path="res://source/scenes/item/resource/oil.tres" id="10_vh6i3"]
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="11_03v86"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="11_03v86"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="12_64h2r"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
@@ -227,7 +227,6 @@ texture = ExtResource("8_fy7qm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StorageManager/gearStorage/InteractableComponent"]
 z_index = 1
 position = Vector2(-0.625, -0.140625)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vh6i3")
 
 [node name="handClock" type="Node2D" parent="StorageManager" groups=["storage"]]
@@ -245,7 +244,6 @@ texture = ExtResource("9_k03wk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StorageManager/handClock/InteractableComponent"]
 z_index = 1
 position = Vector2(-0.3125, -1.9375)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_31h4f")
 
 [node name="table" type="Sprite2D" parent="StorageManager"]
