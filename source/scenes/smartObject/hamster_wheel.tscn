@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv22d1biav7ty"]
+[gd_scene load_steps=9 format=3 uid="uid://cv22d1biav7ty"]
 
 [ext_resource type="Script" uid="uid://bfhwijksc0toe" path="res://source/scenes/smartObject/hamster_wheel.gd" id="1_71sad"]
-[ext_resource type="Material" path="res://source/shaders/battery_bar.tres" id="2_y5vk7"]
+[ext_resource type="Resource" uid="uid://p84nqoys25gi" path="res://source/scenes/task/resource/fix_wheel.tres" id="2_1uav4"]
+[ext_resource type="Material" uid="uid://dnh4p4uop2jbs" path="res://source/shaders/battery_bar.tres" id="2_y5vk7"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ybcke"]
 [ext_resource type="Texture2D" uid="uid://bnd2qku0ctnfn" path="res://assets/so/hamster_wheel_sprite.png" id="3_71sad"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_1uav4"]
@@ -12,6 +13,7 @@ size = Vector2(141, 108)
 
 [node name="HamsterWheel" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_71sad")
+task_resource = ExtResource("2_1uav4")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 material = ExtResource("2_y5vk7")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cf538jmja25cc"]
+
+[ext_resource type="Script" uid="uid://ds33rdl6hjvy3" path="res://source/scenes/item/item_resource.gd" id="1_6cmw8"]
+[ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="2_l86xf"]
+
+[resource]
+script = ExtResource("1_6cmw8")
+name = "Screw&Driver"
+description = "Used to fix the hamster and the wheel
+"
+texture = ExtResource("2_l86xf")
