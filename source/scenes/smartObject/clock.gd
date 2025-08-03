@@ -1,5 +1,5 @@
-extends SmartObject
 class_name Clock
+extends SmartObject
 
 @onready var minute_hand = $MinuteHand
 @onready var hour_hand = $HourHand
