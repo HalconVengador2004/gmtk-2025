@@ -5,7 +5,7 @@ class_name SmartObject
 signal task_started
 
 @export var task_resource: TaskResource
- @onready var interactable_component = $InteractableComponent
+@onready var interactable_component = $InteractableComponent
 
 var task: Task
 var has_task: bool = false
