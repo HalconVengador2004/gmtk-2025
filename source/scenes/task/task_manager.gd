@@ -6,10 +6,10 @@ signal score_updated(score: int)
 
 @export var max_clock_stop_time: float = 60.0
 
-var break_chance: float = 0.05
+var break_chance: float = 0.04
 var max_break_chance: float = 0.20
-var break_chance_increase_rate: float = 1.15
-var hours_of_immunity: int = 4
+var break_chance_increase_rate: float = 1.20
+var hours_of_immunity: int = 3
 var immunity_decrease_per_day: int = 1
 
 var smart_objects: Array[Node] = []
@@ -46,8 +46,8 @@ func _physics_process(delta):
 
 	if not clock.is_running:
 		clock_stop_timer += delta
-		if clock_stop_timer >= max_clock_stop_time:
-			game_lost.emit()
+		#if clock_stop_timer >= max_clock_stop_time:
+			#game_lost.emit()
 	else:
 		clock_stop_timer = 0
 

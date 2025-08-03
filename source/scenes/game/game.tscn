@@ -188,6 +188,9 @@ position = Vector2(664, 396)
 [node name="Worker2" parent="WorkerManager" instance=ExtResource("3_kelw5")]
 position = Vector2(286, 612)
 
+[node name="Worker3" parent="WorkerManager" instance=ExtResource("3_kelw5")]
+position = Vector2(286, 612)
+
 [node name="StorageManager" type="Node2D" parent="."]
 
 [node name="Storage_oil" type="Node2D" parent="StorageManager" groups=["storage"]]
@@ -227,7 +230,6 @@ texture = ExtResource("8_fy7qm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StorageManager/gearStorage/InteractableComponent"]
 z_index = 1
 position = Vector2(-0.625, -0.140625)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vh6i3")
 
 [node name="handClock" type="Node2D" parent="StorageManager" groups=["storage"]]
@@ -245,7 +247,6 @@ texture = ExtResource("9_k03wk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StorageManager/handClock/InteractableComponent"]
 z_index = 1
 position = Vector2(-0.3125, -1.9375)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_31h4f")
 
 [node name="table" type="Sprite2D" parent="StorageManager"]

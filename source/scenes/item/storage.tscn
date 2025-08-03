@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="3_350af"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qarm4"]
-size = Vector2(700, 180)
+size = Vector2(28.125, 37.8594)
 
 [node name="Storage" type="Node2D" groups=["storage"]]
 scale = Vector2(0.1, 0.1)
