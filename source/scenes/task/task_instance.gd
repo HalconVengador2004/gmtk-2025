@@ -40,6 +40,7 @@ func _process(_delta):
 			progress_bar.visible = false
 			completion_progress_bar.visible = false
 			icon.visible = false
+			
 
 func _on_task_work_started(task_instance) -> void:
 	if task_instance == self:
@@ -57,6 +58,8 @@ func _on_task_work_stopped(task_instance):
 		else:
 			icon.visible = false
 			completion_progress_bar.visible = false
+			progress_bar.visible = false
+			
 
 func _on_task_started(task: Task):
 	#For some reason the direct connect with the parent was only working once

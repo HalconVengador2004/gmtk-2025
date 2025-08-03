@@ -1,6 +1,7 @@
 class_name Task
 
 var resource: TaskResource
+var has_started: bool = false
 var time_working: float = 0.0
 var is_assigned: bool   = false
 var start_time: float = 0.0
@@ -11,12 +12,15 @@ func _init(task_resource: TaskResource):
 func reset():
 	time_working = 0.0
 	is_assigned = false
+	has_started = false
 	start_time = 0.0
 
 func start():
 	start_time = TimeManager.get_time()
+	has_started = true
 
 func is_overdue() -> bool:
+	if not has_started: return false
 	var overdue = TimeManager.get_time() - start_time > resource.deadline
 	if overdue:
 		SignalBus.task_is_overdue.emit(self) 

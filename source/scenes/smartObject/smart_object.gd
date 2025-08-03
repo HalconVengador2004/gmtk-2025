@@ -8,6 +8,7 @@ class_name SmartObject
 var task: Task
 var has_task: bool = false
 var is_broken: bool = false
+var hours_until_can_break: int = 0
 
 func get_task():
 	return task
@@ -39,5 +40,3 @@ func _on_task_overdue(task_overdue: Task) -> void:
 	if task_overdue != task:
 		return
 	is_broken = true
-	
-	

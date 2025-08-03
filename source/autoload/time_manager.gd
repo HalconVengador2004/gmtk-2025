@@ -8,12 +8,14 @@ var paused : bool = false
 var speed : float = 1.0
 var game_hour_real_duration_seconds : float = 7.5
 var current_day : int = 0
+var current_hour : int = 0
 
 func _physics_process(delta: float) -> void:
 	if paused:
 		return
 	time += delta * speed
 	_check_day()
+	_check_hour()
 
 func get_time() -> float:
 	return time
@@ -47,4 +49,9 @@ func get_minute() -> float:
 func _check_day():
 	if get_day() > current_day:
 		current_day = get_day()
-		SignalBus.day_changed.emit(current_day) 
+		SignalBus.day_changed.emit(current_day)
+
+func _check_hour():
+	if floor(get_hour()) > current_hour:
+		current_hour = floor(get_hour())
+		SignalBus.hour_changed.emit(current_hour)

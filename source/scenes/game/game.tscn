@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
-[ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
+[ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://nx33b8xv04wa" path="res://source/scenes/miscelaneous/stairs.tscn" id="3_55dgt"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
@@ -168,16 +168,7 @@ position = Vector2(664, 396)
 [node name="Worker2" parent="WorkerManager" instance=ExtResource("3_kelw5")]
 position = Vector2(286, 612)
 
-[node name="TaskManager" type="Node2D" parent="." node_paths=PackedStringArray("clock")]
-script = ExtResource("3_wcho7")
-clock = NodePath("../SoManager/Clock")
-
 [node name="StorageManager" type="Node2D" parent="."]
-
-[node name="Storage_oil2" parent="StorageManager" instance=ExtResource("5_2v631")]
-position = Vector2(126, 742)
-sprite_texture = ExtResource("10_tfnqs")
-sprite_scale = Vector2(0, 0)
 
 [node name="Storage_oil" parent="StorageManager" instance=ExtResource("5_2v631")]
 position = Vector2(63, 371)
@@ -240,6 +231,9 @@ scale = Vector2(2, 2)
 [node name="Bed2" parent="SoManager" instance=ExtResource("12_q0opv")]
 position = Vector2(509, 624)
 scale = Vector2(2, 2)
+
+[node name="TaskManager" type="Node2D" parent="."]
+script = ExtResource("3_wcho7")
 
 [node name="HUD" parent="." instance=ExtResource("17_7mye2")]
 visible = false
