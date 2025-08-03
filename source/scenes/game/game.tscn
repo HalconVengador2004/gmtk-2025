@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
-[ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
+[ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://nx33b8xv04wa" path="res://source/scenes/miscelaneous/stairs.tscn" id="3_55dgt"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
@@ -20,7 +20,7 @@
 [ext_resource type="Resource" uid="uid://b4py7jnottsbb" path="res://source/scenes/task/resource/oil_gear.tres" id="15_55dgt"]
 [ext_resource type="PackedScene" uid="uid://dd0psxjt4ox32" path="res://source/scenes/smartObject/cooling_pipe.tscn" id="15_f72de"]
 [ext_resource type="PackedScene" uid="uid://cv22d1biav7ty" path="res://source/scenes/smartObject/hamster_wheel.tscn" id="16_55dgt"]
-[ext_resource type="PackedScene" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
+[ext_resource type="PackedScene" uid="uid://c8s6w2g5v4x" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
 [ext_resource type="Resource" uid="uid://br4awivn664ws" path="res://source/scenes/task/resource/cooling_pipe.tres" id="17_y0uoq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2v631"]

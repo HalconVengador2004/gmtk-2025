@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bdk4b5s1i5ayq"]
+[gd_scene load_steps=69 format=3 uid="uid://bdk4b5s1i5ayq"]
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
@@ -42,11 +42,16 @@
 [ext_resource type="Texture2D" uid="uid://6uj5p2pihebs" path="res://assets/image/Sprites/worker/worker_bed/worker_bed09.png" id="22_b4wa3"]
 [ext_resource type="Texture2D" uid="uid://bx2xwrse5mrg2" path="res://assets/image/Sprites/worker/worker_bed/worker_bed10.png" id="23_w4dk1"]
 [ext_resource type="Texture2D" uid="uid://cwg67c35au0fi" path="res://assets/image/Sprites/worker/worker_bed/worker_bed11.png" id="24_mjhus"]
+[ext_resource type="Texture2D" uid="uid://cio2wd0um07rk" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c00.png" id="25_enbgy"]
 [ext_resource type="Texture2D" uid="uid://cydgnlq6dfyew" path="res://assets/image/Sprites/worker/worker_climb/worker_ladder00.png" id="25_sjxqk"]
+[ext_resource type="Texture2D" uid="uid://v075xh323nqm" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c01.png" id="26_42cgf"]
 [ext_resource type="Texture2D" uid="uid://d1cgj8ycr44ho" path="res://assets/image/Sprites/worker/worker_climb/worker_ladder01.png" id="26_eyvql"]
+[ext_resource type="Texture2D" uid="uid://bfk2pyqwir505" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c02.png" id="27_b8psf"]
 [ext_resource type="Texture2D" uid="uid://blkqvia5eaxdj" path="res://assets/image/Sprites/worker/worker_climb/worker_ladder02.png" id="27_hl6sf"]
 [ext_resource type="Texture2D" uid="uid://cax8w2ku6dr08" path="res://assets/image/Sprites/worker/worker_climb/worker_ladder03.png" id="28_n3sp7"]
+[ext_resource type="Texture2D" uid="uid://d37271rqr325k" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c03.png" id="28_sc3xs"]
 [ext_resource type="Texture2D" uid="uid://dcx270htdh11p" path="res://assets/image/Sprites/worker/worker_climb/worker_ladder04.png" id="29_j5l6u"]
+[ext_resource type="Texture2D" uid="uid://brtdgpvpcuoji" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c04.png" id="29_sdgx6"]
 [ext_resource type="Texture2D" uid="uid://bdcwyaiu4w8x0" path="res://assets/image/Sprites/worker/worker_climb/worker_ladder05.png" id="30_r7dfa"]
 [ext_resource type="Texture2D" uid="uid://dkk18l1p12iya" path="res://assets/image/Sprites/worker/worker_grab/worker_grab00.png" id="31_ermai"]
 [ext_resource type="Texture2D" uid="uid://bv6qshhx7iy0y" path="res://assets/image/Sprites/worker/worker_grab/worker_grab01.png" id="32_w1rpi"]
@@ -180,6 +185,26 @@ animations = [{
 }],
 "loop": false,
 "name": &"bed",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_enbgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_42cgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_b8psf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_sc3xs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_sdgx6")
+}],
+"loop": true,
+"name": &"charging",
 "speed": 10.0
 }, {
 "frames": [{
@@ -360,8 +385,7 @@ rotation = 1.5708
 [node name="HighlightableSprite" parent="." instance=ExtResource("4_umj4u")]
 position = Vector2(6.66667, -68.3333)
 sprite_frames = SubResource("SpriteFrames_eec18")
-animation = &"bed"
-frame = 11
-frame_progress = 1.0
+animation = &"idle"
+frame_progress = 0.885052
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

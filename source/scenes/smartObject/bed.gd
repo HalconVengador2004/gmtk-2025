@@ -1,14 +1,25 @@
+# Bed.gd
 extends SmartObject
-
 class_name Bed
 
 var is_occupied_by: Worker = null
 
 func _ready():
-	pass
+	super()
+	SignalBus.connect("worker_sleeping", _on_worker_sleeping)
+	SignalBus.connect("worker_stopped_sleeping", _on_worker_stopped_sleeping)
 
-func occupy(worker: Worker):
+func occupy(worker: Worker) -> void:
 	is_occupied_by = worker
 
-func release():
+func release() -> void:
 	is_occupied_by = null
+	visible = true
+
+func _on_worker_sleeping():
+	if is_occupied_by:
+		visible = false
+
+func _on_worker_stopped_sleeping():
+	if is_occupied_by:
+		visible = true

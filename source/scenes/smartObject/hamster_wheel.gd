@@ -8,9 +8,12 @@ class_name HamsterWheel
 
 @onready var battery_bar: ProgressBar = $ProgressBar
 var battery_level: float = battery_capacity
+var is_occupied_by: Worker = null
 
 func _ready():
 	super()
+	SignalBus.connect("worker_charging", _on_worker_charging)
+	SignalBus.connect("worker_stopped_charging", _on_worker_stopped_charging)
 
 func _physics_process(delta):
 	battery_level -= battery_drain_rate * delta
@@ -24,8 +27,22 @@ func charge(delta: float):
 	if battery_level > battery_capacity:
 		battery_level = battery_capacity
 
+func occupy(worker: Worker) -> void:
+	is_occupied_by = worker
+
+func release() -> void:
+	is_occupied_by = null
+	visible = true
 
 func update_battery_bar():
 	battery_bar.value = battery_level
 	var battery_percentage = battery_level / battery_capacity
 	battery_bar.material.set_shader_parameter("progress", battery_percentage)
+
+func _on_worker_charging():
+	if is_occupied_by:
+		visible = false
+
+func _on_worker_stopped_charging():
+	if is_occupied_by:
+		visible = true
