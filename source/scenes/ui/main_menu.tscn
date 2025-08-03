@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b82k7yangq4r0"]
+[gd_scene load_steps=9 format=3 uid="uid://b82k7yangq4r0"]
 
 [ext_resource type="Texture2D" uid="uid://bqcbe3uucptmc" path="res://assets/image/boot_splash/png/GMTK2025_logo.png" id="1_6qg5j"]
 [ext_resource type="Script" uid="uid://cej1wbu4i2oop" path="res://source/scripts/main_menu/title&buttons.gd" id="1_a6bij"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://yiabtrcic1yc" path="res://source/scripts/main_menu/main_menu.gd" id="1_lw8qq"]
 [ext_resource type="Script" uid="uid://d4ll1k3dkmykx" path="res://source/scripts/main_menu/other_menu.gd" id="5_84hj8"]
 [ext_resource type="FontFile" uid="uid://qstvlpi1u0nx" path="res://assets/font/noto_sans/woff/noto_sans.woff" id="5_sk0n2"]
+[ext_resource type="PackedScene" uid="uid://b0y3nkanms7ro" path="res://source/scenes/ui/ui_elements/credits_person.tscn" id="7_xwrg4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84hj8"]
 bg_color = Color(0.385493, 0.385493, 0.385492, 1)
@@ -48,21 +49,22 @@ script = ExtResource("1_a6bij")
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="TextureRect" type="TextureRect" parent="Title&Buttons/Title&Buttons"]
+[node name="Game Title" type="TextureRect" parent="Title&Buttons/Title&Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_6qg5j")
-expand_mode = 1
+expand_mode = 5
 stretch_mode = 5
 
 [node name="ButtonMarginContainer" type="MarginContainer" parent="Title&Buttons/Title&Buttons"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_right = 100
 
 [node name="ButtonContainer" type="VBoxContainer" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 25
 
 [node name="Play Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
 layout_mode = 2
@@ -152,7 +154,67 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Back"
 
+[node name="CreditsMenu" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 180
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 180
+theme_override_constants/margin_bottom = 60
+script = ExtResource("5_84hj8")
+
+[node name="MenuBackground" type="Panel" parent="CreditsMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_84hj8")
+
+[node name="MenuMarginContainer" type="MarginContainer" parent="CreditsMenu/MenuBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 40
+
+[node name="MenuVBoxContainer" type="VBoxContainer" parent="CreditsMenu/MenuBackground/MenuMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="CreditsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_sk0n2")
+theme_override_font_sizes/font_size = 60
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CreditsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Max" parent="CreditsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/GridContainer" instance=ExtResource("7_xwrg4")]
+layout_mode = 2
+
+[node name="Back" type="MarginContainer" parent="CreditsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="Back Button" parent="CreditsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back" instance=ExtResource("1_hu2hv")]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Back"
+
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Play Button" to="." method="change_scene_to_game"]
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Options Button" to="Title&Buttons" method="options_menu"]
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Quit Button" to="." method="quit_game"]
 [connection signal="pressed_after_wait_time_" from="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back/Back Button" to="OptionsMenu" method="back_to_main_menu"]
+[connection signal="pressed_after_wait_time_" from="CreditsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back/Back Button" to="CreditsMenu" method="back_to_main_menu"]
