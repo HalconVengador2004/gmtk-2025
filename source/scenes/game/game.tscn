@@ -8,18 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
 [ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
 [ext_resource type="Script" uid="uid://cmp2unfa36hk8" path="res://source/scenes/item/storage.gd" id="8_31h4f"]
-[ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
 [ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="9_e10du"]
-[ext_resource type="Texture2D" uid="uid://dikqa0hbfbkpv" path="res://assets/storage/clockhand-texture-32x32.png" id="9_k03wk"]
 [ext_resource type="Script" uid="uid://7d2d0cqrjcsl" path="res://source/scenes/item/StorageTypes/trash_can.gd" id="9_q0opv"]
 [ext_resource type="PackedScene" uid="uid://criqg4x7hjoxn" path="res://source/scenes/smartObject/clock.tscn" id="10_q0opv"]
 [ext_resource type="Texture2D" uid="uid://emehtxgbwxyc" path="res://assets/image/Sprites/Tools/item_oil_canister.png" id="10_tfnqs"]
 [ext_resource type="Resource" uid="uid://dfnp4s3aspluc" path="res://source/scenes/item/resource/oil.tres" id="10_vh6i3"]
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="11_03v86"]
+[ext_resource type="Texture2D" uid="uid://dpddcum2e28yd" path="res://assets/image/Sprites/box/box_gear.png" id="11_hnrjt"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="12_64h2r"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
+[ext_resource type="Texture2D" uid="uid://bbyrmtfhxr2jd" path="res://assets/image/Sprites/box/box_hand.png" id="13_35al7"]
 [ext_resource type="Resource" uid="uid://b4py7jnottsbb" path="res://source/scenes/task/resource/oil_gear.tres" id="15_55dgt"]
 [ext_resource type="PackedScene" uid="uid://dd0psxjt4ox32" path="res://source/scenes/smartObject/cooling_pipe.tscn" id="15_f72de"]
 [ext_resource type="Texture2D" uid="uid://dnhfrcuvnms8u" path="res://assets/image/Sprites/misc/tool_table.png" id="15_hnrjt"]
@@ -195,11 +195,13 @@ position = Vector2(286, 612)
 position = Vector2(1015, 611)
 scale = Vector2(2, 2)
 script = ExtResource("8_31h4f")
-sprite_texture = ExtResource("8_fy7qm")
+sprite_texture = ExtResource("11_hnrjt")
 item_resource = ExtResource("8_1txuv")
 
 [node name="HighlightableSprite" parent="StorageManager/gearStorage" instance=ExtResource("11_03v86")]
-texture = ExtResource("8_fy7qm")
+position = Vector2(-0.500015, -0.5)
+scale = Vector2(0.352273, 0.352273)
+texture = ExtResource("11_hnrjt")
 
 [node name="InteractableComponent" parent="StorageManager/gearStorage" instance=ExtResource("12_64h2r")]
 
@@ -212,11 +214,13 @@ shape = SubResource("RectangleShape2D_vh6i3")
 position = Vector2(934, 611)
 scale = Vector2(2, 2)
 script = ExtResource("8_31h4f")
-sprite_texture = ExtResource("9_k03wk")
+sprite_texture = ExtResource("13_35al7")
 item_resource = ExtResource("9_e10du")
 
 [node name="HighlightableSprite" parent="StorageManager/handClock" instance=ExtResource("11_03v86")]
-texture = ExtResource("9_k03wk")
+position = Vector2(-0.5, -1.5)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("13_35al7")
 
 [node name="InteractableComponent" parent="StorageManager/handClock" instance=ExtResource("12_64h2r")]
 
