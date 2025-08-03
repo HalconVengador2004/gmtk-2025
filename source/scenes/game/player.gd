@@ -69,6 +69,8 @@ func on_selected(_node):
 		elif target.is_in_group("smart_object"):
 			if target is Bed:
 				move_worker_to_bed(target)
+			elif target is HamsterWheel:
+				move_worker_to_hamster_wheel(target)
 			else:
 				var task_instance = target.get_node_or_null("TaskInstance")
 				if task_instance:
@@ -124,7 +126,14 @@ func move_worker_to_bed(bed_instance):
 		return
 
 	selected_worker.set_navigation_destination(bed_instance.global_position)
-	selected_worker.set_assigned_bed(bed_instance)	
+	selected_worker.set_assigned_bed(bed_instance)
+
+func move_worker_to_hamster_wheel(hamster_wheel_instance):
+	if not selected_worker:
+		return
+
+	selected_worker.set_navigation_destination(hamster_wheel_instance.global_position)
+	selected_worker.set_assigned_hamster_wheel(hamster_wheel_instance)
 	
 func move_worker_to_task(task_instance: TaskInstance):
 	if not selected_worker or not task_instance:
@@ -144,13 +153,13 @@ func move_worker_to_task(task_instance: TaskInstance):
 		print("task is not available")
 		return
 
-	var worker_item = selected_worker.get_item()
-	if not worker_item or not worker_item.resource:
-		print("Worker has no item or item has no resource")
-		return
-
-	if task_instance.task_data.resource.required_item != worker_item.resource:
-		return
+	if task_instance.task_data.resource.required_item:	
+		var worker_item = selected_worker.get_item()
+		if not worker_item:
+			print("Worker has no item")
+			return
+		if task_instance.task_data.resource.required_item != worker_item.resource:
+			return
 
 	print("Sending worker to:", task_instance)
 	selected_worker.set_navigation_destination(task_instance.global_position)
