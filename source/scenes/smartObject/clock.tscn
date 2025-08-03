@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://criqg4x7hjoxn"]
+[gd_scene load_steps=16 format=3 uid="uid://criqg4x7hjoxn"]
 
 [ext_resource type="Script" uid="uid://ccetxi6oylyw2" path="res://source/scenes/smartObject/clock.gd" id="1_1"]
 [ext_resource type="Resource" uid="uid://dv8rp1vvvmddg" path="res://source/scenes/task/resource/clock_hand_broke.tres" id="2_xhqqp"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://ltlopu1gxync" path="res://assets/image/Sprites/clock/clockhand_small00.png" id="6_r5gui"]
 [ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="7_f5yc7"]
 [ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="8_uvcip"]
+[ext_resource type="Texture2D" uid="uid://cy4ttmslf0lp6" path="res://assets/image/Sprites/tiles/big_tile00.png" id="9_aiw5i"]
+[ext_resource type="Theme" uid="uid://dxrw500n836d4" path="res://assets/resources/text_theme.tres" id="9_c8451"]
 [ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="9_gpxrk"]
 [ext_resource type="Texture2D" uid="uid://0norla467lde" path="res://assets/icon/task.png" id="10_7xfdi"]
 
@@ -81,3 +83,29 @@ texture = ExtResource("10_7xfdi")
 position = Vector2(-0.5, -9.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_r5gui")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 210.0
+offset_top = -92.0
+offset_right = 406.0
+offset_bottom = 8.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_aiw5i")
+region_rect = Rect2(0, 0, 181, 179)
+patch_margin_left = 60
+patch_margin_right = 60
+
+[node name="DayCounterLabel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 231.0
+offset_top = -74.0
+offset_right = 321.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_c8451")
+theme_override_font_sizes/font_size = 31
+text = "Day ?"
+vertical_alignment = 1

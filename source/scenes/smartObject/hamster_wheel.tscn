@@ -65,5 +65,4 @@ scale = Vector2(2.5, 2.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 z_index = 1
 position = Vector2(-0.600002, -5.7)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sj8ud")

@@ -168,7 +168,6 @@ texture = ExtResource("14_64h2r")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StorageManager/Storage_oil/InteractableComponent"]
 z_index = 1
 position = Vector2(7.62939e-06, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_03v86")
 
 [node name="gearStorage" type="Node2D" parent="StorageManager" groups=["storage"]]
@@ -215,8 +214,6 @@ scale = Vector2(3, 3)
 script = ExtResource("9_q0opv")
 sprite_texture = ExtResource("16_gm4aj")
 item_resource = ExtResource("11_so03b")
-vertical_offset = -71.845
-sprite_scale = Vector2(0.35, 0.35)
 
 [node name="HighlightableSprite" parent="StorageManager/trash_can" index="0"]
 scale = Vector2(0.35, 0.35)
