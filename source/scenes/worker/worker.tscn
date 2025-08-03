@@ -408,5 +408,6 @@ worker_select_sounds = Array[AudioStream]([ExtResource("74_eyvql"), ExtResource(
 worker_work_sound = ExtResource("77_j5l6u")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WorkerSFXManager"]
+stream = ExtResource("77_j5l6u")
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

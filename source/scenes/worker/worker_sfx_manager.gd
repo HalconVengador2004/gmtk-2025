@@ -8,7 +8,8 @@ extends Node
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 #func _ready() -> void:
-	#play_worker_assign_sound()
+	#play_worker_work_sound()
+
 
 func play_worker_assign_sound():
 	audio_stream_player.stream = get_random_audio_stream(worker_assign_sounds)
@@ -20,6 +21,8 @@ func play_worker_select_sound():
 	audio_stream_player.stream = get_random_audio_stream(worker_select_sounds)
 	audio_stream_player.play()
 func play_worker_work_sound():
+	if audio_stream_player.playing:
+		return
 	audio_stream_player.stream = worker_work_sound
 	audio_stream_player.play()
 func stop_worker_work_sound():
