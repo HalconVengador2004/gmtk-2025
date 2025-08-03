@@ -1,6 +1,6 @@
 [gd_scene load_steps=42 format=3 uid="uid://b58v1t1mtnwc7"]
 
-[ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
+[ext_resource type="Script" path="res://source/scenes/game/game.gd" id="1_f72de"]
 [ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://nx33b8xv04wa" path="res://source/scenes/miscelaneous/stairs.tscn" id="3_55dgt"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://emehtxgbwxyc" path="res://assets/image/Sprites/Tools/item_oil_canister.png" id="10_tfnqs"]
 [ext_resource type="Resource" uid="uid://dfnp4s3aspluc" path="res://source/scenes/item/resource/oil.tres" id="10_vh6i3"]
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="11_03v86"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="11_03v86"]
 [ext_resource type="Texture2D" uid="uid://dpddcum2e28yd" path="res://assets/image/Sprites/box/box_gear.png" id="11_hnrjt"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="12_64h2r"]
@@ -29,7 +29,7 @@
 [ext_resource type="Resource" uid="uid://br4awivn664ws" path="res://source/scenes/task/resource/cooling_pipe.tres" id="17_y0uoq"]
 [ext_resource type="Texture2D" uid="uid://00pbaqaunt5g" path="res://assets/image/Sprites/Tools/item_scewdriver.png" id="18_tfnqs"]
 [ext_resource type="Resource" uid="uid://cf538jmja25cc" path="res://source/scenes/item/resource/screw_driver.tres" id="19_gbqay"]
-[ext_resource type="Script" uid="uid://dgt1rawv3wfhb" path="res://source/scenes/components/HighlightableSprite.gd" id="23_03v86"]
+[ext_resource type="Script" path="res://source/scenes/components/HighlightableSprite.gd" id="23_03v86"]
 [ext_resource type="Texture2D" uid="uid://bsy3x7ltg2irl" path="res://assets/image/Sprites/tiles/small_tile00.png" id="23_gm4aj"]
 [ext_resource type="Script" uid="uid://cm1c1ie6dlmwq" path="res://source/scenes/components/interactable_component.gd" id="24_64h2r"]
 [ext_resource type="Texture2D" uid="uid://b20jqfmswqftr" path="res://assets/image/Sprites/tiles/small_tile01.png" id="24_tfnqs"]
@@ -283,7 +283,6 @@ position = Vector2(53, 346)
 scale = Vector2(0.0615235, 0.0615235)
 texture = ExtResource("10_tfnqs")
 script = ExtResource("23_03v86")
-metadata/_custom_type_script = "uid://dgt1rawv3wfhb"
 
 [node name="InteractableComponent" type="Area2D" parent="StorageManager/Storage"]
 script = ExtResource("24_64h2r")

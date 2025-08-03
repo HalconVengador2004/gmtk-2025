@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8s6w2g5v4x"]
+[gd_scene load_steps=6 format=3 uid="uid://c8s6w2g5v4x"]
 
 [ext_resource type="Script" uid="uid://rqneyjfk0fgv" path="res://source/scenes/ui/hud.gd" id="1_f8t6k"]
 [ext_resource type="FontFile" uid="uid://xka673onxgrd" path="res://assets/font/Be_Vietnam_Pro/BeVietnamPro-Black.ttf" id="2_3etg8"]
 [ext_resource type="PackedScene" uid="uid://dlfl6l7r45xo5" path="res://source/scenes/ui/ui_elements/menu_button.tscn" id="3_y50ka"]
+[ext_resource type="AudioStream" uid="uid://ccfq5g741dol7" path="res://assets/audio/music/NormalMusicloop.wav" id="4_jm11n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y50ka"]
 bg_color = Color(0.705651, 0.595976, 0.420939, 1)
@@ -286,6 +287,11 @@ text = "Back to Main Menu"
 [node name="CountdownTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jm11n")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed_after_wait_time_" from="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Play Again Button" to="." method="_on_play_again_button_pressed_after_wait_time_"]
 [connection signal="pressed_after_wait_time_" from="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Back Button" to="." method="_on_back_button_pressed_after_wait_time_"]
