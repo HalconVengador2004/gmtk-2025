@@ -144,13 +144,13 @@ func move_worker_to_task(task_instance: TaskInstance):
 		print("task is not available")
 		return
 
-	var worker_item = selected_worker.get_item()
-	if not worker_item or not worker_item.resource:
-		print("Worker has no item or item has no resource")
-		return
-
-	if task_instance.task_data.resource.required_item != worker_item.resource:
-		return
+	if task_instance.task_data.resource.required_item:	
+		var worker_item = selected_worker.get_item()
+		if not worker_item:
+			print("Worker has no item")
+			return
+		if task_instance.task_data.resource.required_item != worker_item.resource:
+			return
 
 	print("Sending worker to:", task_instance)
 	selected_worker.set_navigation_destination(task_instance.global_position)
