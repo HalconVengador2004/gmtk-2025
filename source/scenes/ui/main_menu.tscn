@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b82k7yangq4r0"]
+[gd_scene load_steps=12 format=3 uid="uid://b82k7yangq4r0"]
 
 [ext_resource type="Script" uid="uid://cej1wbu4i2oop" path="res://source/scripts/main_menu/title&buttons.gd" id="1_a6bij"]
 [ext_resource type="PackedScene" uid="uid://dlfl6l7r45xo5" path="res://source/scenes/ui/ui_elements/menu_button.tscn" id="1_hu2hv"]
@@ -7,9 +7,28 @@
 [ext_resource type="Script" uid="uid://d4ll1k3dkmykx" path="res://source/scripts/main_menu/other_menu.gd" id="5_84hj8"]
 [ext_resource type="FontFile" uid="uid://qstvlpi1u0nx" path="res://assets/font/noto_sans/woff/noto_sans.woff" id="5_sk0n2"]
 [ext_resource type="PackedScene" uid="uid://b0y3nkanms7ro" path="res://source/scenes/ui/ui_elements/credits_person.tscn" id="7_xwrg4"]
+[ext_resource type="FontFile" uid="uid://xka673onxgrd" path="res://assets/font/Be_Vietnam_Pro/BeVietnamPro-Black.ttf" id="8_eqpe7"]
+[ext_resource type="FontFile" uid="uid://c8ymla34m4y5x" path="res://assets/font/Be_Vietnam_Pro/BeVietnamPro-Bold.ttf" id="9_b7uhg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84hj8"]
 bg_color = Color(0.385493, 0.385493, 0.385492, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwrg4"]
+bg_color = Color(0.705651, 0.595976, 0.420939, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 2)
 
 [node name="main_menu" type="Control" node_paths=PackedStringArray("start_focused_button", "menus")]
 layout_mode = 3
@@ -20,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lw8qq")
 start_focused_button = NodePath("Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Play Button")
-menus = [NodePath("Title&Buttons"), NodePath("OptionsMenu")]
+menus = [NodePath("Title&Buttons"), NodePath("OptionsMenu"), NodePath("HowToPlayMenu")]
 
 [node name="DarkBG" type="ColorRect" parent="."]
 visible = false
@@ -69,6 +88,10 @@ theme_override_constants/separation = 25
 [node name="Play Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
 layout_mode = 2
 text = "Play"
+
+[node name="HowToPlay Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
+layout_mode = 2
+text = "How to Play"
 
 [node name="Options Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("1_hu2hv")]
 visible = false
@@ -213,8 +236,90 @@ layout_mode = 2
 size_flags_vertical = 10
 text = "Back"
 
+[node name="HowToPlayMenu" type="MarginContainer" parent="." node_paths=PackedStringArray("element_to_focused")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 40
+script = ExtResource("5_84hj8")
+element_to_focused = NodePath("MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back/Back Button")
+
+[node name="MenuBackground" type="Panel" parent="HowToPlayMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwrg4")
+
+[node name="MenuMarginContainer" type="MarginContainer" parent="HowToPlayMenu/MenuBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
+
+[node name="MenuVBoxContainer" type="VBoxContainer" parent="HowToPlayMenu/MenuBackground/MenuMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="HowToPlayMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("8_eqpe7")
+theme_override_font_sizes/font_size = 62
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="Instruction" type="Label" parent="HowToPlayMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = 8
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("9_b7uhg")
+theme_override_font_sizes/font_size = 16
+text = "- Time to Work is a management simulation game.
+- Your job is to control tiny workers called Time Spirits to keep the Magical Clock of Time running smoothly and prevent the flow of time from breaking down!
+- Right-click on a Time Spirit, then right-click on a task to assign them to work on it.
+- Some tasks require specific tools or components. Find these on the Tool Table or in Storage. You can discard unwanted components by placing them in the Storage trash can.
+- Remember not to overwork your Time Spirits. They need to rest occasionally to stay effective.
+- Be cautious: random events can occur that may hinder your progress.
+- If the Clock stops working, you have a short window to repair it before the game ends.
+- Good luck!"
+autowrap_mode = 3
+
+[node name="Back" type="MarginContainer" parent="HowToPlayMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 260
+theme_override_constants/margin_right = 260
+
+[node name="Back Button" parent="HowToPlayMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back" instance=ExtResource("1_hu2hv")]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Back"
+
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Play Button" to="." method="change_scene_to_game"]
+[connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/HowToPlay Button" to="Title&Buttons" method="_on_how_to_play_button_pressed_after_wait_time_"]
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Options Button" to="Title&Buttons" method="options_menu"]
 [connection signal="pressed_after_wait_time_" from="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer/Quit Button" to="." method="quit_game"]
 [connection signal="pressed_after_wait_time_" from="OptionsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back/Back Button" to="OptionsMenu" method="back_to_main_menu"]
 [connection signal="pressed_after_wait_time_" from="CreditsMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back/Back Button" to="CreditsMenu" method="back_to_main_menu"]
+[connection signal="pressed_after_wait_time_" from="HowToPlayMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back/Back Button" to="HowToPlayMenu" method="back_to_main_menu"]
