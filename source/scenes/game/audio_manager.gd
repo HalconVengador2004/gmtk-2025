@@ -1,16 +1,17 @@
 extends Node
 
 @export var music_player: AudioStreamPlayer
-var intensity_state : String
+@onready var music_library = $MusicPlayer
+@onready var sfx_template = $SfxPlayer
 
-func createVfx(sfx_library):
-	var new_sfx_player = $SfxPlayer.duplicate()
-	new_sfx_player.stream = sfx_library[sfx_library]
-	add_child(new_sfx_player)
-	new_sfx_player.play()
-	new_sfx_player.finished.connect(_on_sfx_finished)
+func _ready():
+	SignalBus.task_work_started.connect(on_working_start)
+	SignalBus.other_selected.connect(_on_interactable_clicked)
+	SignalBus.work_selected.connect(_select_worker)
+	SignalBus.task_completed.connect(_on_task_completed)
+	SignalBus.task_activated.connect(_on_task_started)
 
-var sfx_library = {
+var sfx_library: Dictionary = {
 	"workerassign":preload("res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-001.ogg"),
 	"workercomplete":preload("res://assets/audio/sfx/Worker/sfx_WorkerComplete_1.ogg"),
 	"workerselect":preload("res://assets/audio/sfx/Worker/sfx_WorkerSelect_1.ogg"),
@@ -23,32 +24,29 @@ var sfx_library = {
 	"uideselect":preload("res://assets/audio/sfx/UI/sfx_UIdeselect_1.ogg")
 	}
 
+func createVfx(key):
+	return # remove this later
+	var new_sfx_player = sfx_template.duplicate()
+	new_sfx_player.stream = sfx_library[key]
+	add_child(new_sfx_player)
+	new_sfx_player.play()
+	new_sfx_player.finished.connect(_on_sfx_finished, new_sfx_player)
 
-func on_working_start():
+
+func on_working_start(_task_instance):
 	createVfx("workerwork")
 
-func _on_interactable_clicked():
+func _on_interactable_clicked(_node):
 	createVfx("workerassign")
 
-func select_worker():
+func _select_worker(_worker):
 	createVfx("workerselect")
 	
-func _on_task_completed():
+func _on_task_completed(_task):
 	createVfx("workercomplete")
 
-func _on_task_started():
+func _on_task_started(_task):
 	createVfx("problemstart")
-
-@onready var music_library = $MusicPlayer
-
-func _ready():
-	$MusicPlayer.play()
-	SignalBus.eventName.Conetct(on_working_start())
-	SignalBus.eventName.Conetct(_on_interactable_clicked())
-	SignalBus.eventName.Conetct(select_worker())
-	SignalBus.eventName.Conetct(_on_task_completed())
-	SignalBus.eventName.Conetct(_on_task_started())
-
 
 func _on_sfx_finished(node_to_free):
 	node_to_free.queue_free()

@@ -70,7 +70,12 @@ func on_selected(_node):
 			if target is Bed:
 				move_worker_to_bed(target)
 			elif target is HamsterWheel:
-				move_worker_to_hamster_wheel(target)
+				if target.has_task:
+					var task_instance = target.get_node_or_null("TaskInstance")
+					if task_instance:
+						move_worker_to_task(task_instance)
+				else:	
+					move_worker_to_hamster_wheel(target)
 			else:
 				var task_instance = target.get_node_or_null("TaskInstance")
 				if task_instance:
