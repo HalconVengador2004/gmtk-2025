@@ -1,13 +1,14 @@
 extends Sprite2D
 class_name HighlightableSprite
 
+
+@onready var highlighter = Highlightable.new()
+
 func _ready():
-	var original_material = material
-	var unique_material = original_material.duplicate()
-	material = unique_material
-	
+	material = highlighter.setup(material)
+
 func add_highlight():
-	material.set("shader_parameter/thickness", 1.0)
-	
+	highlighter.add_highlight()
+
 func remove_highlight():
-	material.set("shader_parameter/thickness", 0.0)
+	highlighter.remove_highlight()

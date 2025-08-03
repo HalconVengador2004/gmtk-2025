@@ -13,15 +13,19 @@ class_name Worker
 @onready var interactable_component = $InteractableComponent
 @onready var progress_bar = $ProgressBar
 
+enum States {IDLE, RUNNING, RUNNING_TIRED, TIRED, WORKING, SLEEPING}
+var state: States = States.IDLE
+
 var energy: float
 
 # worker state
-var is_resting = false
-var finished_moving = false
+var is_resting: bool = false
+var finished_moving: bool = true
 var is_walking_towards_a_task: bool = false
 var assigned_task : Node = null
 var assigned_storage: Storage = null
 var assigned_bed: Bed = null
+var last_facing_left: bool = false
 
 func set_assigned_task(task_instance):
 	if assigned_task and assigned_task.task_data:
@@ -73,6 +77,8 @@ func _ready():
 		push_warning("Warning: worker doesnt have a navigation agent")
 	if not interactable_component:
 		push_warning("Warning: worker doesnt have a navigation agent")
+	state = States.IDLE
+	anim_sprite.play("idle")
 
 func _physics_process(delta):
 	if is_resting:
@@ -85,6 +91,8 @@ func _physics_process(delta):
 				assigned_bed = null
 		update_progress_bar()
 		return
+	_determine_state()
+	_update_anim()
 	
 	energy -= energy_spent_per_second * delta
 	update_progress_bar()
@@ -92,11 +100,17 @@ func _physics_process(delta):
 	var current_speed = speed
 	if energy < energy_threshold:
 		current_speed *= tired_speed_multiplier
+	
+	if finished_moving:
+		anim_sprite.flip_h = last_facing_left
 
 	if not finished_moving:
 		var direction: Vector2 = (nav.get_next_path_position() - global_position).normalized()
 		var velocity = direction * current_speed
 		global_position += velocity * delta
+		if abs(velocity.x) > 0.01:
+			last_facing_left = velocity.x > 0
+			anim_sprite.flip_h = last_facing_left
 		
 	elif finished_moving and assigned_storage:
 		if not assigned_storage.is_grabbing:
@@ -109,6 +123,38 @@ func _physics_process(delta):
 			elif assigned_storage is TrashCan:
 				clear_carried_item()
 				assigned_storage = null
+				
+
+				
+func _determine_state():
+	if is_resting:
+		pass
+		#state = States.SLEEPING
+	elif not finished_moving:
+		if energy < energy_threshold:
+			state = States.RUNNING_TIRED
+		else:
+			state = States.RUNNING
+	else:
+		if energy < energy_threshold:
+			state = States.TIRED
+		else:
+			state = States.IDLE
+			
+func _update_anim():
+	match state:
+		States.IDLE:
+			_play_animation("idle")
+		States.RUNNING:
+			_play_animation("run")
+		States.RUNNING_TIRED:
+			_play_animation("run_tired")
+		States.TIRED:
+			_play_animation("tired")
+		States.WORKING:
+			_play_animation("work")
+		States.SLEEPING:
+			_play_animation("sleeping")
 
 func rest():
 	is_resting = true
@@ -119,6 +165,8 @@ func update_progress_bar():
 	if progress_bar and progress_bar.material:
 		progress_bar.material.set_shader_parameter("progress", energy_percentage)
 		progress_bar.material.set_shader_parameter("threshold", energy_threshold / max_energy)
+		
+
 
 func clear_carried_item():
 	if item:
@@ -146,3 +194,7 @@ func _on_navigation_agent_2d_navigation_finished():
 		rest()
 	if is_walking_towards_a_task:
 		work()
+
+func _play_animation(anim_name: String) -> void:
+	if anim_sprite.animation != anim_name:
+		anim_sprite.play(anim_name)
