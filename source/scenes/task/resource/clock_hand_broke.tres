@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_05n76")
+name = "clock hand broken"
 required_item = ExtResource("1_3o46j")
 time_to_finish = 5.0
 deadline = 30.0

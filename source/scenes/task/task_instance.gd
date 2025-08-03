@@ -6,22 +6,18 @@ class_name TaskInstance
 @onready var icon = $Sprite2D
 
 var task_data: Task
+var task_resource: TaskResource
 
 func _ready():
 	progress_bar.visible = false
 	completion_progress_bar.visible = false
 	icon.visible = false
 	
-	var smart_object: Node = get_parent()
-	smart_object.task_started.connect(_on_task_started)
+	var smart_object = get_parent()
+	task_resource = smart_object.task_resource
+	SignalBus.task_activated.connect(_on_task_started)
 	SignalBus.task_work_started.connect(_on_task_work_started)
 	SignalBus.task_work_stopped.connect(_on_task_work_stopped)
-
-func _on_task_started(task):
-	task_data = task
-	progress_bar.visible = true
-	icon.visible = true
-	icon.texture = task.resource.icon
 
 func _process(_delta):
 	if task_data:
@@ -44,7 +40,6 @@ func _process(_delta):
 			progress_bar.visible = false
 			completion_progress_bar.visible = false
 			icon.visible = false
-			task_data = null
 
 func _on_task_work_started(task_instance) -> void:
 	if task_instance == self:
@@ -62,3 +57,13 @@ func _on_task_work_stopped(task_instance):
 		else:
 			icon.visible = false
 			completion_progress_bar.visible = false
+
+func _on_task_started(task: Task):
+	#For some reason the direct connect with the parent was only working once
+	# Using unique names was the alternatives
+	if task.resource.name != task_resource.name:
+		return
+	task_data = task
+	progress_bar.visible = true
+	icon.visible = true
+	icon.texture = task.resource.icon

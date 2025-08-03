@@ -7,7 +7,6 @@ var is_running: bool = true
 
 func _ready():
 	super()
-	task = null
 
 func _physics_process(_delta):
 	if is_running:

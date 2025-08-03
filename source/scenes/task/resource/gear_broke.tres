@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="1_jh7pl"]
 [ext_resource type="Texture2D" uid="uid://bys3tv6pp5gpq" path="res://assets/icon/task_need_gear.png" id="1_k3ekb"]
-[ext_resource type="Resource" path="res://source/scenes/item/resource/gear.tres" id="1_lci7s"]
+[ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="1_lci7s"]
 
 [resource]
 script = ExtResource("1_jh7pl")
+name = "swap gears"
 required_item = ExtResource("1_lci7s")
 time_to_finish = 4.0
 deadline = 25.0
