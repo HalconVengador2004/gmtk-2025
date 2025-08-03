@@ -21,9 +21,11 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_size = 1
 shadow_offset = Vector2(0, 2)
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("button_to_focus")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("game_over_menu_button_to_focus", "pause_menu_button_to_focus")]
+process_mode = 3
 script = ExtResource("1_f8t6k")
-button_to_focus = NodePath("GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Play Again Button")
+game_over_menu_button_to_focus = NodePath("GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Play Again Button")
+pause_menu_button_to_focus = NodePath("PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Resume Button")
 
 [node name="HUD" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -74,6 +76,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="GameOverMenu" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -206,10 +209,87 @@ layout_mode = 2
 size_flags_vertical = 6
 text = "Back to Main Menu"
 
+[node name="PauseMenu" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 240
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 240
+theme_override_constants/margin_bottom = 120
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y50ka")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
+
+[node name="ContentContainer" type="VBoxContainer" parent="PauseMenu/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="PauseLabel" type="Label" parent="PauseMenu/Panel/MarginContainer/ContentContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("2_3etg8")
+theme_override_font_sizes/font_size = 80
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="ButtonMarginContainer" type="MarginContainer" parent="PauseMenu/Panel/MarginContainer/ContentContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 180
+theme_override_constants/margin_right = 180
+
+[node name="Buttons" type="VBoxContainer" parent="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 20
+
+[node name="Resume Button" parent="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons" instance=ExtResource("3_y50ka")]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Resume"
+
+[node name="Reset Game Button" parent="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons" instance=ExtResource("3_y50ka")]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Reset Game"
+
+[node name="Back Button" parent="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons" instance=ExtResource("3_y50ka")]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Back to Main Menu"
+
 [node name="CountdownTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
 
 [connection signal="pressed_after_wait_time_" from="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Play Again Button" to="." method="_on_play_again_button_pressed_after_wait_time_"]
 [connection signal="pressed_after_wait_time_" from="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Back Button" to="." method="_on_back_button_pressed_after_wait_time_"]
+[connection signal="pressed_after_wait_time_" from="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Resume Button" to="." method="_on_resume_button_pressed_after_wait_time_"]
+[connection signal="pressed_after_wait_time_" from="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Reset Game Button" to="." method="_on_play_again_button_pressed_after_wait_time_"]
+[connection signal="pressed_after_wait_time_" from="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Back Button" to="." method="_on_back_button_pressed_after_wait_time_"]
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_countdown_timer_timeout"]
