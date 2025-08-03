@@ -10,8 +10,6 @@ class_name Storage
 
 @export var item_resource : ItemResource
 @export var time_to_grab: float = 1.0
-@export var vertical_offset: float = 0
-@export var sprite_scale: Vector2 = Vector2.ONE
 
 @onready var interactable_component = $InteractableComponent
 @onready var sprite = $HighlightableSprite
@@ -21,10 +19,6 @@ var can_collect: bool = false
 
 func _ready():
 	sprite.texture = sprite_texture
-
-func _process(_delta):
-	sprite.offset.y = vertical_offset
-	sprite.scale = sprite_scale
 	
 
 func get_item():

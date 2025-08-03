@@ -63,6 +63,7 @@ func on_selected(_node):
 			selected_worker.get_node("HighlightableSprite").remove_highlight()
 		selected_worker = target
 		selected_worker.get_node("HighlightableSprite").add_highlight()
+		selected_worker.is_selected()
 	elif selected_worker:
 		if target.is_in_group("storage"):
 			move_worker_to_storage(target)

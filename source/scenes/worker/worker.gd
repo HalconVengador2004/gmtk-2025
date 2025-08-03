@@ -30,9 +30,13 @@ var assigned_bed: Bed = null
 var assigned_hamster_wheel: Node = null
 var last_facing_left: bool = false
 
+
+@onready var worker_sfx_manager: Node = $WorkerSFXManager
+
 func set_assigned_task(task_instance):
 	clear_assignments()
 	assigned_task = task_instance
+	worker_sfx_manager.play_worker_assign_sound()
 
 func set_assigned_storage(storage_instance: Storage):
 	clear_assignments()
@@ -47,11 +51,13 @@ func set_assigned_hamster_wheel(hamster_wheel_instance):
 	clear_assignments()
 	assigned_hamster_wheel = hamster_wheel_instance
 	hamster_wheel_instance.occupy(self)
+	worker_sfx_manager.play_worker_assign_sound()
 
 
 func clear_assignments():
 	if assigned_task and assigned_task.task_data:
 		assigned_task.task_data.set_is_assigned(false)
+		worker_sfx_manager.play_worker_complete_sound()
 		if state == States.ACTION:
 			SignalBus.task_work_stopped.emit(assigned_task)
 	assigned_task = null
@@ -110,10 +116,13 @@ func _physics_process(delta):
 		if assigned_task and assigned_task.task_data:
 			var task_data: Task = assigned_task.task_data
 			task_data.time_working += delta
+			worker_sfx_manager.play_worker_work_sound()
 			
 			if task_data.is_complete():
 				var task_instance = assigned_task
 				var completed_task_data = task_instance.task_data
+				
+				worker_sfx_manager.stop_worker_work_sound()
 				
 				clear_assignments()
 				SignalBus.task_completed.emit(completed_task_data)
@@ -295,3 +304,6 @@ func update_is_climbing():
 		if area.is_in_group("stair"):
 			is_climbing = true
 			return
+
+func is_selected():
+	worker_sfx_manager.play_worker_select_sound()

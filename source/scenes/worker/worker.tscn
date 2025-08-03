@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bdk4b5s1i5ayq"]
+[gd_scene load_steps=82 format=3 uid="uid://bdk4b5s1i5ayq"]
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
@@ -64,6 +64,19 @@
 [ext_resource type="Texture2D" uid="uid://brk8ukyx1lvq2" path="res://assets/image/Sprites/worker/worker_throw/worker_throw02.png" id="53_bnd3q"]
 [ext_resource type="Texture2D" uid="uid://c5t68itt5y57o" path="res://assets/image/Sprites/worker/worker_throw/worker_throw03.png" id="54_3blvj"]
 [ext_resource type="Texture2D" uid="uid://c2vubh75y3nmt" path="res://assets/image/Sprites/worker/worker_throw/worker_throw04.png" id="55_8f71s"]
+[ext_resource type="Script" uid="uid://b75fdq3kqc2v4" path="res://source/scenes/worker/worker_sfx_manager.gd" id="65_42cgf"]
+[ext_resource type="AudioStream" uid="uid://ccxsm5kjm5uir" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_1.ogg" id="66_7ewqi"]
+[ext_resource type="AudioStream" uid="uid://le2pvdjy7bvl" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-001.ogg" id="67_7pk7q"]
+[ext_resource type="AudioStream" uid="uid://citcy31r7eq11" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-002.ogg" id="68_h3yoj"]
+[ext_resource type="AudioStream" uid="uid://bxrlwrgane3mb" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_2a.ogg" id="69_f0syp"]
+[ext_resource type="AudioStream" uid="uid://dkpcbvuy8txss" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_3.ogg" id="70_w2mpd"]
+[ext_resource type="AudioStream" uid="uid://br6xvfsk0eplm" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_1.ogg" id="71_w4dk1"]
+[ext_resource type="AudioStream" uid="uid://cii2v8em52u7t" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_2.ogg" id="72_mjhus"]
+[ext_resource type="AudioStream" uid="uid://wiisuje7io0e" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_3.ogg" id="73_sjxqk"]
+[ext_resource type="AudioStream" uid="uid://0rd3tcx5n7c5" path="res://assets/audio/sfx/Worker/sfx_WorkerSelect_1.ogg" id="74_eyvql"]
+[ext_resource type="AudioStream" uid="uid://cgop0vivdfxgb" path="res://assets/audio/sfx/Worker/sfx_WorkerSelect_2.ogg" id="75_hl6sf"]
+[ext_resource type="AudioStream" uid="uid://c84k42y35pu3q" path="res://assets/audio/sfx/Worker/sfx_WorkerSelect_3.ogg" id="76_n3sp7"]
+[ext_resource type="AudioStream" uid="uid://cgih7kt8qr4ng" path="res://assets/audio/sfx/Worker/sfx_WorkerWork.ogg" id="77_j5l6u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umj4u"]
 radius = 55.0
@@ -385,6 +398,17 @@ rotation = 1.5708
 [node name="HighlightableSprite" parent="." instance=ExtResource("4_umj4u")]
 position = Vector2(6.66667, -68.3333)
 sprite_frames = SubResource("SpriteFrames_eec18")
-animation = &"tired"
+animation = &"action"
+
+[node name="WorkerSFXManager" type="Node" parent="."]
+script = ExtResource("65_42cgf")
+worker_assign_sounds = Array[AudioStream]([ExtResource("66_7ewqi"), ExtResource("67_7pk7q"), ExtResource("68_h3yoj"), ExtResource("69_f0syp"), ExtResource("70_w2mpd")])
+worker_complete_sounds = Array[AudioStream]([ExtResource("71_w4dk1"), ExtResource("72_mjhus"), ExtResource("73_sjxqk")])
+worker_select_sounds = Array[AudioStream]([ExtResource("74_eyvql"), ExtResource("75_hl6sf"), ExtResource("76_n3sp7")])
+worker_work_sound = ExtResource("77_j5l6u")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WorkerSFXManager"]
+stream = ExtResource("77_j5l6u")
+bus = &"SFX"
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
