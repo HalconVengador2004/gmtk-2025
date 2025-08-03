@@ -14,13 +14,14 @@ class_name Worker
 @onready var progress_bar = $ProgressBar
 @onready var anim_sprite = $HighlightableSprite
 
-enum States {IDLE, RUNNING, RUNNING_TIRED, TIRED, WORKING, SLEEPING, CHARGING}
+enum States {ACTION, BED, CLIMB, GRAB, IDLE, RUN, RUN_TIRED, THROW, TIRED, CHARGING}
 var state: States = States.IDLE
+var previous_state: States = States.IDLE
 
 var energy: float
-
-# worker state
+var is_climbing: bool = false
 var is_resting: bool = false
+var is_throwing: bool = false
 var finished_moving: bool = true
 var is_walking_towards_a_task: bool = false
 var assigned_task : Node = null
@@ -45,11 +46,13 @@ func set_assigned_bed(bed_instance: Bed):
 func set_assigned_hamster_wheel(hamster_wheel_instance):
 	clear_assignments()
 	assigned_hamster_wheel = hamster_wheel_instance
+	hamster_wheel_instance.occupy(self)
+
 
 func clear_assignments():
 	if assigned_task and assigned_task.task_data:
 		assigned_task.task_data.set_is_assigned(false)
-		if state == States.WORKING:
+		if state == States.ACTION:
 			SignalBus.task_work_stopped.emit(assigned_task)
 	assigned_task = null
 	
@@ -58,7 +61,9 @@ func clear_assignments():
 	if assigned_bed:
 		assigned_bed.release()
 		assigned_bed = null
-
+	
+	if assigned_hamster_wheel:
+		assigned_hamster_wheel.release()
 	assigned_hamster_wheel = null
 	
 	if is_resting:
@@ -101,7 +106,7 @@ func _ready():
 func _physics_process(delta):
 	_update_energy(delta)
 	
-	if state == States.WORKING:
+	if state == States.ACTION:
 		if assigned_task and assigned_task.task_data:
 			var task_data: Task = assigned_task.task_data
 			task_data.time_working += delta
@@ -127,7 +132,7 @@ func _physics_process(delta):
 	_determine_state()
 	_update_anim()
 	
-	if state == States.WORKING or is_resting or state == States.CHARGING:
+	if state == States.ACTION or is_resting or state == States.CHARGING:
 		return
 		
 	var current_speed = speed
@@ -149,12 +154,14 @@ func _physics_process(delta):
 		if not assigned_storage.is_grabbing:
 			assigned_storage.get_item()
 		if assigned_storage.can_collect:
-			var collected_resource: ItemResource = assigned_storage.collect_item()
-			if collected_resource:
-				item.init(collected_resource)
-				assigned_storage = null
-			elif assigned_storage is TrashCan:
+			if assigned_storage is TrashCan:
 				clear_carried_item()
+				assigned_storage.collect_item()
+				assigned_storage = null
+			else:
+				var collected_resource: ItemResource = assigned_storage.collect_item()
+				if collected_resource and item:
+					item.init(collected_resource)
 				assigned_storage = null
 
 func _on_task_work_stopped(task_instance : TaskInstance):
@@ -181,38 +188,74 @@ func _update_energy(delta: float) -> void:
 	update_progress_bar()
 	
 func _determine_state():
-	if state == States.WORKING or state == States.SLEEPING or state == States.CHARGING:
+	update_is_climbing()
+	
+	if state == States.ACTION or state == States.CHARGING:
+		return
+	
+	if is_resting:
+		state = States.BED
+		return
+	
+	if assigned_storage and assigned_storage.is_grabbing:
+		state = States.GRAB
+		return
+		
+	if item and is_throwing:
+		state = States.THROW
+		return
+		
+	if is_climbing:
+		state = States.CLIMB
 		return
 
-	if is_resting:
-		state = States.SLEEPING
-	elif not finished_moving:
+	if not finished_moving:
 		if energy < energy_threshold:
-			state = States.RUNNING_TIRED
+			state = States.RUN_TIRED
 		else:
-			state = States.RUNNING
+			state = States.RUN
+		return
+
+	if assigned_task and finished_moving and is_walking_towards_a_task:
+		state = States.ACTION
+		return
+
+	if energy < energy_threshold:
+		state = States.TIRED
 	else:
-		if energy < energy_threshold:
-			state = States.TIRED
-		else:
-			state = States.IDLE
+		state = States.IDLE
 			
 func _update_anim():
-	match state:
-		States.IDLE:
-			_play_animation("idle")
-		States.RUNNING:
-			_play_animation("run")
-		States.RUNNING_TIRED:
-			_play_animation("run_tired")
-		States.TIRED:
-			_play_animation("tired")
-		States.WORKING:
-			_play_animation("work")
-		States.SLEEPING:
-			_play_animation("sleeping")
-		States.CHARGING:
-			_play_animation("run")
+	if previous_state != state:
+		match state:
+			States.IDLE:
+				_play_animation("idle")
+			States.RUN:
+				_play_animation("run")
+			States.RUN_TIRED:
+				_play_animation("run_tired")
+			States.TIRED:
+				_play_animation("tired")
+			States.ACTION:
+				_play_animation("action")
+			States.BED:
+				_play_animation("bed")
+				SignalBus.worker_sleeping.emit()
+			States.GRAB:
+				_play_animation("grab")
+			States.THROW:
+				_play_animation("throw")
+			States.CLIMB:
+				_play_animation("climb")
+			States.CHARGING:
+				_play_animation("charging")
+				SignalBus.worker_charging.emit()
+		if previous_state == States.CHARGING:
+			SignalBus.worker_stopped_charging.emit()
+		if previous_state == States.BED:
+			SignalBus.worker_stopped_sleeping.emit()
+		
+	previous_state = state
 
 func rest():
 	is_resting = true
@@ -230,7 +273,7 @@ func clear_carried_item():
 
 func work():
 	if assigned_task:
-		state = States.WORKING
+		state = States.ACTION
 		SignalBus.task_work_started.emit(assigned_task)
 
 func _on_navigation_agent_2d_navigation_finished():
@@ -245,3 +288,12 @@ func _on_navigation_agent_2d_navigation_finished():
 func _play_animation(anim_name: String) -> void:
 	if anim_sprite.animation != anim_name:
 		anim_sprite.play(anim_name)
+		
+func update_is_climbing():
+	is_climbing = false
+	var stairs = get_tree().get_nodes_in_group("stairs")
+	var overlapping = interactable_component.get_overlapping_areas()
+	for area in overlapping:
+		if area.is_in_group("stair"):
+			is_climbing = true
+			return
