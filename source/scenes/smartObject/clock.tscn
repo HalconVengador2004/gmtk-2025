@@ -3,40 +3,42 @@
 [ext_resource type="Script" uid="uid://ccetxi6oylyw2" path="res://source/scenes/smartObject/clock.gd" id="1_1"]
 [ext_resource type="Resource" uid="uid://dv8rp1vvvmddg" path="res://source/scenes/task/resource/clock_hand_broke.tres" id="2_xhqqp"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="3_653d1"]
-[ext_resource type="Texture2D" uid="uid://dxklpockx7dqr" path="res://assets/so/square-32.png" id="3_twhb7"]
+[ext_resource type="Texture2D" uid="uid://be0sdld2i12o4" path="res://assets/image/Sprites/clock/clock_00.png" id="4_653d1"]
+[ext_resource type="Texture2D" uid="uid://dif343bcqlb52" path="res://assets/image/Sprites/clock/clockhand_big00.png" id="5_2vgdj"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="6_2vgdj"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="6_653d1"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1"]
-width = 8
-height = 48
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2"]
-width = 8
-height = 32
+[ext_resource type="Texture2D" uid="uid://ltlopu1gxync" path="res://assets/image/Sprites/clock/clockhand_small00.png" id="6_r5gui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5gui"]
-size = Vector2(98, 98)
+size = Vector2(161, 193)
 
 [node name="Clock" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_1")
 task_resource = ExtResource("2_xhqqp")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("3_653d1")]
-scale = Vector2(3, 3)
-texture = ExtResource("3_twhb7")
+position = Vector2(2, -12)
+scale = Vector2(0.453608, 0.453608)
+texture = ExtResource("4_653d1")
 
 [node name="MinuteHand" type="Sprite2D" parent="."]
-texture = SubResource("NoiseTexture2D_1")
-offset = Vector2(0, -18)
+position = Vector2(1.42792, -7.325)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_2vgdj")
+offset = Vector2(41.35, -0.855833)
 
 [node name="HourHand" type="Sprite2D" parent="."]
-texture = SubResource("NoiseTexture2D_2")
-offset = Vector2(0, -10)
+position = Vector2(1.85202, -7.325)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_r5gui")
+offset = Vector2(35.35, 0.29596)
 
 [node name="TaskInstance" parent="." instance=ExtResource("6_653d1")]
 
 [node name="InteractableComponent" parent="." instance=ExtResource("6_2vgdj")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(-0.5, -9.5)
 shape = SubResource("RectangleShape2D_r5gui")

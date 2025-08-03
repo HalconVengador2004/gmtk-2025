@@ -386,6 +386,5 @@ rotation = 1.5708
 position = Vector2(6.66667, -68.3333)
 sprite_frames = SubResource("SpriteFrames_eec18")
 animation = &"idle"
-frame_progress = 0.885052
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]

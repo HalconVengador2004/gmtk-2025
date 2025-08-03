@@ -2,17 +2,19 @@
 
 [ext_resource type="Script" uid="uid://drwwt8oj2c1v" path="res://source/scenes/smartObject/bed.gd" id="1_1"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ub1ir"]
-[ext_resource type="Texture2D" uid="uid://b78jxfxb2i3mk" path="res://assets/so/bed-texture-32x32.png" id="2_vxooe"]
+[ext_resource type="Texture2D" uid="uid://qwewlkc0u3py" path="res://assets/image/Sprites/smart_objects/bed00.png" id="3_ub1ir"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="4_ub1ir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrpl"]
-size = Vector2(34, 34)
+size = Vector2(66, 34)
 
 [node name="Bed" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_1")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("2_ub1ir")]
-texture = ExtResource("2_vxooe")
+position = Vector2(0, -17)
+scale = Vector2(0.236, 0.236)
+texture = ExtResource("3_ub1ir")
 
 [node name="InteractableComponent" parent="." instance=ExtResource("4_ub1ir")]
 

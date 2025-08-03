@@ -16,7 +16,7 @@ func _physics_process(_delta):
 		hour_hand.rotation = deg_to_rad(hour_to_deg(hours))
 	
 func hour_to_deg(game_hour: float) -> float:
-	return fmod(game_hour, 12.0) * (360.0 / 12.0)
+	return fmod(game_hour, 12.0) * (360.0 / 12.0) - 90
 
 func minute_to_deg(game_minute: float) -> float:
-	return fmod(game_minute, 60.0) * (360.0 / 60.0)
+	return fmod(game_minute, 60.0) * (360.0 / 60.0) - 90
