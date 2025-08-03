@@ -18,3 +18,7 @@ func _on_menu_appeared() -> void:
 @onready var main_menu: Control = $".."
 func options_menu() -> void:
 	main_menu.main_to_menu(main_menu.menus[1])
+
+
+func _on_how_to_play_button_pressed_after_wait_time_() -> void:
+	main_menu.main_to_menu(main_menu.menus[2])
