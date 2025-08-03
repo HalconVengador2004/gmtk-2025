@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="TaskResource" load_steps=3 format=3 uid="uid://brgqfsf1djlgw"]
+[gd_resource type="Resource" script_class="TaskResource" load_steps=4 format=3 uid="uid://d4knn4npxcdv8"]
 
 [ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="1_jh7pl"]
-[ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="1_lci7s"]
+[ext_resource type="Texture2D" uid="uid://p0aqdbp3fe8e" path="res://assets/icon/task_need_gear.png" id="1_k3ekb"]
+[ext_resource type="Resource" path="res://source/scenes/item/resource/gear.tres" id="1_lci7s"]
 
 [resource]
 script = ExtResource("1_jh7pl")
 required_item = ExtResource("1_lci7s")
 time_to_finish = 4.0
-deadline = 25.0
+deadline = 30.0
+icon = ExtResource("1_k3ekb")
 metadata/_custom_type_script = "uid://btdq7a3vfb7fa"

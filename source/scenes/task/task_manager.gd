@@ -5,12 +5,11 @@ signal game_lost()
 signal score_updated(score: int)
 
 @export var create_task_chance: float = 0.5
-@export var clock_node: Clock
+@export var clock: Clock
 @export var max_clock_stop_time: float = 60.0
 
 var smart_objects: Array[Node] = []
 var clock_stop_timer: float = 0.0
-var is_clock_stopped: bool = false
 var score: int = 0
 
 func _ready():
@@ -19,24 +18,25 @@ func _ready():
 	SignalBus.day_changed.connect(_on_day_changed)
 
 func _physics_process(delta):
-	is_clock_stopped = false
+	for so in smart_objects:
+		if so.has_task:
+			if so.task.is_overdue() and not so.is_broken:
+				so.is_broken = true
+
+	clock.is_running = true
 	for node in smart_objects:
 		var so: SmartObject = node as SmartObject
 		if so == null: continue
 		if so.is_broken:
-			is_clock_stopped = true
+			clock.is_running = false
 			break
 	
-	if is_clock_stopped:
+	if not clock.is_running:
 		clock_stop_timer += delta
 		if clock_stop_timer >= max_clock_stop_time:
 			game_lost.emit()
-			set_physics_process(false)
 	else:
 		clock_stop_timer = 0
-
-	if clock_node:
-		clock_node.stopped = is_clock_stopped
 
 	for node in smart_objects:
 		var so : SmartObject = node as SmartObject
@@ -48,7 +48,7 @@ func _physics_process(delta):
 				print("creating task")
 
 func _on_task_completed(task_data: Task):
-	var time_taken = Time.get_ticks_msec() - task_data.start_time
+	var time_taken: float = Time.get_ticks_msec() - task_data.start_time
 	if time_taken <= 10000: # 10 seconds
 		score += 20
 	elif not task_data.is_overdue():
