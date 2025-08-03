@@ -14,7 +14,7 @@ func _ready():
 
 func _process(delta):
 	if not stopped:
-		time += delta
+		time += delta * 720
 		var minutes = (time / 60)
 		var hours = (time / 3600)
 		minute_hand.rotation = deg_to_rad(minute_to_deg(minutes))

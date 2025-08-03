@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrpl"]
 size = Vector2(34, 34)
 
-[node name="Bed" type="Node2D"]
+[node name="Bed" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_1")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("2_ub1ir")]
