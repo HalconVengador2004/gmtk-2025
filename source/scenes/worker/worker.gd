@@ -14,19 +14,23 @@ class_name Worker
 @onready var progress_bar = $ProgressBar
 @onready var anim_sprite = $HighlightableSprite
 
-enum States {IDLE, RUNNING, RUNNING_TIRED, TIRED, WORKING, SLEEPING}
+enum States {ACTION, BED, CLIMB, GRAB, IDLE, RUN, RUN_TIRED, THROW, TIRED}
 var state: States = States.IDLE
+var previous_state: States = States.IDLE
 
 var energy: float
 
 # worker state
+var is_climbing: bool = false
 var is_resting: bool = false
+var is_throwing: bool = false
 var finished_moving: bool = true
 var is_walking_towards_a_task: bool = false
 var assigned_task : Node = null
 var assigned_storage: Storage = null
 var assigned_bed: Bed = null
 var last_facing_left: bool = false
+var is_sleepling: bool = false
 
 func set_assigned_task(task_instance):
 	clear_assignments()
@@ -114,6 +118,7 @@ func _physics_process(delta):
 	elif finished_moving and assigned_storage:
 		if not assigned_storage.is_grabbing:
 			assigned_storage.get_item()
+			
 		if assigned_storage.can_collect:
 			var collected_resource: ItemResource = assigned_storage.collect_item()
 			if collected_resource:
@@ -128,7 +133,7 @@ func _update_energy(delta: float) -> void:
 	if is_resting:
 		energy += energy_recovering_per_second * delta
 		if energy >= max_energy:
-			is_resting = false
+			#is_resting = false
 			energy = max_energy
 			if assigned_bed:
 				assigned_bed.release()
@@ -139,35 +144,67 @@ func _update_energy(delta: float) -> void:
 			energy = 0
 	update_progress_bar()
 	
+
 func _determine_state():
+	update_is_climbing()
+	
 	if is_resting:
-		pass
-		#state = States.SLEEPING
-	elif not finished_moving:
+		state = States.BED
+		return
+	
+	if assigned_storage and assigned_storage.is_grabbing:
+		state = States.GRAB
+		return
+		
+	if item and is_throwing:
+		state = States.THROW
+		return
+		
+	if is_climbing:
+		state = States.CLIMB
+		return
+
+
+
+	if not finished_moving:
 		if energy < energy_threshold:
-			state = States.RUNNING_TIRED
+			state = States.RUN_TIRED
 		else:
-			state = States.RUNNING
+			state = States.RUN
+		return
+
+	if assigned_task and finished_moving and is_walking_towards_a_task:
+		state = States.ACTION
+		return
+
+	if energy < energy_threshold:
+		state = States.TIRED
 	else:
-		if energy < energy_threshold:
-			state = States.TIRED
-		else:
-			state = States.IDLE
+		state = States.IDLE
 			
 func _update_anim():
-	match state:
-		States.IDLE:
-			_play_animation("idle")
-		States.RUNNING:
-			_play_animation("run")
-		States.RUNNING_TIRED:
-			_play_animation("run_tired")
-		States.TIRED:
-			_play_animation("tired")
-		States.WORKING:
-			_play_animation("work")
-		States.SLEEPING:
-			_play_animation("sleeping")
+	print(state)
+	if previous_state != state:
+		match state:
+			States.IDLE:
+				_play_animation("idle")
+			States.RUN:
+				_play_animation("run")
+			States.RUN_TIRED:
+				_play_animation("run_tired")
+			States.TIRED:
+				_play_animation("tired")
+			States.ACTION:
+				_play_animation("action")
+			States.BED:
+				_play_animation("bed")
+			States.GRAB:
+				_play_animation("grab")
+			States.THROW:
+				_play_animation("throw")
+			States.CLIMB:
+				_play_animation("climb")
+	previous_state = state
 
 func rest():
 	is_resting = true
@@ -211,3 +248,12 @@ func _on_navigation_agent_2d_navigation_finished():
 func _play_animation(anim_name: String) -> void:
 	if anim_sprite.animation != anim_name:
 		anim_sprite.play(anim_name)
+		
+func update_is_climbing():
+	is_climbing = false
+	var stairs = get_tree().get_nodes_in_group("stairs")
+	var overlapping = interactable_component.get_overlapping_areas()
+	for area in overlapping:
+		if area.is_in_group("stair"):
+			is_climbing = true
+			return

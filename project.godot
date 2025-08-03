@@ -36,6 +36,7 @@ worker=""
 storage=""
 smart_object=""
 interactable=""
+stair=""
 
 [rendering]
 
