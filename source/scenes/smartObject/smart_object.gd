@@ -16,6 +16,7 @@ func get_task():
 
 func _ready():
 	SignalBus.task_completed.connect(_on_task_completed)
+	SignalBus.task_is_overdue.connect(_on_task_overdue)
 	task = Task.new(task_resource)
 	if not interactable_component:
 		push_error("Error: so doesnt have a interactable_component")
@@ -34,4 +35,11 @@ func _on_task_completed(task_completed: Task):
 	task.reset()
 	has_task = false
 	if is_broken:
-		is_broken = true
+		is_broken = false
+	
+func _on_task_overdue(task_overdue: Task) -> void:
+	if task_overdue != task:
+		return
+	is_broken = true
+	
+	

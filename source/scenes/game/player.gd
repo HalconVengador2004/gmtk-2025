@@ -69,6 +69,8 @@ func on_selected(_node):
 		elif target.is_in_group("smart_object"):
 			if target is Bed:
 				move_worker_to_bed(target)
+			elif target is HamsterWheel:
+				move_worker_to_hamster_wheel(target)
 			else:
 				var task_instance = target.get_node_or_null("TaskInstance")
 				if task_instance:
@@ -124,7 +126,14 @@ func move_worker_to_bed(bed_instance):
 		return
 
 	selected_worker.set_navigation_destination(bed_instance.global_position)
-	selected_worker.set_assigned_bed(bed_instance)	
+	selected_worker.set_assigned_bed(bed_instance)
+
+func move_worker_to_hamster_wheel(hamster_wheel_instance):
+	if not selected_worker:
+		return
+
+	selected_worker.set_navigation_destination(hamster_wheel_instance.global_position)
+	selected_worker.set_assigned_hamster_wheel(hamster_wheel_instance)
 	
 func move_worker_to_task(task_instance: TaskInstance):
 	if not selected_worker or not task_instance:

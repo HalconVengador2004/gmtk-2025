@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyg2q2j2wgy8c"]
+
+[ext_resource type="Material" uid="uid://dnh4p4uop2jbs" path="res://source/shaders/battery_bar.tres" id="1_0g8x8"]
+
+[node name="BatteryBar" type="ProgressBar"]
+material = ExtResource("1_0g8x8")
+show_percentage = false
