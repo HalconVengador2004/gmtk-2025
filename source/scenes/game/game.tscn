@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=30 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
 [ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c8s6w2g5v4x" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
 [ext_resource type="Resource" uid="uid://br4awivn664ws" path="res://source/scenes/task/resource/cooling_pipe.tres" id="17_y0uoq"]
 [ext_resource type="Texture2D" uid="uid://00pbaqaunt5g" path="res://assets/image/Sprites/Tools/item_scewdriver.png" id="18_tfnqs"]
+[ext_resource type="Resource" uid="uid://cf538jmja25cc" path="res://source/scenes/item/resource/screw_driver.tres" id="19_gbqay"]
 [ext_resource type="Texture2D" uid="uid://bsy3x7ltg2irl" path="res://assets/image/Sprites/tiles/small_tile00.png" id="23_gm4aj"]
 [ext_resource type="Texture2D" uid="uid://b20jqfmswqftr" path="res://assets/image/Sprites/tiles/small_tile01.png" id="24_tfnqs"]
 [ext_resource type="Texture2D" uid="uid://csbv0m4vtedir" path="res://assets/image/Sprites/tiles/small_tile02.png" id="25_gbqay"]
@@ -174,11 +175,6 @@ clock = NodePath("../SoManager/Clock")
 
 [node name="StorageManager" type="Node2D" parent="."]
 
-[node name="Storage_oil2" parent="StorageManager" instance=ExtResource("5_2v631")]
-position = Vector2(126, 742)
-sprite_texture = ExtResource("10_tfnqs")
-sprite_scale = Vector2(0, 0)
-
 [node name="Storage_oil" parent="StorageManager" instance=ExtResource("5_2v631")]
 position = Vector2(63, 371)
 sprite_texture = ExtResource("10_tfnqs")
@@ -214,6 +210,7 @@ sprite_scale = Vector2(0.35, 0.35)
 [node name="screw_driver" parent="StorageManager" instance=ExtResource("5_2v631")]
 position = Vector2(120, 371)
 sprite_texture = ExtResource("18_tfnqs")
+item_resource = ExtResource("19_gbqay")
 vertical_offset = 90.26
 sprite_scale = Vector2(0.1, 0.1)
 
@@ -224,7 +221,8 @@ position = Vector2(209, 172)
 task_resource = ExtResource("15_55dgt")
 
 [node name="CoolingPipe" parent="SoManager" instance=ExtResource("15_f72de")]
-position = Vector2(61, 172)
+position = Vector2(114, 124)
+scale = Vector2(0.4, 0.4)
 task_resource = ExtResource("17_y0uoq")
 
 [node name="HamsterWheel" parent="SoManager" instance=ExtResource("16_55dgt")]

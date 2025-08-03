@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://cv01wk3e4edik"]
 
 [ext_resource type="Script" uid="uid://ds33rdl6hjvy3" path="res://source/scenes/item/item_resource.gd" id="1_bkrbh"]
-[ext_resource type="Texture2D" uid="uid://dikqa0hbfbkpv" path="res://assets/storage/clockhand-texture-32x32.png" id="2_c1pek"]
+[ext_resource type="Texture2D" uid="uid://dif343bcqlb52" path="res://assets/image/Sprites/clock/clockhand_big00.png" id="2_c1pek"]
 
 [resource]
 script = ExtResource("1_bkrbh")
