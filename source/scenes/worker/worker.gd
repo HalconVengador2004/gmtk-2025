@@ -48,8 +48,6 @@ func set_assigned_bed(bed_instance: Bed):
 func clear_assignments():
 	if assigned_task and assigned_task.task_data:
 		assigned_task.task_data.set_is_assigned(false)
-		if state == States.WORKING:
-			SignalBus.task_work_stopped.emit(assigned_task)
 	assigned_task = null
 	
 	assigned_storage = null
@@ -96,29 +94,10 @@ func _ready():
 
 func _physics_process(delta):
 	_update_energy(delta)
-	
-	if state == States.WORKING:
-		if assigned_task and assigned_task.task_data:
-			var task_data: Task = assigned_task.task_data
-			task_data.time_working += delta
-			
-			if task_data.is_complete():
-				var task_instance = assigned_task
-				var completed_task_data = task_instance.task_data
-				
-				clear_assignments()
-				
-				SignalBus.task_completed.emit(completed_task_data)
-				
-				task_instance.queue_free()
-				state = States.IDLE
-		else:
-			state = States.IDLE
-
 	_determine_state()
 	_update_anim()
 	
-	if state == States.WORKING or is_resting:
+	if is_resting:
 		return
 		
 	var current_speed = speed
@@ -168,45 +147,26 @@ func _update_energy(delta: float) -> void:
 
 func _determine_state():
 	update_is_climbing()
-
-	if state == States.WORKING or state == States.SLEEPING:
-		return
-
+	
 	if is_resting:
-		pass
-		#state = States.SLEEPING
-	elif not finished_moving:
 		state = States.BED
 		return
-
+	
 	if assigned_storage and assigned_storage.is_grabbing:
 		state = States.GRAB
 		return
-
+		
 	if item and is_throwing:
 		state = States.THROW
 		return
-
+		
 	if is_climbing:
 		state = States.CLIMB
 		return
 
+
+
 	if not finished_moving:
-		if energy < energy_threshold:
-			state = States.RUN_TIRED
-		else:
-			state = States.RUN
-		return
-
-	if assigned_task and finished_moving and is_walking_towards_a_task:
-		state = States.ACTION
-		return
-
-	if energy < energy_threshold:
-		state = States.TIRED
-	else:
-		state = States.IDLE
-
 		if energy < energy_threshold:
 			state = States.RUN_TIRED
 		else:
@@ -264,8 +224,19 @@ func clear_carried_item():
 
 func work():
 	if assigned_task:
-		state = States.WORKING
-		SignalBus.task_work_started.emit(assigned_task)
+		var task_instance = assigned_task
+		var task_data = task_instance.task_data
+		var time_to_finish = task_data.resource.time_to_finish
+		
+		var tween = create_tween()
+		tween.tween_property(task_data, "progress", time_to_finish, time_to_finish).set_ease(Tween.EASE_IN_OUT)
+		await tween.finished
+		
+		if task_data.is_complete():
+			task_instance.queue_free()
+			assigned_task = null
+			is_walking_towards_a_task = false
+			SignalBus.task_completed.emit(task_data)
 
 func _on_navigation_agent_2d_navigation_finished():
 	finished_moving = true

@@ -2,7 +2,7 @@ extends Node2D
 
 class_name SmartObject
 
-signal task_started
+signal task_started(task)
 
 @export var task_resource: TaskResource
 @onready var interactable_component = $InteractableComponent
@@ -15,23 +15,15 @@ func get_task():
 	return task
 
 func _ready():
-	SignalBus.task_completed.connect(_on_task_completed)
 	task = Task.new(task_resource)
 	if not interactable_component:
-		push_error("Error: so doesnt have a interactable_component")
+		push_warning("Warning: so doesnt have a interactable_component")
 
 func create_task():
 	task = Task.new(task_resource)
 	has_task = true
-	emit_signal(task_started.get_name(), task)
+	emit_signal("task_started", task)
 
-# Used as default task completetion 
-# This needs to be properly overrided if used by a So with special task characteristics
-# Eg: it doesn't broke but other get's broken instead etc
-func _on_task_completed(task_completed: Task):
-	if task_completed != task:
-		return
-	task.reset()
-	has_task = false
-	if is_broken:
+func _physics_process(_delta):
+	if has_task and task.is_overdue() and not task.is_complete():
 		is_broken = true
