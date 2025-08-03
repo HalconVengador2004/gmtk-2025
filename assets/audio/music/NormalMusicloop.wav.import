@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://27w5cnfkqgm5"
+uid="uid://ccfq5g741dol7"
 path="res://.godot/imported/NormalMusicloop.wav-548cd9b5d758933d962de79360609e3f.sample"
 
 [deps]
@@ -20,5 +20,5 @@ edit/trim=true
 edit/normalize=false
 edit/loop_mode=2
 edit/loop_begin=0
-edit/loop_end=1521915
+edit/loop_end=-1
 compress/mode=0
