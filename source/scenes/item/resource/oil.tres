@@ -1,21 +1,10 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=5 format=3 uid="uid://dfnp4s3aspluc"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dfnp4s3aspluc"]
 
 [ext_resource type="Script" uid="uid://ds33rdl6hjvy3" path="res://source/scenes/item/item_resource.gd" id="1_j8tk4"]
-
-[sub_resource type="Gradient" id="Gradient_42345"]
-offsets = PackedFloat32Array(0.0796296, 0.707407)
-colors = PackedColorArray(0.0531121, 0.133466, 0.374642, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qqiv0"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8lhr3"]
-width = 32
-height = 32
-color_ramp = SubResource("Gradient_42345")
-noise = SubResource("FastNoiseLite_qqiv0")
+[ext_resource type="Texture2D" uid="uid://emehtxgbwxyc" path="res://assets/image/Sprites/Tools/item_oil_canister.png" id="2_gk5ib"]
 
 [resource]
 script = ExtResource("1_j8tk4")
 name = "Oil"
 description = "Oil used to lubricate the gear"
-texture = SubResource("NoiseTexture2D_8lhr3")
+texture = ExtResource("2_gk5ib")

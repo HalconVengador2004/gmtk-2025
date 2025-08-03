@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://criqg4x7hjoxn"]
+[gd_scene load_steps=12 format=3 uid="uid://criqg4x7hjoxn"]
 
 [ext_resource type="Script" uid="uid://ccetxi6oylyw2" path="res://source/scenes/smartObject/clock.gd" id="1_1"]
 [ext_resource type="Resource" uid="uid://dv8rp1vvvmddg" path="res://source/scenes/task/resource/clock_hand_broke.tres" id="2_xhqqp"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="6_2vgdj"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="6_653d1"]
 [ext_resource type="Texture2D" uid="uid://ltlopu1gxync" path="res://assets/image/Sprites/clock/clockhand_small00.png" id="6_r5gui"]
+[ext_resource type="Texture2D" uid="uid://cy4ttmslf0lp6" path="res://assets/image/Sprites/tiles/big_tile00.png" id="9_aiw5i"]
+[ext_resource type="Theme" uid="uid://dxrw500n836d4" path="res://assets/resources/text_theme.tres" id="9_c8451"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5gui"]
 size = Vector2(161, 193)
@@ -42,3 +44,22 @@ offset = Vector2(35.35, 0.29596)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 position = Vector2(-0.5, -9.5)
 shape = SubResource("RectangleShape2D_r5gui")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 80.0
+offset_top = -16.0
+offset_right = 276.0
+offset_bottom = 84.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_aiw5i")
+region_rect = Rect2(0, 0, 181, 179)
+patch_margin_left = 60
+patch_margin_right = 60
+
+[node name="DayCounterLabel" type="Label" parent="."]
+offset_left = 89.0
+offset_top = -11.0
+offset_right = 136.0
+offset_bottom = 12.0
+theme = ExtResource("9_c8451")
+text = "Day ?"
