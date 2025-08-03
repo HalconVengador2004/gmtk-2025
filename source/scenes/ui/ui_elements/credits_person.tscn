@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0y3nkanms7ro"]
+
+[ext_resource type="FontFile" uid="uid://qstvlpi1u0nx" path="res://assets/font/noto_sans/woff/noto_sans.woff" id="1_77k37"]
+
+[node name="Credit Person" type="VBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_77k37")
+theme_override_font_sizes/font_size = 14
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_77k37")
+theme_override_font_sizes/font_size = 12
+text = "Role"
+horizontal_alignment = 1
+autowrap_mode = 2

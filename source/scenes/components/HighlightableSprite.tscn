@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://doi8lsmew464s"]
+[gd_scene load_steps=3 format=3 uid="uid://b6wu4nkp6yflw"]
 
 [ext_resource type="Material" uid="uid://cijv5jdbon53h" path="res://source/shaders/selected_material.tres" id="1_p3l8x"]
 [ext_resource type="Script" uid="uid://dgt1rawv3wfhb" path="res://source/scenes/components/HighlightableSprite.gd" id="2_p3l8x"]
