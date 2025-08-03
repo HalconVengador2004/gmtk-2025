@@ -1,40 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://g7lgprbnm54"]
+[gd_scene load_steps=7 format=3 uid="uid://g7lgprbnm54"]
 
 [ext_resource type="Script" uid="uid://cmp2unfa36hk8" path="res://source/scenes/item/storage.gd" id="1_tfynq"]
 [ext_resource type="Resource" uid="uid://dfnp4s3aspluc" path="res://source/scenes/item/resource/oil.tres" id="2_bys4w"]
+[ext_resource type="Texture2D" uid="uid://erg66728vwmq" path="res://assets/storage/oil-texture-32x32.png" id="2_ist5g"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="2_q2yg0"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="3_350af"]
-
-[sub_resource type="Gradient" id="Gradient_6or2f"]
-offsets = PackedFloat32Array(0, 0.651852)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_l4bvc"]
-noise_type = 3
-frequency = 0.1064
-fractal_type = 3
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_46km6"]
-width = 32
-height = 32
-color_ramp = SubResource("Gradient_6or2f")
-noise = SubResource("FastNoiseLite_l4bvc")
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="3_350af"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qarm4"]
 size = Vector2(34, 34)
 
-[node name="Storage" type="Node2D"]
-scale = Vector2(3, 3)
+[node name="Storage" type="Node2D" groups=["storage"]]
 script = ExtResource("1_tfynq")
+sprite_texture = ExtResource("2_ist5g")
 item_resource = ExtResource("2_bys4w")
 
-[node name="HighlightableComponent" parent="." instance=ExtResource("3_350af")]
-texture = SubResource("NoiseTexture2D_46km6")
+[node name="HighlightableSprite" parent="." instance=ExtResource("3_350af")]
+texture = ExtResource("2_ist5g")
 
 [node name="InteractableComponent" parent="." instance=ExtResource("2_q2yg0")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 z_index = 1
 shape = SubResource("RectangleShape2D_qarm4")
-
-[connection signal="mouse_entered" from="InteractableComponent" to="HighlightableComponent" method="add_highlight"]
-[connection signal="mouse_exited" from="InteractableComponent" to="HighlightableComponent" method="remove_highlight"]

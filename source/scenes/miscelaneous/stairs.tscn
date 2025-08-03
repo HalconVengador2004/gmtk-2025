@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://nx33b8xv04wa"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x218g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x218g"]
+size = Vector2(80, 83)
+
+[node name="Stairs" type="Area2D" groups=["stair"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(80, 214)
+texture = SubResource("PlaceholderTexture2D_x218g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -65.5)
+shape = SubResource("RectangleShape2D_x218g")

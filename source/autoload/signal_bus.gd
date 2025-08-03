@@ -1,7 +1,8 @@
 extends Node
 
-signal worker_clicked(worker)
-signal task_clicked(task)
-signal storage_clicked(storage)
 signal task_activated(task)
-signal clicked(entity)
+signal task_completed(task)
+signal task_work_started(task_instance)
+signal task_work_stopped(task_instance)
+signal day_changed(new_day)
+signal task_is_overdue(task)

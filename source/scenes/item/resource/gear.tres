@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://b0o0r52dvfk7q"]
+
+[ext_resource type="Script" uid="uid://ds33rdl6hjvy3" path="res://source/scenes/item/item_resource.gd" id="1_374fl"]
+[ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="2_xy4ys"]
+
+[resource]
+script = ExtResource("1_374fl")
+name = "Gear"
+description = "A metallic piece that spins inside a mechanism"
+texture = ExtResource("2_xy4ys")
+metadata/_custom_type_script = "uid://ds33rdl6hjvy3"

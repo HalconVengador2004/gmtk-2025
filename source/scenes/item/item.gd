@@ -13,3 +13,8 @@ func _ready():
 func init(new_resource: ItemResource):
 	resource = new_resource
 	sprite.texture = resource.texture
+	
+func clear():
+	resource = null
+	if sprite:
+		sprite.texture = null

@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dv5u2c3f4a0uk"]
+
+[ext_resource type="Shader" path="res://source/shaders/worker_energy_bar.gdshader" id="1_7twe1"]
+
+[resource]
+shader = ExtResource("1_7twe1")
+shader_parameter/progress_color = Color(0, 1, 0, 1)
+shader_parameter/mid_energy_color = Color(1, 1, 0, 1)
+shader_parameter/low_energy_color = Color(1, 0, 0, 1)
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/progress = 1.0
+shader_parameter/threshold = 0.2
+shader_parameter/fade_smoothness = 0.5

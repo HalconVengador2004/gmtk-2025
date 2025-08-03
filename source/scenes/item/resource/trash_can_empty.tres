@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3 uid="uid://soi2x10x61hd"]
+
+[ext_resource type="Script" uid="uid://ds33rdl6hjvy3" path="res://source/scenes/item/item_resource.gd" id="1_bqcwd"]
+
+[resource]
+script = ExtResource("1_bqcwd")
+name = "Empty"
+description = "It is nothing"
