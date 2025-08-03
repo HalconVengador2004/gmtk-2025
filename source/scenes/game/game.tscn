@@ -85,6 +85,14 @@ stream_0/stream = ExtResource("21_igbw6")
 stream_1/stream = ExtResource("22_hfuxh")
 stream_2/stream = ExtResource("23_nd6su")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e1c0h"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("42_gy1n6")
+stream_1/stream = ExtResource("43_cnf3q")
+stream_2/stream = ExtResource("44_o54yf")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b0not"]
 random_pitch = 1.2
 random_volume_offset_db = 1.5
@@ -125,46 +133,41 @@ stream_0/stream = ExtResource("39_2v5ao")
 stream_1/stream = ExtResource("40_0j3mc")
 stream_2/stream = ExtResource("41_c0ccx")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e1c0h"]
-random_pitch = 1.2
-random_volume_offset_db = 1.5
-streams_count = 3
-stream_0/stream = ExtResource("42_gy1n6")
-stream_1/stream = ExtResource("43_cnf3q")
-stream_2/stream = ExtResource("44_o54yf")
-
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ur8ii"]
-clip_count = 10
-clip_0/name = &"WorkerAssign"
-clip_0/stream = SubResource("AudioStreamRandomizer_2jurd")
+clip_count = 11
+clip_0/name = &""
 clip_0/auto_advance = 0
-clip_1/name = &"WorkerComplete"
-clip_1/stream = SubResource("AudioStreamRandomizer_b0not")
+clip_1/name = &"WorkerAssign"
+clip_1/stream = SubResource("AudioStreamRandomizer_2jurd")
 clip_1/auto_advance = 0
-clip_2/name = &"WorkerSelect"
-clip_2/stream = SubResource("AudioStreamRandomizer_b7cst")
+clip_2/name = &"WorkerComplete"
+clip_2/stream = SubResource("AudioStreamRandomizer_b0not")
 clip_2/auto_advance = 0
-clip_3/name = &"WorkerWork"
-clip_3/stream = ExtResource("30_74qhk")
+clip_3/name = &"WorkerSelect"
+clip_3/stream = SubResource("AudioStreamRandomizer_b7cst")
 clip_3/auto_advance = 0
-clip_4/name = &"ProblemAlert"
-clip_4/stream = ExtResource("31_edbp2")
+clip_4/name = &"WorkerWork"
+clip_4/stream = ExtResource("30_74qhk")
 clip_4/auto_advance = 0
-clip_5/name = &"ProblemBroken"
-clip_5/stream = SubResource("AudioStreamRandomizer_vrq42")
+clip_5/name = &"ProblemAlert"
+clip_5/stream = ExtResource("31_edbp2")
 clip_5/auto_advance = 0
-clip_6/name = &"ProblemStart"
-clip_6/stream = SubResource("AudioStreamRandomizer_ftnvo")
+clip_6/name = &"ProblemBroken"
+clip_6/stream = SubResource("AudioStreamRandomizer_vrq42")
 clip_6/auto_advance = 0
-clip_7/name = &"UIConfirm"
-clip_7/stream = ExtResource("38_mn7dg")
+clip_7/name = &"ProblemStart"
+clip_7/stream = SubResource("AudioStreamRandomizer_ftnvo")
 clip_7/auto_advance = 0
-clip_8/name = &"UISelect"
-clip_8/stream = SubResource("AudioStreamRandomizer_j74dg")
+clip_8/name = &"UIConfirm"
+clip_8/stream = ExtResource("38_mn7dg")
 clip_8/auto_advance = 0
-clip_9/name = &"UIDeselect"
-clip_9/stream = SubResource("AudioStreamRandomizer_e1c0h")
+clip_9/name = &"UISelect"
+clip_9/stream = SubResource("AudioStreamRandomizer_j74dg")
 clip_9/auto_advance = 0
+clip_10/name = &"UIDeselect"
+clip_10/stream = SubResource("AudioStreamRandomizer_e1c0h")
+clip_10/auto_advance = 0
+initial_clip = 5
 
 [node name="Game" type="Node2D"]
 
@@ -283,4 +286,5 @@ playback_type = 1
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 stream = SubResource("AudioStreamInteractive_ur8ii")
+bus = &"SFX"
 metadata/entity_name = "SfxPlayer"
