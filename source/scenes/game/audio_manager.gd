@@ -14,19 +14,41 @@ var sfx_library = {
 	"uiselect":preload("res://assets/audio/sfx/UI/sfx_UIselect_1.ogg"),
 	"uideselect":preload("res://assets/audio/sfx/UI/sfx_UIdeselect_3.ogg")
 }
-sfx_library[SfxPlayer]
+
+
+func CreateVfx(name):
+	var new_sfx_player = $SfxPlayer.duplicate()
+	new_sfx_player.stream = sfx_library
+	add_child(new_sfx_player)
+	new_sfx_player.play()
+	new_sfx_player.finished.connect(_on_sfx_finished)
+
+
+func on_working_start():
+	createVfx("workerwork")
+
+func _on_interactable_clicked():
+	createVfx("workerassign")
+
+func select_worker():
+	createVfx("workerselect")
+	
+func _on_task_completed():
+	createVfx("workercomplete")
+
+func _on_task_started():
+	createVfx("problemstart")
+
+
 @onready var music_library = $MusicPlayer
 
 func _ready():
 	$MusicPlayer.play()
 	SignalBus.eventName.Conetct(functionName)
 	
-func _physics_process(_delta):
-	var new_sfx_player = $SfxPlayer.duplicate()
-	new_sfx_player.stream = sfx_library
-	add_child(new_sfx_player)
-	new_sfx_player.play()
-	new_sfx_player.finished.connect(_on_sfx_finished)
+	
+func _physics_process(delta):
+	
 	
 func _on_sfx_finished(node_to_free):
 	node_to_free.queue_free()
