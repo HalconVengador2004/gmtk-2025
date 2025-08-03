@@ -12,6 +12,7 @@ class_name Worker
 
 @onready var interactable_component = $InteractableComponent
 @onready var progress_bar = $ProgressBar
+@onready var anim_sprite = $HighlightableSprite
 
 enum States {IDLE, RUNNING, RUNNING_TIRED, TIRED, WORKING, SLEEPING}
 var state: States = States.IDLE
@@ -28,30 +29,33 @@ var assigned_bed: Bed = null
 var last_facing_left: bool = false
 
 func set_assigned_task(task_instance):
-	if assigned_task and assigned_task.task_data:
-		assigned_task.task_data.set_is_assigned(false)
+	clear_assignments()
 	assigned_task = task_instance
-	assigned_storage = null
-	assigned_bed = null
-	if is_resting:
-		is_resting = false
 
 func set_assigned_storage(storage_instance: Storage):
-	if assigned_task and assigned_task.task_data:
-		assigned_task.task_data.set_is_assigned(false)
+	clear_assignments()
 	assigned_storage = storage_instance
-	assigned_task = null
-	assigned_bed = null
-	if is_resting:
-		is_resting = false
 
 func set_assigned_bed(bed_instance: Bed):
+	clear_assignments()
+	assigned_bed = bed_instance
+	bed_instance.occupy(self)
+
+func clear_assignments():
 	if assigned_task and assigned_task.task_data:
 		assigned_task.task_data.set_is_assigned(false)
-	assigned_bed = bed_instance
-	assigned_storage = null
 	assigned_task = null
-	bed_instance.occupy(self)
+	
+	assigned_storage = null
+	
+	if assigned_bed:
+		assigned_bed.release()
+		assigned_bed = null
+	
+	if is_resting:
+		is_resting = false
+	
+	is_walking_towards_a_task = false
 
 func get_assigned_task():
 	return assigned_task
@@ -64,6 +68,10 @@ func set_is_walking_towards_a_task(walking):
 
 func get_interactable_component():
 	return interactable_component
+
+func move_to_position(pos):
+	clear_assignments()
+	set_navigation_destination(pos)
 
 func set_navigation_destination(pos):
 	nav.target_position = pos
@@ -81,22 +89,13 @@ func _ready():
 	anim_sprite.play("idle")
 
 func _physics_process(delta):
-	if is_resting:
-		energy += energy_recovering_per_second * delta
-		if energy >= max_energy:
-			is_resting = false
-			energy = max_energy
-			if assigned_bed:
-				assigned_bed.release()
-				assigned_bed = null
-		update_progress_bar()
-		return
+	_update_energy(delta)
 	_determine_state()
 	_update_anim()
 	
-	energy -= energy_spent_per_second * delta
-	update_progress_bar()
-	
+	if is_resting:
+		return
+		
 	var current_speed = speed
 	if energy < energy_threshold:
 		current_speed *= tired_speed_multiplier
@@ -123,9 +122,23 @@ func _physics_process(delta):
 			elif assigned_storage is TrashCan:
 				clear_carried_item()
 				assigned_storage = null
-				
 
-				
+
+func _update_energy(delta: float) -> void:
+	if is_resting:
+		energy += energy_recovering_per_second * delta
+		if energy >= max_energy:
+			is_resting = false
+			energy = max_energy
+			if assigned_bed:
+				assigned_bed.release()
+				assigned_bed = null
+	else:
+		energy -= energy_spent_per_second * delta
+		if energy < 0:
+			energy = 0
+	update_progress_bar()
+	
 func _determine_state():
 	if is_resting:
 		pass

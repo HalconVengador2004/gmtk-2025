@@ -14,7 +14,8 @@
 # Priority System:
 # - When multiple objects overlap, the one with the highest priority is selected.
 # - Priority Order: Worker > Smart Object > Storage.
-extends Node
+
+extends Node2D
 
 var selected_worker: Worker
 var hovered_nodes: Array = []
@@ -31,6 +32,10 @@ func _input(event):
 		if selected_worker:
 			selected_worker.get_node("HighlightableSprite").remove_highlight()
 			selected_worker = null
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		if selected_worker and len(hovered_nodes) == 0:
+			selected_worker.move_to_position(get_global_mouse_position())
 
 func on_hovered(node):
 	if not node in hovered_nodes:
