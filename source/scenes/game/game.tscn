@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=41 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" path="res://source/scenes/game/game.gd" id="1_f72de"]
 [ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://bsy3x7ltg2irl" path="res://assets/image/Sprites/tiles/small_tile00.png" id="23_gm4aj"]
 [ext_resource type="Texture2D" uid="uid://b20jqfmswqftr" path="res://assets/image/Sprites/tiles/small_tile01.png" id="24_tfnqs"]
 [ext_resource type="Texture2D" uid="uid://csbv0m4vtedir" path="res://assets/image/Sprites/tiles/small_tile02.png" id="25_gbqay"]
+[ext_resource type="Script" uid="uid://du5rguj2eiogx" path="res://source/scenes/game/audio_manager.gd" id="32_vh6i3"]
+[ext_resource type="AudioStream" uid="uid://ccfq5g741dol7" path="res://assets/audio/music/NormalMusicloop.wav" id="33_03v86"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]
 vertices = PackedVector2Array(1101.1, 427.07, 1102, 427, 1235.59, 427, 1235.39, 431.938, 95.4063, 212, 94.8906, 209.023, 471.844, 209.672, 471.938, 212, 1231.86, 210.977, 1232.04, 212.906, 1102, 211.922, 475.141, 209.672, 263.039, 428.758, 98.9531, 428.977, 99.1406, 426.922, 470.953, 423.922, 266.953, 428.75, 1098.9, 212, 475.141, 212, 855, 429.953, 848.953, 427.992, 98.5313, 645.008, 98.4922, 644, 264.047, 644, 265.953, 644.023, 471.852, 208.578, 475.117, 208.43, 855, 643, 850.047, 642.977, 1233, 643, 1233, 646.977, 477.094, 422.93)
@@ -315,6 +317,17 @@ scale = Vector2(2, 2)
 script = ExtResource("3_wcho7")
 
 [node name="HUD" parent="." instance=ExtResource("17_7mye2")]
-visible = false
+
+[node name="AudioManager" type="Node" parent="." node_paths=PackedStringArray("music_player")]
+script = ExtResource("32_vh6i3")
+music_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_03v86")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
 
 [editable path="StorageManager/trash_can"]
