@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bsimtscilsv2m"
+uid="uid://dgpdrslmgs7n4"
 path="res://.godot/imported/IntenseMusicloop.wav-627340b638ab0cb067c11aa661d876c6.sample"
 
 [deps]
@@ -20,5 +20,5 @@ edit/trim=true
 edit/normalize=false
 edit/loop_mode=2
 edit/loop_begin=0
-edit/loop_end=1521915
+edit/loop_end=-1
 compress/mode=0

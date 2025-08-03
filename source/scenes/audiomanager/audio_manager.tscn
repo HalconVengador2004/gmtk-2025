@@ -1,11 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://iigk6r5amahn"]
+[gd_scene load_steps=35 format=3 uid="uid://iigk6r5amahn"]
 
 [ext_resource type="Script" uid="uid://cyvhjxgatefay" path="res://source/scenes/audiomanager/audio_manager.gd" id="1_26o3w"]
-[ext_resource type="AudioStream" uid="uid://27w5cnfkqgm5" path="res://assets/audio/music/NormalMusicloop.wav" id="2_dbqim"]
-[ext_resource type="AudioStream" uid="uid://bsimtscilsv2m" path="res://assets/audio/music/IntenseMusicloop.wav" id="3_71usc"]
-[ext_resource type="AudioStream" uid="uid://u1csa8w0qedv" path="res://assets/audio/music/LargeComponentloop.wav" id="4_05nbv"]
-[ext_resource type="AudioStream" uid="uid://dh2doa08rdxcc" path="res://assets/audio/music/MidComponentloop.wav" id="5_fojoo"]
-[ext_resource type="AudioStream" uid="uid://0qcco40wvp7b" path="res://assets/audio/music/SmallComponentloop.wav" id="6_0j32r"]
+[ext_resource type="AudioStream" uid="uid://ccfq5g741dol7" path="res://assets/audio/music/NormalMusicloop.wav" id="2_dbqim"]
+[ext_resource type="AudioStream" uid="uid://dgpdrslmgs7n4" path="res://assets/audio/music/IntenseMusicloop.wav" id="3_71usc"]
 [ext_resource type="AudioStream" uid="uid://br6xvfsk0eplm" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_1.ogg" id="7_b8nbk"]
 [ext_resource type="AudioStream" uid="uid://cii2v8em52u7t" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_2.ogg" id="8_dadgt"]
 [ext_resource type="AudioStream" uid="uid://wiisuje7io0e" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_3.ogg" id="9_jqk6a"]
@@ -28,18 +25,22 @@
 [ext_resource type="AudioStream" uid="uid://br7cd8esp134a" path="res://assets/audio/sfx/UI/sfx_UIdeselect_3.ogg" id="26_swci7"]
 [ext_resource type="AudioStream" uid="uid://lnf6xt8u0k8k" path="res://assets/audio/sfx/UI/sfx_UIConfirm.ogg" id="27_lmmqr"]
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_xwlii"]
-stream_count = 5
-stream_0/stream = ExtResource("2_dbqim")
-stream_0/volume = -4.0
-stream_1/stream = ExtResource("3_71usc")
-stream_1/volume = -5.44
-stream_2/stream = ExtResource("4_05nbv")
-stream_2/volume = -60.0
-stream_3/stream = ExtResource("5_fojoo")
-stream_3/volume = -60.0
-stream_4/stream = ExtResource("6_0j32r")
-stream_4/volume = 12.0
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_qjlnx"]
+clip_count = 2
+clip_0/name = &"NormalMusicloop"
+clip_0/stream = ExtResource("2_dbqim")
+clip_0/auto_advance = 0
+clip_1/name = &"IntenseMusicloop"
+clip_1/stream = ExtResource("3_71usc")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 3.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dsm54"]
 streams_count = 3
@@ -117,12 +118,14 @@ clip_2/auto_advance = 0
 script = ExtResource("1_26o3w")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamSynchronized_xwlii")
+stream = SubResource("AudioStreamInteractive_qjlnx")
+volume_db = -10.0
 bus = &"Music"
 playback_type = 1
 
 [node name="WorkerSFX" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_7p7l8")
+bus = &"SFX"
 metadata/entity_name = "WorkerSFX"
 
 [node name="ProblemSFX" type="AudioStreamPlayer" parent="."]
