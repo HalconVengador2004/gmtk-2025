@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=58 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
-[ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
+[ext_resource type="Script" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
 [ext_resource type="Texture2D" uid="uid://b8ylq4nrhotcr" path="res://assets/storage/pen-ink-texture-32x32.png" id="6_lop5m"]
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
@@ -17,6 +17,33 @@
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
 [ext_resource type="PackedScene" uid="uid://c8s6w2g5v4x" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
+[ext_resource type="Script" uid="uid://du5rguj2eiogx" path="res://source/scenes/game/audio_manager.gd" id="18_wd1ng"]
+[ext_resource type="AudioStream" uid="uid://ccfq5g741dol7" path="res://assets/audio/music/NormalMusicloop.wav" id="19_ot0pl"]
+[ext_resource type="AudioStream" uid="uid://dgpdrslmgs7n4" path="res://assets/audio/music/IntenseMusicloop.wav" id="20_uog0t"]
+[ext_resource type="AudioStream" uid="uid://ccxsm5kjm5uir" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_1.ogg" id="21_igbw6"]
+[ext_resource type="AudioStream" uid="uid://le2pvdjy7bvl" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-001.ogg" id="22_hfuxh"]
+[ext_resource type="AudioStream" uid="uid://dkpcbvuy8txss" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_3.ogg" id="23_nd6su"]
+[ext_resource type="AudioStream" uid="uid://br6xvfsk0eplm" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_1.ogg" id="24_jg8lg"]
+[ext_resource type="AudioStream" uid="uid://cii2v8em52u7t" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_2.ogg" id="25_nht3n"]
+[ext_resource type="AudioStream" uid="uid://wiisuje7io0e" path="res://assets/audio/sfx/Worker/sfx_WorkerComplete_3.ogg" id="26_4hn3o"]
+[ext_resource type="AudioStream" uid="uid://0rd3tcx5n7c5" path="res://assets/audio/sfx/Worker/sfx_WorkerSelect_1.ogg" id="27_m7nm5"]
+[ext_resource type="AudioStream" uid="uid://cgop0vivdfxgb" path="res://assets/audio/sfx/Worker/sfx_WorkerSelect_2.ogg" id="28_v0iq6"]
+[ext_resource type="AudioStream" uid="uid://c84k42y35pu3q" path="res://assets/audio/sfx/Worker/sfx_WorkerSelect_3.ogg" id="29_lb8kg"]
+[ext_resource type="AudioStream" uid="uid://cgih7kt8qr4ng" path="res://assets/audio/sfx/Worker/sfx_WorkerWork.ogg" id="30_74qhk"]
+[ext_resource type="AudioStream" uid="uid://bbg5afhtngx1i" path="res://assets/audio/sfx/Problem/sfx_ProblemAlert.ogg" id="31_edbp2"]
+[ext_resource type="AudioStream" uid="uid://clly54m7c5wex" path="res://assets/audio/sfx/Problem/sfx_ProblemBroken_1.ogg" id="32_n4ytk"]
+[ext_resource type="AudioStream" uid="uid://vadl8n1v1fc7" path="res://assets/audio/sfx/Problem/sfx_ProblemBroken_2.ogg" id="33_51yxl"]
+[ext_resource type="AudioStream" uid="uid://5v2g6ig3qdmq" path="res://assets/audio/sfx/Problem/sfx_ProblemBroken_3.ogg" id="34_vmupc"]
+[ext_resource type="AudioStream" uid="uid://hgb8ci8jy0h" path="res://assets/audio/sfx/Problem/sfx_ProblemStart_1.ogg" id="35_ysng0"]
+[ext_resource type="AudioStream" uid="uid://d0v4uduu2m071" path="res://assets/audio/sfx/Problem/sfx_ProblemStart_2.ogg" id="36_sup2d"]
+[ext_resource type="AudioStream" uid="uid://5mn5ajkcsab1" path="res://assets/audio/sfx/Problem/sfx_ProblemStart_3-001.ogg" id="37_k6ex8"]
+[ext_resource type="AudioStream" uid="uid://lnf6xt8u0k8k" path="res://assets/audio/sfx/UI/sfx_UIConfirm.ogg" id="38_mn7dg"]
+[ext_resource type="AudioStream" uid="uid://iqiphwqma1c" path="res://assets/audio/sfx/UI/sfx_UIselect_1.ogg" id="39_2v5ao"]
+[ext_resource type="AudioStream" uid="uid://mc8buvraxenb" path="res://assets/audio/sfx/UI/sfx_UIselect_2.ogg" id="40_0j3mc"]
+[ext_resource type="AudioStream" uid="uid://u4hhrj1af8hd" path="res://assets/audio/sfx/UI/sfx_UIselect_3.ogg" id="41_c0ccx"]
+[ext_resource type="AudioStream" uid="uid://dbchv353nbk4e" path="res://assets/audio/sfx/UI/sfx_UIdeselect_1.ogg" id="42_gy1n6"]
+[ext_resource type="AudioStream" uid="uid://b5xivq33j2rpk" path="res://assets/audio/sfx/UI/sfx_UIdeselect_2.ogg" id="43_cnf3q"]
+[ext_resource type="AudioStream" uid="uid://br7cd8esp134a" path="res://assets/audio/sfx/UI/sfx_UIdeselect_3.ogg" id="44_o54yf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2v631"]
 size = Vector2(1150, 10)
@@ -32,6 +59,112 @@ parsed_geometry_type = 1
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0qhwn"]
 size = Vector2(160, 40)
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_5movr"]
+clip_count = 2
+clip_0/name = &"NormalMusicloop"
+clip_0/stream = ExtResource("19_ot0pl")
+clip_0/auto_advance = 0
+clip_1/name = &"IntenseMusicloop"
+clip_1/stream = ExtResource("20_uog0t")
+clip_1/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 3.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2jurd"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("21_igbw6")
+stream_1/stream = ExtResource("22_hfuxh")
+stream_2/stream = ExtResource("23_nd6su")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b0not"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("24_jg8lg")
+stream_1/stream = ExtResource("25_nht3n")
+stream_2/stream = ExtResource("26_4hn3o")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_b7cst"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("27_m7nm5")
+stream_1/stream = ExtResource("28_v0iq6")
+stream_2/stream = ExtResource("29_lb8kg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vrq42"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("32_n4ytk")
+stream_1/stream = ExtResource("33_51yxl")
+stream_2/stream = ExtResource("34_vmupc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ftnvo"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("35_ysng0")
+stream_1/stream = ExtResource("36_sup2d")
+stream_2/stream = ExtResource("37_k6ex8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j74dg"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("39_2v5ao")
+stream_1/stream = ExtResource("40_0j3mc")
+stream_2/stream = ExtResource("41_c0ccx")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e1c0h"]
+random_pitch = 1.2
+random_volume_offset_db = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("42_gy1n6")
+stream_1/stream = ExtResource("43_cnf3q")
+stream_2/stream = ExtResource("44_o54yf")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_ur8ii"]
+clip_count = 10
+clip_0/name = &"WorkerAssign"
+clip_0/stream = SubResource("AudioStreamRandomizer_2jurd")
+clip_0/auto_advance = 0
+clip_1/name = &"WorkerComplete"
+clip_1/stream = SubResource("AudioStreamRandomizer_b0not")
+clip_1/auto_advance = 0
+clip_2/name = &"WorkerSelect"
+clip_2/stream = SubResource("AudioStreamRandomizer_b7cst")
+clip_2/auto_advance = 0
+clip_3/name = &"WorkerWork"
+clip_3/stream = ExtResource("30_74qhk")
+clip_3/auto_advance = 0
+clip_4/name = &"ProblemAlert"
+clip_4/stream = ExtResource("31_edbp2")
+clip_4/auto_advance = 0
+clip_5/name = &"ProblemBroken"
+clip_5/stream = SubResource("AudioStreamRandomizer_vrq42")
+clip_5/auto_advance = 0
+clip_6/name = &"ProblemStart"
+clip_6/stream = SubResource("AudioStreamRandomizer_ftnvo")
+clip_6/auto_advance = 0
+clip_7/name = &"UIConfirm"
+clip_7/stream = ExtResource("38_mn7dg")
+clip_7/auto_advance = 0
+clip_8/name = &"UISelect"
+clip_8/stream = SubResource("AudioStreamRandomizer_j74dg")
+clip_8/auto_advance = 0
+clip_9/name = &"UIDeselect"
+clip_9/stream = SubResource("AudioStreamRandomizer_e1c0h")
+clip_9/auto_advance = 0
 
 [node name="Game" type="Node2D"]
 
@@ -138,3 +271,16 @@ position = Vector2(492, 612)
 scale = Vector2(2, 2)
 
 [node name="HUD" parent="." instance=ExtResource("17_7mye2")]
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("18_wd1ng")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = SubResource("AudioStreamInteractive_5movr")
+volume_db = -10.0
+bus = &"Music"
+playback_type = 1
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = SubResource("AudioStreamInteractive_ur8ii")
+metadata/entity_name = "SfxPlayer"

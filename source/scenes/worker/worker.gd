@@ -205,3 +205,4 @@ func _on_interactable_clicked(node):
 func _play_animation(anim_name: String) -> void:
 	if anim_sprite.animation != anim_name:
 		anim_sprite.play(anim_name)
+		
