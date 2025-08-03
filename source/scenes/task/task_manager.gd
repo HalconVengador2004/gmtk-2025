@@ -9,7 +9,7 @@ signal score_updated(score: int)
 var break_chance: float = 0.05
 var max_break_chance: float = 0.20
 var break_chance_increase_rate: float = 1.15
-var hours_of_immunity: int = 8
+var hours_of_immunity: int = 4
 var immunity_decrease_per_day: int = 1
 
 var smart_objects: Array[Node] = []
@@ -27,7 +27,8 @@ func _ready():
 		if so is Clock:
 			clock = so
 			clock.create_task()
-			break
+		if so is HamsterWheel:
+			so.create_task()
 
 func _physics_process(delta):
 	for so in smart_objects:

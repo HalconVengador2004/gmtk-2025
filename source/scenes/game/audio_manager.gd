@@ -1,7 +1,6 @@
 extends Node
 
 @export var music_player: AudioStreamPlayer
-var intensity_state : String
 @onready var music_library = $MusicPlayer
 @onready var sfx_template = $SfxPlayer
 
@@ -12,15 +11,7 @@ func _ready():
 	SignalBus.task_completed.connect(_on_task_completed)
 	SignalBus.task_activated.connect(_on_task_started)
 
-func createVfx(sfx_library):
-	return # remove this later
-	var new_sfx_player = sfx_template.duplicate()
-	new_sfx_player.stream = sfx_library[sfx_library]
-	add_child(new_sfx_player)
-	new_sfx_player.play()
-	new_sfx_player.finished.connect(_on_sfx_finished, new_sfx_player)
-
-var sfx_library = {
+var sfx_library: Dictionary = {
 	"workerassign":preload("res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-001.ogg"),
 	"workercomplete":preload("res://assets/audio/sfx/Worker/sfx_WorkerComplete_1.ogg"),
 	"workerselect":preload("res://assets/audio/sfx/Worker/sfx_WorkerSelect_1.ogg"),
@@ -32,6 +23,14 @@ var sfx_library = {
 	"uiselect":preload("res://assets/audio/sfx/UI/sfx_UIselect_1.ogg"),
 	"uideselect":preload("res://assets/audio/sfx/UI/sfx_UIdeselect_1.ogg")
 	}
+
+func createVfx(key):
+	return # remove this later
+	var new_sfx_player = sfx_template.duplicate()
+	new_sfx_player.stream = sfx_library[key]
+	add_child(new_sfx_player)
+	new_sfx_player.play()
+	new_sfx_player.finished.connect(_on_sfx_finished, new_sfx_player)
 
 
 func on_working_start(_task_instance):

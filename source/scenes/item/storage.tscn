@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="3_350af"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qarm4"]
-size = Vector2(34, 34)
+size = Vector2(700, 180)
 
 [node name="Storage" type="Node2D" groups=["storage"]]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_tfynq")
 sprite_texture = ExtResource("2_ist5g")
 item_resource = ExtResource("2_bys4w")
@@ -21,4 +22,6 @@ texture = ExtResource("2_ist5g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 z_index = 1
+position = Vector2(10, 2.38419e-06)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_qarm4")
