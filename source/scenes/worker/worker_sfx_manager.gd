@@ -22,6 +22,9 @@ func play_worker_select_sound():
 func play_worker_work_sound():
 	audio_stream_player.stream = worker_work_sound
 	audio_stream_player.play()
+func stop_worker_work_sound():
+	audio_stream_player.stop()
+	audio_stream_player.stream = null
 
 func get_random_audio_stream(streams: Array[AudioStream]) -> AudioStream:
 	if streams.is_empty():
