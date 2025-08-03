@@ -1,13 +1,11 @@
 [gd_scene load_steps=29 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
-[ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
+[ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://nx33b8xv04wa" path="res://source/scenes/miscelaneous/stairs.tscn" id="3_55dgt"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
-[ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
-[ext_resource type="Resource" uid="uid://cf538jmja25cc" path="res://source/scenes/item/resource/screw_driver.tres" id="7_fjt1a"]
 [ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
 [ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="9_e10du"]
@@ -172,21 +170,11 @@ position = Vector2(286, 612)
 
 [node name="StorageManager" type="Node2D" parent="."]
 
-[node name="Storage_oil2" parent="StorageManager" instance=ExtResource("5_2v631")]
-position = Vector2(126, 742)
-sprite_texture = ExtResource("10_tfnqs")
-sprite_scale = Vector2(0, 0)
-
 [node name="Storage_oil" parent="StorageManager" instance=ExtResource("5_2v631")]
 position = Vector2(63, 371)
 sprite_texture = ExtResource("10_tfnqs")
 vertical_offset = -99.535
 sprite_scale = Vector2(0.05, 0.05)
-
-[node name="screw&driver" parent="StorageManager" instance=ExtResource("5_2v631")]
-position = Vector2(114, 371)
-sprite_texture = ExtResource("7_0qhwn")
-item_resource = ExtResource("7_fjt1a")
 
 [node name="gearStorage" parent="StorageManager" instance=ExtResource("5_2v631")]
 position = Vector2(1015, 611)
