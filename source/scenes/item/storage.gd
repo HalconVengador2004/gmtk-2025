@@ -18,7 +18,6 @@ var is_grabbing: bool = false
 var can_collect: bool = false
 
 func _ready():
-	interactable_component.connect("clicked", _on_interactable_clicked)
 	sprite.texture = sprite_texture
 
 func get_item():
@@ -39,19 +38,3 @@ func collect_item() -> ItemResource:
 	is_grabbing = false
 	can_collect = false
 	return item_resource
-
-func _on_interactable_clicked(_node):
-	var overlapping = check_for_overlapping_worker()
-	if overlapping:
-		SignalBus.emit_signal("worker_clicked", overlapping)
-	else:
-		SignalBus.emit_signal("storage_clicked", self)
-
-func check_for_overlapping_worker():
-	var overlapping_areas = interactable_component.get_overlapping_areas()
-	
-	for area in overlapping_areas:
-		if area.get_parent().is_in_group("worker"):
-			return area.get_parent()
-	
-	return null

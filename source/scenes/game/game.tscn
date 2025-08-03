@@ -1,12 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=23 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
-[ext_resource type="Texture2D" uid="uid://b8ylq4nrhotcr" path="res://assets/storage/pen-ink-texture-32x32.png" id="6_lop5m"]
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
-[ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
+[ext_resource type="Resource" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
 [ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="9_e10du"]
 [ext_resource type="Texture2D" uid="uid://dikqa0hbfbkpv" path="res://assets/storage/clockhand-texture-32x32.png" id="9_k03wk"]
@@ -16,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
-[ext_resource type="PackedScene" uid="uid://c8s6w2g5v4x" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
+[ext_resource type="PackedScene" uid="uid://dd0psxjt4ox32" path="res://source/scenes/smartObject/cooling_pipe.tscn" id="15_f72de"]
+[ext_resource type="PackedScene" uid="uid://cv22d1biav7ty" path="res://source/scenes/smartObject/hamster_wheel.tscn" id="16_55dgt"]
+[ext_resource type="PackedScene" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2v631"]
 size = Vector2(1150, 10)
@@ -90,12 +91,8 @@ script = ExtResource("3_wcho7")
 [node name="Storage_oil" parent="storage_manager" instance=ExtResource("5_2v631")]
 position = Vector2(63, 371)
 
-[node name="pen&ink" parent="storage_manager" instance=ExtResource("5_2v631")]
-position = Vector2(110, 371)
-sprite_texture = ExtResource("6_lop5m")
-
 [node name="screw&driver" parent="storage_manager" instance=ExtResource("5_2v631")]
-position = Vector2(158, 371)
+position = Vector2(114, 371)
 sprite_texture = ExtResource("7_0qhwn")
 
 [node name="gearStorage" parent="storage_manager" instance=ExtResource("5_2v631")]
@@ -111,7 +108,8 @@ sprite_texture = ExtResource("9_k03wk")
 item_resource = ExtResource("9_e10du")
 
 [node name="table" type="Sprite2D" parent="storage_manager"]
-position = Vector2(108, 408)
+position = Vector2(91, 408)
+scale = Vector2(0.817112, 1)
 texture = SubResource("PlaceholderTexture2D_0qhwn")
 
 [node name="trash_can" parent="storage_manager" instance=ExtResource("5_2v631")]
@@ -125,6 +123,12 @@ item_resource = ExtResource("11_so03b")
 
 [node name="gear" parent="so_manager" instance=ExtResource("10_wcho7")]
 position = Vector2(213, 172)
+
+[node name="CoolingPipe" parent="so_manager" instance=ExtResource("15_f72de")]
+position = Vector2(61, 172)
+
+[node name="HamsterWheel" parent="so_manager" instance=ExtResource("16_55dgt")]
+position = Vector2(676, 169)
 
 [node name="Clock" parent="so_manager" instance=ExtResource("10_q0opv")]
 position = Vector2(540, 380)

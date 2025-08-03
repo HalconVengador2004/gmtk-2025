@@ -35,6 +35,7 @@ task=""
 worker=""
 storage=""
 smart_object=""
+interactable=""
 
 [rendering]
 

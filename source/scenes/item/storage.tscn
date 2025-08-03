@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qarm4"]
 size = Vector2(34, 34)
 
-[node name="Storage" type="Node2D"]
+[node name="Storage" type="Node2D" groups=["storage"]]
 script = ExtResource("1_tfynq")
 sprite_texture = ExtResource("2_ist5g")
 item_resource = ExtResource("2_bys4w")
@@ -22,6 +22,3 @@ texture = ExtResource("2_ist5g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 z_index = 1
 shape = SubResource("RectangleShape2D_qarm4")
-
-[connection signal="mouse_entered" from="InteractableComponent" to="HighlightableSprite" method="add_highlight"]
-[connection signal="mouse_exited" from="InteractableComponent" to="HighlightableSprite" method="remove_highlight"]

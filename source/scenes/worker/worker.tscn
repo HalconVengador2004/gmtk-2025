@@ -70,7 +70,7 @@ item = NodePath("Item")
 z_index = 1
 shape = SubResource("CircleShape2D_3eqk0")
 
-[node name="HighlightableComponent" parent="." instance=ExtResource("3_ij7vr")]
+[node name="HighlightableSprite" parent="." instance=ExtResource("3_ij7vr")]
 scale = Vector2(3, 3)
 texture = ExtResource("2_3eqk0")
 
@@ -92,5 +92,3 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
-[connection signal="mouse_entered" from="InteractableComponent" to="HighlightableComponent" method="add_highlight"]
-[connection signal="mouse_exited" from="InteractableComponent" to="HighlightableComponent" method="remove_highlight"]

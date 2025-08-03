@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
 size = Vector2(98, 98)
 
-[node name="gear" type="Node2D"]
+[node name="gear" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_nysu0")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("2_0gtgy")]

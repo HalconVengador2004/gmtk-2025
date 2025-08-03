@@ -18,8 +18,6 @@ func _ready():
 	task = Task.new(task_resource)
 	if not interactable_component:
 		push_warning("Warning: so doesnt have a interactable_component")
-	var interactalbe: InteractableComponent = interactable_component as InteractableComponent	
-	interactalbe.clicked.connect(_on_interactable_clicked)
 
 func create_task():
 	task = Task.new(task_resource)
@@ -29,9 +27,3 @@ func create_task():
 func _physics_process(_delta):
 	if has_task and task.is_overdue() and not task.is_complete():
 		is_broken = true
-
-func _on_interactable_clicked(_node):
-	for child in get_children():
-		if child is TaskInstance and child.task_data:
-			SignalBus.task_clicked_instance.emit(child)
-			return
