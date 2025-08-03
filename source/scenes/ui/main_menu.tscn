@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://b82k7yangq4r0"]
 
-[ext_resource type="Texture2D" uid="uid://bqcbe3uucptmc" path="res://assets/image/boot_splash/png/GMTK2025_logo.png" id="1_6qg5j"]
 [ext_resource type="Script" uid="uid://cej1wbu4i2oop" path="res://source/scripts/main_menu/title&buttons.gd" id="1_a6bij"]
 [ext_resource type="PackedScene" uid="uid://dlfl6l7r45xo5" path="res://source/scenes/ui/ui_elements/menu_button.tscn" id="1_hu2hv"]
 [ext_resource type="Script" uid="uid://yiabtrcic1yc" path="res://source/scripts/main_menu/main_menu.gd" id="1_lw8qq"]
+[ext_resource type="Texture2D" uid="uid://dxww0kaggtfn5" path="res://assets/image/Title.png" id="3_xwrg4"]
 [ext_resource type="Script" uid="uid://d4ll1k3dkmykx" path="res://source/scripts/main_menu/other_menu.gd" id="5_84hj8"]
 [ext_resource type="FontFile" uid="uid://qstvlpi1u0nx" path="res://assets/font/noto_sans/woff/noto_sans.woff" id="5_sk0n2"]
 [ext_resource type="PackedScene" uid="uid://b0y3nkanms7ro" path="res://source/scenes/ui/ui_elements/credits_person.tscn" id="7_xwrg4"]
@@ -47,12 +47,12 @@ script = ExtResource("1_a6bij")
 
 [node name="Title&Buttons" type="VBoxContainer" parent="Title&Buttons"]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 40
 
 [node name="Game Title" type="TextureRect" parent="Title&Buttons/Title&Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("1_6qg5j")
+texture = ExtResource("3_xwrg4")
 expand_mode = 5
 stretch_mode = 5
 
