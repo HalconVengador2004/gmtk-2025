@@ -1,5 +1,7 @@
 extends Node
 
+signal work_selected(worker)
+signal other_selected(node)
 signal task_activated(task)
 signal task_completed(task)
 signal task_work_started(task_instance)
@@ -10,3 +12,4 @@ signal worker_charging()
 signal worker_stopped_charging()
 signal worker_sleeping()
 signal worker_stopped_sleeping()
+signal hour_changed(hour: int)
