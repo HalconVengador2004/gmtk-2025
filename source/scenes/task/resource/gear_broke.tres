@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="TaskResource" load_steps=3 format=3 uid="uid://brgqfsf1djlgw"]
+[gd_resource type="Resource" script_class="TaskResource" load_steps=4 format=3 uid="uid://brgqfsf1djlgw"]
 
 [ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="1_jh7pl"]
+[ext_resource type="Texture2D" uid="uid://bys3tv6pp5gpq" path="res://assets/icon/task_need_gear.png" id="1_k3ekb"]
 [ext_resource type="Resource" path="res://source/scenes/item/resource/gear.tres" id="1_lci7s"]
 
 [resource]
@@ -8,4 +9,5 @@ script = ExtResource("1_jh7pl")
 required_item = ExtResource("1_lci7s")
 time_to_finish = 4.0
 deadline = 25.0
+icon = ExtResource("1_k3ekb")
 metadata/_custom_type_script = "uid://btdq7a3vfb7fa"

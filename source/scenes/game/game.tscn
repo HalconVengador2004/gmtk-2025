@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=26 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
 [ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
@@ -17,9 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
+[ext_resource type="Resource" uid="uid://b4py7jnottsbb" path="res://source/scenes/task/resource/oil_gear.tres" id="15_55dgt"]
 [ext_resource type="PackedScene" uid="uid://dd0psxjt4ox32" path="res://source/scenes/smartObject/cooling_pipe.tscn" id="15_f72de"]
 [ext_resource type="PackedScene" uid="uid://cv22d1biav7ty" path="res://source/scenes/smartObject/hamster_wheel.tscn" id="16_55dgt"]
 [ext_resource type="PackedScene" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
+[ext_resource type="Resource" uid="uid://br4awivn664ws" path="res://source/scenes/task/resource/cooling_pipe.tres" id="17_y0uoq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2v631"]
 size = Vector2(1150, 10)
@@ -79,8 +81,9 @@ position = Vector2(664, 396)
 [node name="Worker2" parent="WorkerManager" instance=ExtResource("3_kelw5")]
 position = Vector2(286, 612)
 
-[node name="TaskManager" type="Node2D" parent="."]
+[node name="TaskManager" type="Node2D" parent="." node_paths=PackedStringArray("clock")]
 script = ExtResource("3_wcho7")
+clock = NodePath("../SoManager/Clock")
 
 [node name="StorageManager" type="Node2D" parent="."]
 
@@ -118,10 +121,12 @@ item_resource = ExtResource("11_so03b")
 [node name="SoManager" type="Node2D" parent="."]
 
 [node name="gear" parent="SoManager" instance=ExtResource("10_wcho7")]
-position = Vector2(213, 172)
+position = Vector2(209, 172)
+task_resource = ExtResource("15_55dgt")
 
 [node name="CoolingPipe" parent="SoManager" instance=ExtResource("15_f72de")]
 position = Vector2(61, 172)
+task_resource = ExtResource("17_y0uoq")
 
 [node name="HamsterWheel" parent="SoManager" instance=ExtResource("16_55dgt")]
 position = Vector2(676, 169)
