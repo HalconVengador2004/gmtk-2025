@@ -16,7 +16,7 @@ func reset():
 	is_overdue_checked = false
 
 func is_overdue() -> bool:
-	if is_assigned and not is_overdue_checked:
+	if is_overdue_checked:
 		var overdue = TimeManager.get_time() - start_time > resource.deadline
 		if overdue:
 			is_overdue_checked = true
@@ -32,8 +32,6 @@ func get_time_working():
 	
 func set_is_assigned(assigned):
 	is_assigned = assigned
-	if is_assigned:
-		start_time = TimeManager.get_time()
 
 func get_is_assigned():
 	return is_assigned

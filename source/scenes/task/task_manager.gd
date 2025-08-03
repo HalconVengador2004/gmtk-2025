@@ -30,7 +30,7 @@ func _physics_process(delta):
 		if so.is_broken:
 			clock.is_running = false
 			break
-	
+
 	if not clock.is_running:
 		clock_stop_timer += delta
 		if clock_stop_timer >= max_clock_stop_time:
