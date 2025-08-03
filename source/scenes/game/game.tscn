@@ -1,12 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=24 format=3 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
-[ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
+[ext_resource type="PackedScene" uid="uid://b0ch2a5mcbvm0" path="res://source/scenes/game/player.tscn" id="1_u6050"]
+[ext_resource type="PackedScene" uid="uid://nx33b8xv04wa" path="res://source/scenes/miscelaneous/stairs.tscn" id="3_55dgt"]
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
 [ext_resource type="Texture2D" uid="uid://dty4shsjvutg8" path="res://assets/storage/screwdriver-texture-32x32.png" id="7_0qhwn"]
-[ext_resource type="Resource" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
+[ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
 [ext_resource type="Texture2D" uid="uid://duooeo2n7q5oy" path="res://assets/storage/gear-texture-32x32.png" id="8_fy7qm"]
 [ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="9_e10du"]
 [ext_resource type="Texture2D" uid="uid://dikqa0hbfbkpv" path="res://assets/storage/clockhand-texture-32x32.png" id="9_k03wk"]
@@ -16,17 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
-[ext_resource type="Resource" uid="uid://pjgljoel1yrn" path="res://source/scenes/task/resource/oil_gear.tres" id="15_55dgt"]
 [ext_resource type="PackedScene" uid="uid://dd0psxjt4ox32" path="res://source/scenes/smartObject/cooling_pipe.tscn" id="15_f72de"]
 [ext_resource type="PackedScene" uid="uid://cv22d1biav7ty" path="res://source/scenes/smartObject/hamster_wheel.tscn" id="16_55dgt"]
-[ext_resource type="PackedScene" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
-[ext_resource type="Resource" uid="uid://b4py7jnottsbb" path="res://source/scenes/task/resource/cooling_pipe.tres" id="17_y0uoq"]
+[ext_resource type="PackedScene" uid="uid://c8s6w2g5v4x" path="res://source/scenes/ui/hud.tscn" id="17_7mye2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2v631"]
 size = Vector2(1150, 10)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lop5m"]
-size = Vector2(60, 210)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_lfrn8"]
 vertices = PackedVector2Array(1101.1, 427.07, 1102, 427, 1235.59, 427, 1235.39, 431.938, 95.4063, 212, 94.8906, 209.023, 471.844, 209.672, 471.938, 212, 1231.86, 210.977, 1232.04, 212.906, 1102, 211.922, 475.141, 209.672, 263.039, 428.758, 98.9531, 428.977, 99.1406, 426.922, 470.953, 423.922, 266.953, 428.75, 1098.9, 212, 475.141, 212, 855, 429.953, 848.953, 427.992, 98.5313, 645.008, 98.4922, 644, 264.047, 644, 265.953, 644.023, 471.852, 208.578, 475.117, 208.43, 855, 643, 850.047, 642.977, 1233, 643, 1233, 646.977, 477.094, 422.93)
@@ -48,29 +44,25 @@ script = ExtResource("1_f72de")
 position = Vector2(574, 649)
 texture = SubResource("PlaceholderTexture2D_2v631")
 
-[node name="stair" type="Sprite2D" parent="Map"]
-position = Vector2(168, 540)
-texture = SubResource("PlaceholderTexture2D_lop5m")
-
-[node name="stair2" type="Sprite2D" parent="Map"]
-position = Vector2(758, 542)
-texture = SubResource("PlaceholderTexture2D_lop5m")
-
 [node name="secondFloor" type="Sprite2D" parent="Map"]
 position = Vector2(574, 432)
 texture = SubResource("PlaceholderTexture2D_2v631")
 
-[node name="stair3" type="Sprite2D" parent="Map"]
-position = Vector2(383, 329)
-texture = SubResource("PlaceholderTexture2D_lop5m")
-
-[node name="stair4" type="Sprite2D" parent="Map"]
-position = Vector2(1011, 327)
-texture = SubResource("PlaceholderTexture2D_lop5m")
-
 [node name="thirdFloor" type="Sprite2D" parent="Map"]
 position = Vector2(574, 219)
 texture = SubResource("PlaceholderTexture2D_2v631")
+
+[node name="stairs2" parent="Map" instance=ExtResource("3_55dgt")]
+position = Vector2(1007, 325)
+
+[node name="stairs2" parent="Map/stairs2" instance=ExtResource("3_55dgt")]
+position = Vector2(-248, 215)
+
+[node name="stairs" parent="Map" instance=ExtResource("3_55dgt")]
+position = Vector2(382, 329)
+
+[node name="stairs" parent="Map/stairs" instance=ExtResource("3_55dgt")]
+position = Vector2(-212, 213)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 330)
@@ -87,9 +79,8 @@ position = Vector2(664, 396)
 [node name="Worker2" parent="WorkerManager" instance=ExtResource("3_kelw5")]
 position = Vector2(286, 612)
 
-[node name="TaskManager" type="Node2D" parent="." node_paths=PackedStringArray("clock")]
+[node name="TaskManager" type="Node2D" parent="."]
 script = ExtResource("3_wcho7")
-clock = NodePath("../SoManager/Clock")
 
 [node name="StorageManager" type="Node2D" parent="."]
 
@@ -128,12 +119,9 @@ item_resource = ExtResource("11_so03b")
 
 [node name="gear" parent="SoManager" instance=ExtResource("10_wcho7")]
 position = Vector2(213, 172)
-task_resource = ExtResource("15_55dgt")
 
 [node name="CoolingPipe" parent="SoManager" instance=ExtResource("15_f72de")]
-position = Vector2(75, 172)
-scale = Vector2(0.8, 0.8)
-task_resource = ExtResource("17_y0uoq")
+position = Vector2(61, 172)
 
 [node name="HamsterWheel" parent="SoManager" instance=ExtResource("16_55dgt")]
 position = Vector2(676, 169)

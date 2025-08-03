@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cli43wdpdeilc"
-path="res://.godot/imported/task.png-2caaa8ba9c7f1b0507d073585fe190f4.ctex"
+uid="uid://c7eol0pmb4ahv"
+path="res://.godot/imported/worker_bed02.png-7280c94f254809b3951a2de74ebf8c96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icon/task.png"
-dest_files=["res://.godot/imported/task.png-2caaa8ba9c7f1b0507d073585fe190f4.ctex"]
+source_file="res://assets/image/Sprites/worker/worker_bed/worker_bed02.png"
+dest_files=["res://.godot/imported/worker_bed02.png-7280c94f254809b3951a2de74ebf8c96.ctex"]
 
 [params]
 

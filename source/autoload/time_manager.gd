@@ -1,15 +1,16 @@
 extends Node
 
-const hour_number : float = 12.0
-const minutes_per_hour : float = 60
-
 var time : float = 0.0
 var paused : bool = false
 var speed : float = 1.0
-var game_hour_real_duration_seconds : float = 7.5
+var hour_number : float = 12.0
+var game_hour_real_duration_seconds : float = 30.0
+var game_hour_game_minutes_duration : float = 60.0
+
 var current_day : int = 0
 
-func _physics_process(delta: float) -> void:
+
+func _process(delta: float):
 	if paused:
 		return
 	time += delta * speed
@@ -42,7 +43,7 @@ func get_hour() -> float:
 
 func get_minute() -> float:
 	var fractional_hour = get_hour() - floor(get_hour())
-	return fractional_hour * minutes_per_hour
+	return fractional_hour * game_hour_game_minutes_duration
 
 func _check_day():
 	if get_day() > current_day:

@@ -1,7 +1,6 @@
-[gd_resource type="Resource" script_class="TaskResource" load_steps=4 format=3 uid="uid://dv8rp1vvvmddg"]
+[gd_resource type="Resource" script_class="TaskResource" load_steps=3 format=3 uid="uid://dv8rp1vvvmddg"]
 
 [ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="1_3o46j"]
-[ext_resource type="Texture2D" uid="uid://b78dx6jstj74w" path="res://assets/icon/task_need_clock_hand.png" id="1_05n76"]
 [ext_resource type="Script" uid="uid://btdq7a3vfb7fa" path="res://source/scenes/task/task_resource.gd" id="2_05n76"]
 
 [resource]
@@ -9,4 +8,3 @@ script = ExtResource("2_05n76")
 required_item = ExtResource("1_3o46j")
 time_to_finish = 5.0
 deadline = 30.0
-icon = ExtResource("1_05n76")

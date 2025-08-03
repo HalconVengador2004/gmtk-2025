@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b78dx6jstj74w"
-path="res://.godot/imported/task_need_clock_hand.png-f0fe71aafa23402777fe5ace86aff097.ctex"
+uid="uid://602qca8rt3d8"
+path="res://.godot/imported/worker_act02.png-d31456789f2df64e02c007d955a769db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icon/task_need_clock_hand.png"
-dest_files=["res://.godot/imported/task_need_clock_hand.png-f0fe71aafa23402777fe5ace86aff097.ctex"]
+source_file="res://assets/image/Sprites/worker/worker_action/worker_act02.png"
+dest_files=["res://.godot/imported/worker_act02.png-d31456789f2df64e02c007d955a769db.ctex"]
 
 [params]
 

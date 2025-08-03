@@ -149,7 +149,7 @@ func move_worker_to_task(task_instance: TaskInstance):
 	if previous_task:
 		previous_task.task_data.set_is_assigned(false)
 		
-	if task_instance.task_data.get_is_assigned():
+	if not task_instance.task_data or task_instance.task_data.get_is_assigned():
 		print("task is not available")
 		return
 

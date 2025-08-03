@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8w2s4phxgsmp"
-path="res://.godot/imported/task_need_screwdriver.png-bd770826f1662f25a7d41544e6a3a7e5.ctex"
+uid="uid://6uj5p2pihebs"
+path="res://.godot/imported/worker_bed09.png-02ea9fc539d686bf3964ff27f3394bda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icon/task_need_screwdriver.png"
-dest_files=["res://.godot/imported/task_need_screwdriver.png-bd770826f1662f25a7d41544e6a3a7e5.ctex"]
+source_file="res://assets/image/Sprites/worker/worker_bed/worker_bed09.png"
+dest_files=["res://.godot/imported/worker_bed09.png-02ea9fc539d686bf3964ff27f3394bda.ctex"]
 
 [params]
 
