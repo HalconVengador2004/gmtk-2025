@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_cypja")
+name = "oil gears"
 required_item = ExtResource("1_yjf81")
 time_to_finish = 4.0
 deadline = 20.0

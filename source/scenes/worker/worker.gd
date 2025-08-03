@@ -116,10 +116,7 @@ func _physics_process(delta):
 				var completed_task_data = task_instance.task_data
 				
 				clear_assignments()
-				
 				SignalBus.task_completed.emit(completed_task_data)
-				
-				task_instance.queue_free()
 				state = States.IDLE
 		else:
 			state = States.IDLE
@@ -162,6 +159,7 @@ func _physics_process(delta):
 				var collected_resource: ItemResource = assigned_storage.collect_item()
 				if collected_resource and item:
 					item.init(collected_resource)
+					item.visible = true
 				assigned_storage = null
 
 func _on_task_work_stopped(task_instance : TaskInstance):
@@ -170,7 +168,7 @@ func _on_task_work_stopped(task_instance : TaskInstance):
 	if not item:
 		return
 	if task_instance.task_data.resource.required_item == item.resource:
-			item = null
+		item.visible = false
 
 func _update_energy(delta: float) -> void:
 	if is_resting:
