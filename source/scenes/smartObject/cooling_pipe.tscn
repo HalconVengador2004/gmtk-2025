@@ -1,26 +1,91 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd0psxjt4ox32"]
+[gd_scene load_steps=20 format=4 uid="uid://dd0psxjt4ox32"]
 
 [ext_resource type="Script" uid="uid://dnvpy2n0jj4tw" path="res://source/scenes/smartObject/smart_object.gd" id="1_jhj41"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ktopq"]
-[ext_resource type="Texture2D" uid="uid://0bqdm8b5lodo" path="res://assets/so/cooling_pipe_sprite.png" id="3_jhj41"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_j0sep"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_o6x1i"]
+[ext_resource type="Texture2D" uid="uid://b8sxemhu3jp76" path="res://assets/image/Sprites/smart_objects/pipe/coolingpipe_horiz.png" id="6_31te6"]
+[ext_resource type="Texture2D" uid="uid://ce3skrs531nnr" path="res://assets/image/Sprites/smart_objects/pipe/coolingpipe_nozzle_horiz.png" id="7_cm6d2"]
+[ext_resource type="Texture2D" uid="uid://dbs7j37nkbx6n" path="res://assets/image/Sprites/smart_objects/pipe/coolingpipe_nozzle_vert.png" id="8_kx6t0"]
+[ext_resource type="Texture2D" uid="uid://b5iu0c5sxscyk" path="res://assets/image/Sprites/smart_objects/pipe/coolingpipe_turn00.png" id="9_7yo17"]
+[ext_resource type="Texture2D" uid="uid://f4rmpb3vv4r1" path="res://assets/image/Sprites/smart_objects/pipe/coolingpipe_turn01.png" id="10_s1fk6"]
+[ext_resource type="Texture2D" uid="uid://b8hbfy1hiys1o" path="res://assets/image/Sprites/smart_objects/pipe/coolingpipe_wheel.png" id="11_31te6"]
+[ext_resource type="Texture2D" uid="uid://drughvlu1ef7t" path="res://assets/image/Sprites/smart_objects/pipe/coolingpipe_vert.png" id="11_sy6ls"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
-size = Vector2(197, 70)
+size = Vector2(117, 114)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4kuxe"]
+texture = ExtResource("6_31te6")
+texture_region_size = Vector2i(90, 89)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mku85"]
+texture = ExtResource("7_cm6d2")
+texture_region_size = Vector2i(66, 144)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ybxo8"]
+texture = ExtResource("8_kx6t0")
+texture_region_size = Vector2i(144, 66)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5axs6"]
+texture = ExtResource("9_7yo17")
+texture_region_size = Vector2i(88, 88)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lrj5l"]
+texture = ExtResource("10_s1fk6")
+texture_region_size = Vector2i(88, 88)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yaeau"]
+texture = ExtResource("11_sy6ls")
+texture_region_size = Vector2i(88, 91)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7ijdg"]
+tile_size = Vector2i(66, 144)
+sources/0 = SubResource("TileSetAtlasSource_4kuxe")
+sources/1 = SubResource("TileSetAtlasSource_mku85")
+sources/2 = SubResource("TileSetAtlasSource_ybxo8")
+sources/3 = SubResource("TileSetAtlasSource_5axs6")
+sources/4 = SubResource("TileSetAtlasSource_lrj5l")
+sources/5 = SubResource("TileSetAtlasSource_yaeau")
 
 [node name="CoolingPipe" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_jhj41")
-
-[node name="HighlightableSprite" parent="." instance=ExtResource("2_ktopq")]
-scale = Vector2(2, 2)
-texture = ExtResource("3_jhj41")
-
-[node name="TaskInstance" parent="." instance=ExtResource("4_j0sep")]
 
 [node name="InteractableComponent" parent="." instance=ExtResource("5_o6x1i")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 z_index = 1
-position = Vector2(8.5, 0)
+position = Vector2(-111.5, 17)
 shape = SubResource("RectangleShape2D_sj8ud")
+
+[node name="pipes_tilemaps" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="pipes_tilemaps"]
+rotation = -1.5708
+tile_map_data = PackedByteArray("AAD+/wAAAQAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_7ijdg")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="pipes_tilemaps"]
+position = Vector2(-26, 0)
+tile_map_data = PackedByteArray("AAABAP7/AwAAAAAAAAAAAP7/AAAAAAAAAAD///7/AAAAAAAAAAD+//7/BAAAAAAAAAA=")
+tile_set = SubResource("TileSet_7ijdg")
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="pipes_tilemaps"]
+position = Vector2(83, 0)
+rotation = -1.5708
+tile_map_data = PackedByteArray("AAACAP7/AAAAAAAAAAABAP7/AAAAAAAAAAAAAP7/AAAAAAAAAAD///7/AAAAAAAAAAD+//7/AAAAAAAAAAD9//7/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_7ijdg")
+
+[node name="HighlightableSprite" parent="." instance=ExtResource("2_ktopq")]
+position = Vector2(-113, 16)
+scale = Vector2(0.974576, 0.974576)
+texture = ExtResource("11_31te6")
+
+[node name="TaskInstance" parent="." instance=ExtResource("4_j0sep")]
+position = Vector2(-112, 13)
