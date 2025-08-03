@@ -5,8 +5,7 @@ class_name HamsterWheel
 @export var battery_capacity: float = 100.0
 @export var battery_drain_rate: float = 1.0
 @export var charge_rate: float = 5.0
-
-@onready var battery_bar: ProgressBar = $ProgressBar
+@export var battery_bar: ProgressBar
 var battery_level: float = battery_capacity
 var is_occupied_by: Worker = null
 

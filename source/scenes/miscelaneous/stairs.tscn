@@ -1,16 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://nx33b8xv04wa"]
-
-[ext_resource type="Texture2D" uid="uid://dag5bo6w0xnoc" path="res://assets/image/Sprites/tiles/ladder00.png" id="1_5ufad"]
+[gd_scene load_steps=2 format=3 uid="uid://nx33b8xv04wa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x218g"]
-size = Vector2(80, 83)
+size = Vector2(80, 96)
 
 [node name="Stairs" type="Area2D" groups=["stair"]]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.1, 1.1)
-texture = ExtResource("1_5ufad")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -65.5)
+position = Vector2(0, -96)
 shape = SubResource("RectangleShape2D_x218g")

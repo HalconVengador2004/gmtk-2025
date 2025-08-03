@@ -8,7 +8,8 @@ const WORKER_SCENE = preload("res://source/scenes/worker/worker.tscn")
 
 func _ready():
 	task_manager.score_updated.connect(hud.update_score)
-	task_manager.game_lost.connect(hud.show_game_over)
+	task_manager.stop_countdown.connect(hud.stop_countdown)
+	task_manager.start_countdown.connect(hud.start_countdown)
 	SignalBus.day_changed.connect(on_day_changed)
 
 func on_day_changed(day: int):
