@@ -398,7 +398,7 @@ rotation = 1.5708
 [node name="HighlightableSprite" parent="." instance=ExtResource("4_umj4u")]
 position = Vector2(6.66667, -68.3333)
 sprite_frames = SubResource("SpriteFrames_eec18")
-animation = &"tired"
+animation = &"action"
 
 [node name="WorkerSFXManager" type="Node" parent="."]
 script = ExtResource("65_42cgf")
