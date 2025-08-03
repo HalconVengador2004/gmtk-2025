@@ -3,20 +3,20 @@ extends Node
 @export var music_player: AudioStreamPlayer
 var intensity_state : String
 var sfx_library = {
-	"workerassign":preload("res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-001.ogg"),
-	"workercomplete":preload("res://assets/audio/sfx/Worker/sfx_WorkerComplete_1.ogg"),
-	"workerselect":preload("res://assets/audio/sfx/Worker/sfx_WorkerSelect_3.ogg"),
+	"workerassign":preload("res://source/scenes/game/game.tscn::AudioStreamRandomizer_2jurd"),
+	"workercomplete":preload("res://source/scenes/game/game.tscn::AudioStreamRandomizer_b0not"),
+	"workerselect":preload("res://source/scenes/game/game.tscn::AudioStreamRandomizer_b7cst"),
 	"workerwork":preload("res://assets/audio/sfx/Worker/sfx_WorkerWork.ogg"),
 	"problemalert":preload("res://assets/audio/sfx/Problem/sfx_ProblemAlert.ogg"),
-	"problembroken":preload("res://assets/audio/sfx/Problem/sfx_ProblemBroken_2.ogg"),
-	"problemstart":preload("res://assets/audio/sfx/Problem/sfx_ProblemStart_3-001.ogg"),
+	"problembroken":preload("res://source/scenes/game/game.tscn::AudioStreamRandomizer_vrq42"),
+	"problemstart":preload("res://source/scenes/game/game.tscn::AudioStreamRandomizer_ftnvo"),
 	"uiconfirm":preload("res://assets/audio/sfx/UI/sfx_UIConfirm.ogg"),
-	"uiselect":preload("res://assets/audio/sfx/UI/sfx_UIselect_1.ogg"),
-	"uideselect":preload("res://assets/audio/sfx/UI/sfx_UIdeselect_3.ogg")
-}
+	"uiselect":preload("res://source/scenes/game/game.tscn::AudioStreamRandomizer_j74dg"),
+	"uideselect":preload("res://source/scenes/game/game.tscn::AudioStreamRandomizer_e1c0h")
+	}
 
 
-func CreateVfx(name):
+func createVfx(name):
 	var new_sfx_player = $SfxPlayer.duplicate()
 	new_sfx_player.stream = sfx_library
 	add_child(new_sfx_player)
@@ -47,7 +47,6 @@ func _ready():
 	SignalBus.eventName.Conetct(functionName)
 	
 	
-func _physics_process(delta):
 	
 	
 func _on_sfx_finished(node_to_free):
