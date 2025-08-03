@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://pqstkb1uaw28"]
+[gd_scene load_steps=6 format=3 uid="uid://pqstkb1uaw28"]
 
 [ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="1_nhd34"]
+[ext_resource type="Texture2D" uid="uid://cli43wdpdeilc" path="res://assets/icon/task.png" id="4_xe7dh"]
 [ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_hdkhs"]
 [ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="7_eatda"]
 
@@ -20,8 +21,21 @@ script = ExtResource("1_nhd34")
 
 [node name="ProgressBar" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_nhd34")
-offset_left = -21.0
+offset_left = -71.0
 offset_top = -95.0
-offset_right = 19.0
+offset_right = -31.0
 offset_bottom = -55.0
 script = ExtResource("7_eatda")
+
+[node name="CompletionProgressBar" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_nhd34")
+offset_left = 28.0
+offset_top = -95.0
+offset_right = 68.0
+offset_bottom = -55.0
+script = ExtResource("7_eatda")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -74)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_xe7dh")
