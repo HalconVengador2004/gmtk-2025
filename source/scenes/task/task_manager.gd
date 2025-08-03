@@ -1,20 +1,20 @@
 extends Node2D
 class_name TaskManager
 
-signal game_lost()
+signal start_countdown()
+signal stop_countdown()
 signal score_updated(score: int)
 
 @export var max_clock_stop_time: float = 60.0
 
-var break_chance: float = 0.05
+var break_chance: float = 0.04
 var max_break_chance: float = 0.20
-var break_chance_increase_rate: float = 1.15
-var hours_of_immunity: int = 4
+var break_chance_increase_rate: float = 1.20
+var hours_of_immunity: int = 3
 var immunity_decrease_per_day: int = 1
 
 var smart_objects: Array[Node] = []
 var clock: Clock
-var clock_stop_timer: float = 0.0
 var score: int = 0
 
 func _ready():
@@ -27,8 +27,7 @@ func _ready():
 		if so is Clock:
 			clock = so
 			clock.create_task()
-		if so is HamsterWheel:
-			so.create_task()
+			break
 
 func _physics_process(delta):
 	for so in smart_objects:
@@ -43,13 +42,12 @@ func _physics_process(delta):
 		if so.is_broken:
 			clock.is_running = false
 			break
-
-	if not clock.is_running:
-		clock_stop_timer += delta
-		if clock_stop_timer >= max_clock_stop_time:
-			game_lost.emit()
+	
+	if clock.is_running:
+		stop_countdown.emit()
 	else:
-		clock_stop_timer = 0
+		start_countdown.emit()
+	
 
 func _on_hour_changed(_hour: int):
 	for node in smart_objects:

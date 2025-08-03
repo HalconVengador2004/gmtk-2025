@@ -1,39 +1,68 @@
-[gd_scene load_steps=9 format=3 uid="uid://cv22d1biav7ty"]
+[gd_scene load_steps=12 format=3 uid="uid://cv22d1biav7ty"]
 
 [ext_resource type="Script" uid="uid://bfhwijksc0toe" path="res://source/scenes/smartObject/hamster_wheel.gd" id="1_71sad"]
 [ext_resource type="Resource" uid="uid://p84nqoys25gi" path="res://source/scenes/task/resource/fix_wheel.tres" id="2_1uav4"]
-[ext_resource type="Material" uid="uid://dnh4p4uop2jbs" path="res://source/shaders/battery_bar.tres" id="2_y5vk7"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ybcke"]
-[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_1uav4"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_kevhg"]
+[ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="5_qhqgi"]
 [ext_resource type="Texture2D" uid="uid://b8cc0ethymehv" path="res://assets/image/Sprites/smart_objects/wheel00.png" id="5_y5vk7"]
+[ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_4nln0"]
+[ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="7_fygty"]
+[ext_resource type="Texture2D" uid="uid://0norla467lde" path="res://assets/icon/task.png" id="8_qbmbg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhd34"]
+shader = ExtResource("6_4nln0")
+shader_parameter/primary_color = Color(1, 0, 0, 1)
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/unfilled_color = Color(0.443, 0.443, 0.443, 1)
+shader_parameter/value = 1.0
+shader_parameter/smooth_ = 0.005
+shader_parameter/width_in = 0.685
+shader_parameter/width_out = 0.95
+shader_parameter/border_width = 0.03
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
-size = Vector2(141, 108)
+size = Vector2(142.8, 113.4)
 
 [node name="HamsterWheel" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_71sad")
 task_resource = ExtResource("2_1uav4")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-material = ExtResource("2_y5vk7")
-offset_left = 133.0
-offset_top = -53.0
-offset_right = 145.0
-offset_bottom = 46.0
-fill_mode = 1
-show_percentage = false
-
 [node name="HighlightableSprite" parent="." instance=ExtResource("2_ybcke")]
 position = Vector2(2.99999, -14)
-scale = Vector2(0.486667, 0.486667)
 texture = ExtResource("5_y5vk7")
 
-[node name="TaskInstance" parent="." instance=ExtResource("4_1uav4")]
+[node name="TaskInstance" type="Node2D" parent="." groups=["task"]]
+z_index = 1
+position = Vector2(0, -81)
+scale = Vector2(1.2, 1.2)
+script = ExtResource("5_qhqgi")
+
+[node name="ProgressBar" type="ColorRect" parent="TaskInstance"]
+material = SubResource("ShaderMaterial_nhd34")
+offset_left = -75.0
+offset_top = -93.0
+offset_right = -35.0
+offset_bottom = -53.0
+script = ExtResource("7_fygty")
+
+[node name="CompletionProgressBar" type="ColorRect" parent="TaskInstance"]
+material = SubResource("ShaderMaterial_nhd34")
+offset_left = 35.0
+offset_top = -93.0
+offset_right = 75.0
+offset_bottom = -53.0
+script = ExtResource("7_fygty")
+
+[node name="Sprite2D" type="Sprite2D" parent="TaskInstance"]
+position = Vector2(0, -71)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("8_qbmbg")
 
 [node name="InteractableComponent" parent="." instance=ExtResource("5_kevhg")]
+scale = Vector2(2.5, 2.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 z_index = 1
-position = Vector2(-1.5, -3)
+position = Vector2(-0.600002, -5.7)
 shape = SubResource("RectangleShape2D_sj8ud")

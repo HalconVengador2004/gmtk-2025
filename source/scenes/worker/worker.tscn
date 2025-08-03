@@ -64,7 +64,7 @@
 [ext_resource type="Texture2D" uid="uid://brk8ukyx1lvq2" path="res://assets/image/Sprites/worker/worker_throw/worker_throw02.png" id="53_bnd3q"]
 [ext_resource type="Texture2D" uid="uid://c5t68itt5y57o" path="res://assets/image/Sprites/worker/worker_throw/worker_throw03.png" id="54_3blvj"]
 [ext_resource type="Texture2D" uid="uid://c2vubh75y3nmt" path="res://assets/image/Sprites/worker/worker_throw/worker_throw04.png" id="55_8f71s"]
-[ext_resource type="Script" uid="uid://b75fdq3kqc2v4" path="res://source/scenes/worker/worker_sfx_manager.gd" id="65_42cgf"]
+[ext_resource type="Script" path="res://source/scenes/worker/worker_sfx_manager.gd" id="65_42cgf"]
 [ext_resource type="AudioStream" uid="uid://ccxsm5kjm5uir" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_1.ogg" id="66_7ewqi"]
 [ext_resource type="AudioStream" uid="uid://le2pvdjy7bvl" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-001.ogg" id="67_7pk7q"]
 [ext_resource type="AudioStream" uid="uid://citcy31r7eq11" path="res://assets/audio/sfx/Worker/sfx_WorkerAssign_2-002.ogg" id="68_h3yoj"]
@@ -362,7 +362,7 @@ animations = [{
 }]
 
 [node name="Worker" type="Node2D" node_paths=PackedStringArray("nav", "item") groups=["worker"]]
-z_index = 1
+z_index = 2
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_7xepq")
 nav = NodePath("NavigationAgent2D")
@@ -398,7 +398,7 @@ rotation = 1.5708
 [node name="HighlightableSprite" parent="." instance=ExtResource("4_umj4u")]
 position = Vector2(6.66667, -68.3333)
 sprite_frames = SubResource("SpriteFrames_eec18")
-animation = &"action"
+animation = &"tired"
 
 [node name="WorkerSFXManager" type="Node" parent="."]
 script = ExtResource("65_42cgf")

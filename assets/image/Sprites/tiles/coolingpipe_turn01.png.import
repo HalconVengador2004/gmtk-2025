@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c25swwfxgl50y"
-path="res://.godot/imported/gear00.png-e2ed54e87616e427d793c3282d022715.ctex"
+uid="uid://bf3xh3dbdd1f5"
+path="res://.godot/imported/coolingpipe_turn01.png-588deac3e4c494fb965f822f849986e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/image/Sprites/smart_objects/gear00.png"
-dest_files=["res://.godot/imported/gear00.png-e2ed54e87616e427d793c3282d022715.ctex"]
+source_file="res://assets/image/Sprites/tiles/coolingpipe_turn01.png"
+dest_files=["res://.godot/imported/coolingpipe_turn01.png-588deac3e4c494fb965f822f849986e6.ctex"]
 
 [params]
 

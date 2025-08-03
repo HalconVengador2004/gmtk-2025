@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c25swwfxgl50y"
-path="res://.godot/imported/gear00.png-e2ed54e87616e427d793c3282d022715.ctex"
+uid="uid://cvt5ry7vw5b3h"
+path="res://.godot/imported/box_hand.png-b76335e37975a02e272d42e5c72a087f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/image/Sprites/smart_objects/gear00.png"
-dest_files=["res://.godot/imported/gear00.png-e2ed54e87616e427d793c3282d022715.ctex"]
+source_file="res://assets/image/Sprites/smart_objects/box_hand.png"
+dest_files=["res://.godot/imported/box_hand.png-b76335e37975a02e272d42e5c72a087f.ctex"]
 
 [params]
 

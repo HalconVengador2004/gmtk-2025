@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://criqg4x7hjoxn"]
+[gd_scene load_steps=16 format=3 uid="uid://criqg4x7hjoxn"]
 
 [ext_resource type="Script" uid="uid://ccetxi6oylyw2" path="res://source/scenes/smartObject/clock.gd" id="1_1"]
 [ext_resource type="Resource" uid="uid://dv8rp1vvvmddg" path="res://source/scenes/task/resource/clock_hand_broke.tres" id="2_xhqqp"]
@@ -6,10 +6,24 @@
 [ext_resource type="Texture2D" uid="uid://be0sdld2i12o4" path="res://assets/image/Sprites/clock/clock_00.png" id="4_653d1"]
 [ext_resource type="Texture2D" uid="uid://dif343bcqlb52" path="res://assets/image/Sprites/clock/clockhand_big00.png" id="5_2vgdj"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="6_2vgdj"]
-[ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="6_653d1"]
 [ext_resource type="Texture2D" uid="uid://ltlopu1gxync" path="res://assets/image/Sprites/clock/clockhand_small00.png" id="6_r5gui"]
+[ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="7_f5yc7"]
+[ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="8_uvcip"]
 [ext_resource type="Texture2D" uid="uid://cy4ttmslf0lp6" path="res://assets/image/Sprites/tiles/big_tile00.png" id="9_aiw5i"]
 [ext_resource type="Theme" uid="uid://dxrw500n836d4" path="res://assets/resources/text_theme.tres" id="9_c8451"]
+[ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="9_gpxrk"]
+[ext_resource type="Texture2D" uid="uid://0norla467lde" path="res://assets/icon/task.png" id="10_7xfdi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhd34"]
+shader = ExtResource("8_uvcip")
+shader_parameter/primary_color = Color(1, 0, 0, 1)
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/unfilled_color = Color(0.443, 0.443, 0.443, 1)
+shader_parameter/value = 1.0
+shader_parameter/smooth_ = 0.005
+shader_parameter/width_in = 0.685
+shader_parameter/width_out = 0.95
+shader_parameter/border_width = 0.03
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5gui"]
 size = Vector2(161, 193)
@@ -20,46 +34,78 @@ task_resource = ExtResource("2_xhqqp")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("3_653d1")]
 position = Vector2(2, -12)
-scale = Vector2(0.453608, 0.453608)
 texture = ExtResource("4_653d1")
 
 [node name="MinuteHand" type="Sprite2D" parent="."]
 position = Vector2(1.42792, -7.325)
 rotation = -1.5708
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_2vgdj")
 offset = Vector2(41.35, -0.855833)
 
 [node name="HourHand" type="Sprite2D" parent="."]
 position = Vector2(1.85202, -7.325)
 rotation = -1.5708
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_r5gui")
 offset = Vector2(35.35, 0.29596)
 
-[node name="TaskInstance" parent="." instance=ExtResource("6_653d1")]
+[node name="TaskInstance" type="Node2D" parent="." groups=["task"]]
+z_index = 1
+position = Vector2(4, -63)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("7_f5yc7")
+
+[node name="ProgressBar" type="ColorRect" parent="TaskInstance"]
+material = SubResource("ShaderMaterial_nhd34")
+offset_left = -74.6667
+offset_top = -148.613
+offset_right = -34.6667
+offset_bottom = -108.613
+script = ExtResource("9_gpxrk")
+metadata/_edit_use_anchors_ = true
+
+[node name="CompletionProgressBar" type="ColorRect" parent="TaskInstance"]
+material = SubResource("ShaderMaterial_nhd34")
+offset_left = 35.3333
+offset_top = -148.613
+offset_right = 75.3333
+offset_bottom = -108.613
+script = ExtResource("9_gpxrk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TaskInstance"]
+position = Vector2(0.333333, -126.613)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("10_7xfdi")
 
 [node name="InteractableComponent" parent="." instance=ExtResource("6_2vgdj")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 position = Vector2(-0.5, -9.5)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_r5gui")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_left = 80.0
-offset_top = -16.0
-offset_right = 276.0
-offset_bottom = 84.0
-scale = Vector2(0.3, 0.3)
+offset_left = 210.0
+offset_top = -92.0
+offset_right = 406.0
+offset_bottom = 8.0
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("9_aiw5i")
 region_rect = Rect2(0, 0, 181, 179)
 patch_margin_left = 60
 patch_margin_right = 60
 
 [node name="DayCounterLabel" type="Label" parent="."]
-offset_left = 89.0
-offset_top = -11.0
-offset_right = 136.0
-offset_bottom = 12.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 231.0
+offset_top = -74.0
+offset_right = 321.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("9_c8451")
+theme_override_font_sizes/font_size = 31
 text = "Day ?"
+vertical_alignment = 1
