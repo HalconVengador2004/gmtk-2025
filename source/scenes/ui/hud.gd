@@ -144,6 +144,7 @@ func _on_back_button_pressed_after_wait_time_() -> void:
 func _on_resume_button_pressed_after_wait_time_() -> void:
 	menu_disappear_animation(pause_menu)
 	is_pausing = false
+	get_tree().paused = false
 ## Functions
 #Update the score
 func update_score(score: int):
