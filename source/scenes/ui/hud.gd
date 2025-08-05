@@ -21,25 +21,53 @@ var is_counting_down: bool = false:
 		else:
 			countdown_label.hide()
 @onready var countdown_timer: Timer = $CountdownTimer
-@export var game_over_menu_button_to_focus: Button
-
+var is_game_over: bool = false
 
 ## Pause
 var is_pausing: bool = false
+var can_pause_again: bool = true
+
+@export_group("Buttons")
+@export var game_over_menu_button_to_focus: Button
 @export var pause_menu_button_to_focus: Button
+
+@export_group("Normal Countdown Text")
+@export var normal_font_color: Color = Color.WHITE
+@export var normal_font_size: int = 42
+@export var normal_outline_size: int = 4
+
+@export_group("Urgent Countdown Text")
+@export var urgent_font_color: Color = Color.ORANGE_RED
+@export var urgent_font_size: int = 84
+@export var urgent_outline_size: int = 16
 
 func _ready():
 	countdown_label.hide()
 	game_over_menu.hide()
 	pause_menu.hide()
 	call_deferred("_init_pivot")
+	
+	start_countdown()
 
 func _process(delta: float) -> void:
 	if is_counting_down:
-		countdown_label.text = str("%.0f" % countdown_timer.time_left)
+		if int(countdown_timer.time_left) > 4:
+			countdown_label.add_theme_color_override("font_color", normal_font_color)
+			countdown_label.add_theme_font_size_override("font_size", normal_font_size)
+			countdown_label.add_theme_constant_override("outline_size", normal_outline_size)
+		else:
+			countdown_label.add_theme_color_override("font_color", urgent_font_color)
+			countdown_label.add_theme_font_size_override("font_size", urgent_font_size)
+			countdown_label.add_theme_constant_override("outline_size", urgent_outline_size)
+		
+		countdown_label.text = str(int(countdown_timer.time_left)) #str("%.0f" % countdown_timer.time_left)
 	
-	if Input.is_action_just_pressed("Pause"):
+	
+	if Input.is_action_just_pressed("Pause") and !is_game_over and can_pause_again:
 		show_pause()
+		can_pause_again = false
+		await get_tree().create_timer(0.5).timeout
+		can_pause_again = true
 
 # For Animation
 func _init_pivot():
@@ -47,7 +75,7 @@ func _init_pivot():
 	pause_menu.pivot_offset = pause_menu.size/2.0
 
 func show_game_over(score: int):
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	menu_appear_animation(game_over_menu)
 	
 	game_over_score_label.text = str(score)
@@ -100,12 +128,18 @@ func menu_disappear_animation(menu: Node):
 
 func _on_countdown_timer_timeout() -> void:
 	show_game_over(local_score)
+	is_game_over = true
+	get_tree().paused = true
 
 
 ## Buttons
 func _on_play_again_button_pressed_after_wait_time_() -> void:
+	is_pausing = false
+	get_tree().paused = false
 	SceneManager.reload_scene()
 func _on_back_button_pressed_after_wait_time_() -> void:
+	is_pausing = false
+	get_tree().paused = false
 	SceneManager.change_scene("res://source/scenes/ui/main_menu.tscn")
 func _on_resume_button_pressed_after_wait_time_() -> void:
 	menu_disappear_animation(pause_menu)
@@ -118,6 +152,8 @@ func update_score(score: int):
 
 # Start Countdown when the clock is not working
 func start_countdown():
+	if countdown_timer.time_left > 0:
+		return
 	countdown_timer.start()
 	is_counting_down = true
 

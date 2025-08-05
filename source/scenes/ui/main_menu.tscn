@@ -71,32 +71,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 400
-theme_override_constants/margin_bottom = 110
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_right = 600
 script = ExtResource("2_e5fog")
 
 [node name="Title&Buttons" type="VBoxContainer" parent="Title&Buttons"]
 layout_mode = 2
-theme_override_constants/separation = 40
 
 [node name="Game Title" type="TextureRect" parent="Title&Buttons/Title&Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_iaw7l")
-expand_mode = 5
+expand_mode = 4
 stretch_mode = 5
 
 [node name="ButtonMarginContainer" type="MarginContainer" parent="Title&Buttons/Title&Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
 
 [node name="ButtonContainer" type="VBoxContainer" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
+theme_override_constants/separation = 38
 
 [node name="Play Button" parent="Title&Buttons/Title&Buttons/ButtonMarginContainer/ButtonContainer" instance=ExtResource("4_yjkdi")]
 layout_mode = 2
@@ -307,7 +304,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/paragraph_spacing = 8
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("9_uj5wq")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 text = "- Time to Work is a management simulation game.
 - Your job is to control tiny workers called Time Spirits to keep the Magical Clock of Time running smoothly and prevent the flow of time from breaking down!
 - Right-click on a Time Spirit, then right-click on a task to assign them to work on it.
@@ -321,8 +318,8 @@ autowrap_mode = 3
 [node name="Back" type="MarginContainer" parent="HowToPlayMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 260
-theme_override_constants/margin_right = 260
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_right = 600
 
 [node name="Back Button" parent="HowToPlayMenu/MenuBackground/MenuMarginContainer/MenuVBoxContainer/Back" instance=ExtResource("4_yjkdi")]
 layout_mode = 2

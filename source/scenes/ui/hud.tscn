@@ -34,8 +34,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 40
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
 layout_mode = 2
@@ -49,7 +51,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("2_3etg8")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 42
 text = "Score: 0"
 
 [node name="CountdownLabel" type="Label" parent="HUD"]
@@ -64,7 +66,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("2_3etg8")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 42
 text = "Score: 0"
 
 [node name="DarkBG" type="ColorRect" parent="."]
@@ -85,10 +87,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 240
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 240
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 600
+theme_override_constants/margin_bottom = 200
 
 [node name="Panel" type="Panel" parent="GameOverMenu"]
 layout_mode = 2
@@ -101,10 +103,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 60
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_bottom = 60
 
 [node name="ContentContainer" type="VBoxContainer" parent="GameOverMenu/Panel/MarginContainer"]
 layout_mode = 2
@@ -139,7 +139,7 @@ theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 6
 theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("2_3etg8")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "Your Score:"
 horizontal_alignment = 1
 
@@ -153,7 +153,7 @@ theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 6
 theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("2_3etg8")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "0"
 horizontal_alignment = 1
 
@@ -198,7 +198,7 @@ theme_override_constants/margin_right = 180
 [node name="Buttons" type="VBoxContainer" parent="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_constants/separation = 20
+theme_override_constants/separation = 40
 
 [node name="Play Again Button" parent="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons" instance=ExtResource("3_y50ka")]
 layout_mode = 2
@@ -211,6 +211,7 @@ size_flags_vertical = 6
 text = "Back to Main Menu"
 
 [node name="PauseMenu" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -218,10 +219,10 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 240
-theme_override_constants/margin_top = 120
-theme_override_constants/margin_right = 240
-theme_override_constants/margin_bottom = 120
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 600
+theme_override_constants/margin_bottom = 200
 
 [node name="Panel" type="Panel" parent="PauseMenu"]
 layout_mode = 2
@@ -234,18 +235,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 60
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = 40
 
 [node name="ContentContainer" type="VBoxContainer" parent="PauseMenu/Panel/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+size_flags_vertical = 4
+theme_override_constants/separation = 120
 
 [node name="PauseLabel" type="Label" parent="PauseMenu/Panel/MarginContainer/ContentContainer"]
 layout_mode = 2
-size_flags_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -260,14 +257,14 @@ horizontal_alignment = 1
 
 [node name="ButtonMarginContainer" type="MarginContainer" parent="PauseMenu/Panel/MarginContainer/ContentContainer"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 180
 theme_override_constants/margin_right = 180
 
 [node name="Buttons" type="VBoxContainer" parent="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_constants/separation = 20
+theme_override_constants/separation = 40
 
 [node name="Resume Button" parent="PauseMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons" instance=ExtResource("3_y50ka")]
 layout_mode = 2
@@ -284,14 +281,14 @@ layout_mode = 2
 size_flags_vertical = 6
 text = "Back to Main Menu"
 
-[node name="CountdownTimer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jm11n")
 volume_db = -10.0
 autoplay = true
+
+[node name="CountdownTimer" type="Timer" parent="."]
+wait_time = 11.0
+one_shot = true
 
 [connection signal="pressed_after_wait_time_" from="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Play Again Button" to="." method="_on_play_again_button_pressed_after_wait_time_"]
 [connection signal="pressed_after_wait_time_" from="GameOverMenu/Panel/MarginContainer/ContentContainer/ButtonMarginContainer/Buttons/Back Button" to="." method="_on_back_button_pressed_after_wait_time_"]
