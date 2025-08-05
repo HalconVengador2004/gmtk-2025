@@ -182,7 +182,7 @@ func _on_task_work_stopped(task_instance : TaskInstance):
 	if not item:
 		return
 	if task_instance.task_data.resource.required_item == item.resource:
-		item.visible = false
+		clear_carried_item()
 
 func _update_energy(delta: float) -> void:
 	if is_resting:
