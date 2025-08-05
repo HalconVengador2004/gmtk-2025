@@ -78,6 +78,7 @@ func _on_task_completed(task_data: Task):
 		var smart_object = so as SmartObject
 		if smart_object and smart_object.task == task_data:
 			smart_object.hours_until_can_break = hours_of_immunity
+			smart_object._on_task_completed(task_data) 
 			break
 
 func _on_day_changed(_day: int):

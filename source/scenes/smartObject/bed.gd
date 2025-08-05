@@ -16,10 +16,10 @@ func release() -> void:
 	is_occupied_by = null
 	visible = true
 
-func _on_worker_sleeping():
-	if is_occupied_by:
+func _on_worker_sleeping(bed: Bed):
+	if is_occupied_by and bed == self:
 		visible = false
 
-func _on_worker_stopped_sleeping():
-	if is_occupied_by:
+func _on_worker_stopped_sleeping(bed: Bed):
+	if is_occupied_by and bed == self:
 		visible = true

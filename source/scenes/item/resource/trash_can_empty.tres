@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3 uid="uid://soi2x10x61hd"]
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://soi2x10x61hd"]
 
 [ext_resource type="Script" uid="uid://ds33rdl6hjvy3" path="res://source/scenes/item/item_resource.gd" id="1_bqcwd"]
+[ext_resource type="Texture2D" uid="uid://dpddcum2e28yd" path="res://assets/image/Sprites/box/box_gear.png" id="2_8x3dy"]
 
 [resource]
 script = ExtResource("1_bqcwd")
 name = "Empty"
 description = "It is nothing"
+texture = ExtResource("2_8x3dy")

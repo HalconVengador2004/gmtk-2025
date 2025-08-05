@@ -13,6 +13,7 @@ func _ready():
 	SignalBus.day_changed.connect(on_day_changed)
 
 func on_day_changed(day: int):
+	print(day)
 	if day == 3:
 		var worker: Worker = WORKER_SCENE.instantiate()
 		worker.position = Vector2(18.0, 612.0)
