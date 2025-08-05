@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://criqg4x7hjoxn" path="res://source/scenes/smartObject/clock.tscn" id="10_q0opv"]
 [ext_resource type="Resource" uid="uid://dfnp4s3aspluc" path="res://source/scenes/item/resource/oil.tres" id="10_vh6i3"]
 [ext_resource type="PackedScene" uid="uid://bv78rckmlb4wv" path="res://source/scenes/smartObject/gear.tscn" id="10_wcho7"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/highlightable_component.tscn" id="11_03v86"]
+[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="11_03v86"]
 [ext_resource type="Resource" uid="uid://soi2x10x61hd" path="res://source/scenes/item/resource/trash_can_empty.tres" id="11_so03b"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="12_64h2r"]
 [ext_resource type="PackedScene" uid="uid://b2d2s5sbhsax0" path="res://source/scenes/smartObject/bed.tscn" id="12_q0opv"]
@@ -209,16 +209,20 @@ position = Vector2(237.4, 616)
 texture = ExtResource("15_03v86")
 
 [node name="trash_can" parent="StorageManager" instance=ExtResource("5_2v631")]
-position = Vector2(1813.4, 960)
+position = Vector2(1817.4, 972)
 scale = Vector2(3, 3)
 script = ExtResource("9_q0opv")
 sprite_texture = ExtResource("16_gm4aj")
 item_resource = ExtResource("11_so03b")
 
 [node name="HighlightableSprite" parent="StorageManager/trash_can" index="0"]
+position = Vector2(0.333333, -5)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("16_gm4aj")
 offset = Vector2(0, -71.845)
+
+[node name="InteractableComponent" parent="StorageManager/trash_can" index="1"]
+position = Vector2(0.666667, -4.66667)
 
 [node name="CollisionShape2D" parent="StorageManager/trash_can/InteractableComponent" index="0"]
 position = Vector2(-0.5625, -0.929688)
