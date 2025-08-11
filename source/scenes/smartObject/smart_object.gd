@@ -10,13 +10,14 @@ var has_task: bool = false
 var is_broken: bool = false
 var hours_until_can_break: int = 0
 
-func get_task():
-	return task
+	
+func get_task_resource():
+	return task_resource
 
 func _ready():
 	SignalBus.task_completed.connect(_on_task_completed)
 	SignalBus.task_is_overdue.connect(_on_task_overdue)
-	task = Task.new(task_resource)
+	task = Task.new(get_task_resource())
 	if not interactable_component:
 		push_error("Error: so doesnt have a interactable_component")
 		
@@ -25,6 +26,7 @@ func _process(delta):
 
 func create_task():
 	task.reset()
+	task.resource = get_task_resource()
 	task.start()
 	has_task = true
 	SignalBus.task_activated.emit(task)

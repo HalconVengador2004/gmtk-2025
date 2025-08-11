@@ -5,6 +5,8 @@ class_name TaskInstance
 @onready var completion_progress_bar = $CompletionProgressBar
 @onready var icon = $Sprite2D
 
+@export var popup_time : float = 0.25
+
 var task_data: Task
 var task_resource: TaskResource
 
@@ -13,8 +15,6 @@ func _ready():
 	completion_progress_bar.visible = false
 	icon.visible = false
 	
-	var smart_object = get_parent()
-	task_resource = smart_object.task_resource
 	SignalBus.task_activated.connect(_on_task_started)
 	SignalBus.task_work_started.connect(_on_task_work_started)
 	SignalBus.task_work_stopped.connect(_on_task_work_stopped)
@@ -64,8 +64,12 @@ func _on_task_work_stopped(task_instance):
 func _on_task_started(task: Task):
 	#For some reason the direct connect with the parent was only working once
 	# Using unique names was the alternatives
-	if task.resource.name != task_resource.name:
+	var so = get_parent() as SmartObject
+	if task.resource.name != so.get_task_resource().name:
 		return
+	scale = Vector2.ZERO
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2.ONE, popup_time)
 	task_data = task
 	progress_bar.visible = true
 	icon.visible = true

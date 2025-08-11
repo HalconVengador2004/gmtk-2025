@@ -26,7 +26,7 @@ shader_parameter/width_out = 0.95
 shader_parameter/border_width = 0.03
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5gui"]
-size = Vector2(161, 193)
+size = Vector2(131.5, 147.5)
 
 [node name="Clock" type="Node2D" groups=["smart_object"]]
 script = ExtResource("1_1")
@@ -34,23 +34,26 @@ task_resource = ExtResource("2_xhqqp")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("3_653d1")]
 position = Vector2(2, -12)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_653d1")
 
 [node name="MinuteHand" type="Sprite2D" parent="."]
 position = Vector2(1.42792, -7.325)
 rotation = -1.5708
+scale = Vector2(0.76, 0.76)
 texture = ExtResource("5_2vgdj")
 offset = Vector2(41.35, -0.855833)
 
 [node name="HourHand" type="Sprite2D" parent="."]
 position = Vector2(1.85202, -7.325)
 rotation = -1.5708
+scale = Vector2(0.76, 0.76)
 texture = ExtResource("6_r5gui")
 offset = Vector2(35.35, 0.29596)
 
 [node name="TaskInstance" type="Node2D" parent="." groups=["task"]]
 z_index = 1
-position = Vector2(4, -63)
+position = Vector2(-1, -21)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("7_f5yc7")
 
@@ -99,10 +102,10 @@ patch_margin_right = 60
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 231.0
-offset_top = -74.0
-offset_right = 321.0
-offset_bottom = -34.0
+offset_left = 241.0
+offset_top = -75.0
+offset_right = 331.0
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_c8451")

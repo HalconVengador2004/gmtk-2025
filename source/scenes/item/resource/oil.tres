@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://dfnp4s3aspluc"]
 
 [ext_resource type="Script" uid="uid://ds33rdl6hjvy3" path="res://source/scenes/item/item_resource.gd" id="1_j8tk4"]
-[ext_resource type="Texture2D" uid="uid://emehtxgbwxyc" path="res://assets/image/Sprites/Tools/item_oil_canister.png" id="2_gk5ib"]
+[ext_resource type="Texture2D" uid="uid://ds7xvtnm4kbai" path="res://assets/image/Sprites/Tools/oilcanister1.png" id="2_gk5ib"]
 
 [resource]
 script = ExtResource("1_j8tk4")

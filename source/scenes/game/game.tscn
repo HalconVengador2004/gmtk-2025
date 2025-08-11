@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://b58v1t1mtnwc7"]
+[gd_scene load_steps=42 format=4 uid="uid://b58v1t1mtnwc7"]
 
 [ext_resource type="Script" uid="uid://ogcp5tgd5obj" path="res://source/scenes/game/game.gd" id="1_f72de"]
 [ext_resource type="PackedScene" uid="uid://cxopx4cbadevd" path="res://source/scenes/game/player.tscn" id="1_u6050"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bdk4b5s1i5ayq" path="res://source/scenes/worker/worker.tscn" id="3_kelw5"]
 [ext_resource type="Script" uid="uid://nun58401ckyw" path="res://source/scenes/task/task_manager.gd" id="3_wcho7"]
 [ext_resource type="PackedScene" uid="uid://g7lgprbnm54" path="res://source/scenes/item/storage.tscn" id="5_2v631"]
+[ext_resource type="Resource" uid="uid://brgqfsf1djlgw" path="res://source/scenes/task/resource/gear_broke.tres" id="7_twy2d"]
 [ext_resource type="Resource" uid="uid://b0o0r52dvfk7q" path="res://source/scenes/item/resource/gear.tres" id="8_1txuv"]
 [ext_resource type="Script" uid="uid://cmp2unfa36hk8" path="res://source/scenes/item/storage.gd" id="8_31h4f"]
 [ext_resource type="Resource" uid="uid://cv01wk3e4edik" path="res://source/scenes/item/resource/clock_hand.tres" id="9_e10du"]
@@ -108,6 +109,7 @@ position = Vector2(-5.39999, 24)
 
 [node name="gear" parent="SoManager" instance=ExtResource("10_wcho7")]
 position = Vector2(500.4, 209)
+task_resource_2 = ExtResource("7_twy2d")
 task_resource = ExtResource("15_55dgt")
 
 [node name="CoolingPipe" parent="SoManager" instance=ExtResource("15_f72de")]
@@ -144,7 +146,6 @@ battery_bar = NodePath("../Battery/ProgressBar")
 
 [node name="Clock" parent="SoManager" instance=ExtResource("10_q0opv")]
 position = Vector2(1021.4, 512)
-scale = Vector2(0.7, 0.7)
 
 [node name="Bed" parent="SoManager" instance=ExtResource("12_q0opv")]
 position = Vector2(477.4, 912)

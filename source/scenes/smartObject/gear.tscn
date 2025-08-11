@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_fdy3x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
-size = Vector2(98, 98)
+size = Vector2(223, 289.5)
 
 [node name="gear" type="Node2D" node_paths=PackedStringArray("multi_sprite") groups=["smart_object"]]
 script = ExtResource("1_fdy3x")
@@ -57,6 +57,6 @@ position = Vector2(0, -83)
 scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
-visible = false
 z_index = 1
+position = Vector2(37, -95.75)
 shape = SubResource("RectangleShape2D_sj8ud")
