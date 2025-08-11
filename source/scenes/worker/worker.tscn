@@ -363,7 +363,6 @@ animations = [{
 
 [node name="Worker" type="Node2D" node_paths=PackedStringArray("nav", "item") groups=["worker"]]
 z_index = 2
-scale = Vector2(0.6, 0.6)
 script = ExtResource("1_7xepq")
 nav = NodePath("NavigationAgent2D")
 item = NodePath("Item")
