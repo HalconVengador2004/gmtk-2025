@@ -1,5 +1,4 @@
 extends Node2D
-
 class_name SmartObject
 
 @export var task_resource: TaskResource
@@ -10,6 +9,8 @@ var has_task: bool = false
 var is_broken: bool = false
 var hours_until_can_break: int = 0
 
+func get_task():
+	return task
 	
 func get_task_resource():
 	return task_resource

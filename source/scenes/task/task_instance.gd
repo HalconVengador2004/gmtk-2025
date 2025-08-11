@@ -64,8 +64,10 @@ func _on_task_work_stopped(task_instance):
 func _on_task_started(task: Task):
 	#For some reason the direct connect with the parent was only working once
 	# Using unique names was the alternatives
+	if not task: 
+		return
 	var so = get_parent() as SmartObject
-	if task.resource.name != so.get_task_resource().name:
+	if task!= so.get_task():
 		return
 	scale = Vector2.ZERO
 	var tween = create_tween()
