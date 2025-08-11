@@ -8,7 +8,7 @@ signal score_updated(score: int)
 @export var max_clock_stop_time: float = 60.0
 
 var break_chance: float = 0.15
-var max_break_chance: float = 0.25
+var max_break_chance: float = 1
 var break_chance_increase_rate: float = 1.20
 var hours_of_immunity: int = 3
 var immunity_decrease_per_day: int = 1
