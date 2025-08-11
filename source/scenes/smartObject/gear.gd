@@ -40,8 +40,12 @@ func create_task():
 		
 func _on_task_completed(task_completed: Task):
 	super(task_completed)
+	if task_completed != task:
+		return
 	is_spinning = true
 		
 func _on_task_overdue(task_overdue: Task) -> void:
 	super(task_overdue)
+	if task_overdue != task:
+		return
 	is_spinning = false
