@@ -1,19 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv78rckmlb4wv"]
+[gd_scene load_steps=10 format=3 uid="uid://bv78rckmlb4wv"]
 
-[ext_resource type="Script" uid="uid://dnvpy2n0jj4tw" path="res://source/scenes/smartObject/smart_object.gd" id="1_nysu0"]
+[ext_resource type="Script" uid="uid://dilfy3404nilm" path="res://source/scenes/smartObject/gear.gd" id="1_fdy3x"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_0gtgy"]
 [ext_resource type="Texture2D" uid="uid://c25swwfxgl50y" path="res://assets/image/Sprites/smart_objects/gear00.png" id="3_fdy3x"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_fdy3x"]
+[ext_resource type="Material" uid="uid://cijv5jdbon53h" path="res://source/shaders/selected_material.tres" id="4_mwvrt"]
+[ext_resource type="Script" uid="uid://bbthy6y4uqn0n" path="res://source/scenes/components/highlightable_multi_sprite.gd" id="4_sj8ud"]
+[ext_resource type="Script" uid="uid://dgt1rawv3wfhb" path="res://source/scenes/components/HighlightableSprite.gd" id="5_36oh2"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_fdy3x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
 size = Vector2(98, 98)
 
-[node name="gear" type="Node2D" groups=["smart_object"]]
-script = ExtResource("1_nysu0")
+[node name="gear" type="Node2D" node_paths=PackedStringArray("multi_sprite") groups=["smart_object"]]
+script = ExtResource("1_fdy3x")
+multi_sprite = NodePath("HighlightableSprite")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("2_0gtgy")]
+script = ExtResource("4_sj8ud")
+
+[node name="HighlightableSprite" type="Sprite2D" parent="HighlightableSprite"]
+material = ExtResource("4_mwvrt")
+position = Vector2(-106.985, -330.75)
+scale = Vector2(1.17698, 1.17698)
 texture = ExtResource("3_fdy3x")
+script = ExtResource("5_36oh2")
+metadata/_custom_type_script = "uid://dgt1rawv3wfhb"
+
+[node name="HighlightableSprite2" type="Sprite2D" parent="HighlightableSprite"]
+material = ExtResource("4_mwvrt")
+position = Vector2(2.01544, -69.75)
+texture = ExtResource("3_fdy3x")
+script = ExtResource("5_36oh2")
+metadata/_custom_type_script = "uid://dgt1rawv3wfhb"
+
+[node name="HighlightableSprite3" type="Sprite2D" parent="HighlightableSprite"]
+material = ExtResource("4_mwvrt")
+position = Vector2(127.015, -231.75)
+scale = Vector2(0.733677, 0.733677)
+texture = ExtResource("3_fdy3x")
+script = ExtResource("5_36oh2")
+metadata/_custom_type_script = "uid://dgt1rawv3wfhb"
+
+[node name="HighlightableSprite4" type="Sprite2D" parent="HighlightableSprite"]
+material = ExtResource("4_mwvrt")
+position = Vector2(265.99, -302.5)
+scale = Vector2(0.482818, 0.482818)
+texture = ExtResource("3_fdy3x")
+script = ExtResource("5_36oh2")
+metadata/_custom_type_script = "uid://dgt1rawv3wfhb"
 
 [node name="TaskInstance" parent="." instance=ExtResource("4_fdy3x")]
 position = Vector2(0, -83)
@@ -22,5 +57,6 @@ position = Vector2(0, -83)
 scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+visible = false
 z_index = 1
 shape = SubResource("RectangleShape2D_sj8ud")

@@ -19,6 +19,9 @@ func _ready():
 	task = Task.new(task_resource)
 	if not interactable_component:
 		push_error("Error: so doesnt have a interactable_component")
+		
+func _process(delta):
+	pass
 
 func create_task():
 	task.reset()
