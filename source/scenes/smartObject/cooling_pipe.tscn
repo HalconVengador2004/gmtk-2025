@@ -1,17 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd0psxjt4ox32"]
+[gd_scene load_steps=9 format=3 uid="uid://dd0psxjt4ox32"]
 
-[ext_resource type="Script" uid="uid://dnvpy2n0jj4tw" path="res://source/scenes/smartObject/smart_object.gd" id="1_jhj41"]
+[ext_resource type="Script" uid="uid://dh5uby0k6820x" path="res://source/scenes/smartObject/cooling_pipe.gd" id="1_ktopq"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ktopq"]
 [ext_resource type="Texture2D" uid="uid://d23j60uvrvcvb" path="res://assets/image/Sprites/tiles/coolingpipe_wheel.png" id="3_jhj41"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_j0sep"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_o6x1i"]
+[ext_resource type="Texture2D" uid="uid://ca3hb7ioyodnd" path="res://assets/image/circle.png" id="6_ktopq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
 size = Vector2(256, 256)
 
-[node name="CoolingPipe" type="Node2D" groups=["smart_object"]]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_st6j2"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 25.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_max = 2.0
+color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[node name="CoolingPipe" type="Node2D" node_paths=PackedStringArray("smoke") groups=["smart_object"]]
 z_index = 1
-script = ExtResource("1_jhj41")
+script = ExtResource("1_ktopq")
+smoke = NodePath("Smoke")
 
 [node name="HighlightableSprite" parent="." instance=ExtResource("2_ktopq")]
 texture = ExtResource("3_jhj41")
@@ -25,3 +36,9 @@ position = Vector2(0, -24)
 z_index = 1
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_sj8ud")
+
+[node name="Smoke" type="GPUParticles2D" parent="."]
+visible = false
+amount = 20
+texture = ExtResource("6_ktopq")
+process_material = SubResource("ParticleProcessMaterial_st6j2")
