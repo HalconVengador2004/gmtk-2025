@@ -48,10 +48,12 @@ func get_minute() -> float:
 
 func _check_day():
 	if get_day() > current_day:
+		current_hour = 0
 		current_day = get_day()
 		SignalBus.day_changed.emit(current_day)
 
 func _check_hour():
-	if floor(get_hour()) > current_hour:
-		current_hour = floor(get_hour())
+	var new_hour = floor(get_hour())
+	if new_hour > current_hour:
+		current_hour = new_hour
 		SignalBus.hour_changed.emit(current_hour)

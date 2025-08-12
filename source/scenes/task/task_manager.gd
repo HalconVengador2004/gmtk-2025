@@ -7,8 +7,8 @@ signal score_updated(score: int)
 
 @export var max_clock_stop_time: float = 60.0
 
-var break_chance: float = 0.04
-var max_break_chance: float = 0.20
+var break_chance: float = 0.15
+var max_break_chance: float = 1
 var break_chance_increase_rate: float = 1.20
 var hours_of_immunity: int = 3
 var immunity_decrease_per_day: int = 1
@@ -50,6 +50,7 @@ func _physics_process(delta):
 	
 
 func _on_hour_changed(_hour: int):
+	print("hour changed to ", _hour)
 	for node in smart_objects:
 		var so: SmartObject = node as SmartObject
 		if so == null: continue
@@ -58,7 +59,7 @@ func _on_hour_changed(_hour: int):
 		if so.hours_until_can_break > 0:
 			so.hours_until_can_break -= 1
 			continue
-
+		print(so, " has task: ", so.has_task, ", is broken: ", so.is_broken)
 		if not so.has_task and not so.is_broken:
 			if randf() < break_chance:
 				so.create_task()
@@ -78,6 +79,7 @@ func _on_task_completed(task_data: Task):
 		var smart_object = so as SmartObject
 		if smart_object and smart_object.task == task_data:
 			smart_object.hours_until_can_break = hours_of_immunity
+			smart_object._on_task_completed(task_data) 
 			break
 
 func _on_day_changed(_day: int):

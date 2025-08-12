@@ -37,6 +37,9 @@ var mute_next_hover_sound: bool = false
 signal pressed_after_wait_time_
 
 func _ready() -> void:
+	# Set center point of the button
+	call_deferred("_init_pivot")
+	
 	# Connect entered signals
 	mouse_entered.connect(_self_entered)
 	focus_entered.connect(_self_entered)
@@ -49,8 +52,7 @@ func _ready() -> void:
 	# Connect pressed signals
 	pressed.connect(_self_pressed)
 	
-	# Set center point of the button
-	call_deferred("_init_pivot")
+
 
 # Set center point of the button
 func _init_pivot():
@@ -59,6 +61,7 @@ func _init_pivot():
 
 # When mouse entered
 func _self_entered():
+	call_deferred("_init_pivot")
 	# Change focus and change to hover stage
 	grab_focus()
 	create_tween().tween_property(self, "scale", hover_scale, 0.1).set_trans(Tween.TRANS_SINE)

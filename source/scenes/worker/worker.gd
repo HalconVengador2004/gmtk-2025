@@ -9,6 +9,7 @@ class_name Worker
 @export var energy_threshold: float = 20.0
 @export var energy_recovering_per_second = 5
 @export var energy_spent_per_second = 1
+@export var initial_energy :float = 100
 
 @onready var interactable_component = $InteractableComponent
 @onready var progress_bar = $ProgressBar
@@ -65,6 +66,7 @@ func clear_assignments():
 	assigned_storage = null
 	
 	if assigned_bed:
+		SignalBus.worker_stopped_sleeping.emit(assigned_bed)
 		assigned_bed.release()
 		assigned_bed = null
 	
@@ -101,7 +103,7 @@ func _ready():
 	SignalBus.task_work_stopped.connect(_on_task_work_stopped)
 	progress_bar.material = progress_bar.material.duplicate()
 	nav.path_desired_distance = 4
-	energy = max_energy
+	energy = initial_energy
 	if not nav:
 		push_warning("Warning: worker doesnt have a navigation agent")
 	if not interactable_component:
@@ -157,7 +159,7 @@ func _physics_process(delta):
 			anim_sprite.flip_h = last_facing_left
 		
 	elif finished_moving and assigned_storage:
-		if not assigned_storage.is_grabbing:
+		if not assigned_storage.is_grabbing and (not has_item() or assigned_storage is TrashCan):
 			assigned_storage.get_item()
 		if assigned_storage.can_collect:
 			if assigned_storage is TrashCan:
@@ -171,13 +173,16 @@ func _physics_process(delta):
 					item.visible = true
 				assigned_storage = null
 
+func has_item() -> bool:
+	return item != null and item.resource != null
+
 func _on_task_work_stopped(task_instance : TaskInstance):
 	if not task_instance.task_data.is_complete():
 		return
 	if not item:
 		return
 	if task_instance.task_data.resource.required_item == item.resource:
-		item.visible = false
+		clear_carried_item()
 
 func _update_energy(delta: float) -> void:
 	if is_resting:
@@ -186,6 +191,7 @@ func _update_energy(delta: float) -> void:
 			is_resting = false
 			energy = max_energy
 			if assigned_bed:
+				SignalBus.worker_stopped_sleeping.emit(assigned_bed)
 				assigned_bed.release()
 				assigned_bed = null
 	else:
@@ -246,8 +252,8 @@ func _update_anim():
 			States.ACTION:
 				_play_animation("action")
 			States.BED:
+				SignalBus.worker_sleeping.emit(assigned_bed)
 				_play_animation("bed")
-				SignalBus.worker_sleeping.emit()
 			States.GRAB:
 				_play_animation("grab")
 			States.THROW:
@@ -259,8 +265,7 @@ func _update_anim():
 				SignalBus.worker_charging.emit()
 		if previous_state == States.CHARGING:
 			SignalBus.worker_stopped_charging.emit()
-		if previous_state == States.BED:
-			SignalBus.worker_stopped_sleeping.emit()
+
 		
 	previous_state = state
 

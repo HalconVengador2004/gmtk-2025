@@ -96,7 +96,7 @@ func update_hover_highlight():
 		if highlightable:
 			highlightable.add_highlight()
 
-# if there is more than on node being hover 			
+# if there is more than one node being hovered 			
 func get_highest_priority_node(nodes: Array):
 	var worker = null
 	var smart_object = null
@@ -127,15 +127,15 @@ func move_worker_to_storage(storage_instance):
 	selected_worker.set_assigned_storage(storage_instance)
 	selected_worker.set_is_walking_towards_a_task(false)
 
-func move_worker_to_bed(bed_instance):
-	if not selected_worker:
+func move_worker_to_bed(bed_instance: Bed):
+	if not selected_worker or bed_instance.is_occupied_by:
 		return
 
 	selected_worker.set_navigation_destination(bed_instance.global_position)
 	selected_worker.set_assigned_bed(bed_instance)
 
-func move_worker_to_hamster_wheel(hamster_wheel_instance):
-	if not selected_worker:
+func move_worker_to_hamster_wheel(hamster_wheel_instance: HamsterWheel):
+	if not selected_worker or hamster_wheel_instance.is_occupied_by:
 		return
 
 	selected_worker.set_navigation_destination(hamster_wheel_instance.global_position)
@@ -155,7 +155,7 @@ func move_worker_to_task(task_instance: TaskInstance):
 	if previous_task:
 		previous_task.task_data.set_is_assigned(false)
 		
-	if task_instance.task_data.get_is_assigned():
+	if task_instance.task_data and task_instance.task_data.get_is_assigned():
 		print("task is not available")
 		return
 
