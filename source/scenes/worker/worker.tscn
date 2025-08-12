@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bdk4b5s1i5ayq"]
+[gd_scene load_steps=70 format=3 uid="uid://bdk4b5s1i5ayq"]
 
 [ext_resource type="Script" uid="uid://daolbep4aok41" path="res://source/scenes/worker/worker.gd" id="1_7xepq"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="3_3eqk0"]
@@ -25,23 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://c7kg1483dl5kd" path="res://assets/image/Sprites/worker/worker_run/workerrun03.png" id="12_ebpix"]
 [ext_resource type="Texture2D" uid="uid://hvfa3cv57skm" path="res://assets/image/Sprites/worker/worker_tired/worker_idle_tired03.png" id="12_x6x3s"]
 [ext_resource type="Texture2D" uid="uid://7h3yo3d8plew" path="res://assets/image/Sprites/worker/worker_run/workerrun04.png" id="13_0h0g1"]
-[ext_resource type="Texture2D" uid="uid://mvab42jqm1fk" path="res://assets/image/Sprites/worker/worker_bed/worker_bed00.png" id="13_sc3xs"]
 [ext_resource type="Texture2D" uid="uid://dy33dmxrg771d" path="res://assets/image/Sprites/worker/worker_run_tired/workerrun_tired00.png" id="14_58ltc"]
-[ext_resource type="Texture2D" uid="uid://cchbmn4r358dh" path="res://assets/image/Sprites/worker/worker_bed/worker_bed01.png" id="14_sdgx6"]
-[ext_resource type="Texture2D" uid="uid://c7eol0pmb4ahv" path="res://assets/image/Sprites/worker/worker_bed/worker_bed02.png" id="15_ak5yh"]
 [ext_resource type="Texture2D" uid="uid://bgm53b6bjy7sn" path="res://assets/image/Sprites/worker/worker_run_tired/workerrun_tired01.png" id="15_bdkww"]
-[ext_resource type="Texture2D" uid="uid://g7m5fe4qmut0" path="res://assets/image/Sprites/worker/worker_bed/worker_bed03.png" id="16_7ewqi"]
 [ext_resource type="Texture2D" uid="uid://on6cdns5fltf" path="res://assets/image/Sprites/worker/worker_run_tired/workerrun_tired02.png" id="16_l3c2w"]
-[ext_resource type="Texture2D" uid="uid://3od2jdiuoca" path="res://assets/image/Sprites/worker/worker_bed/worker_bed04.png" id="17_7pk7q"]
 [ext_resource type="Texture2D" uid="uid://d12hfilsb82qr" path="res://assets/image/Sprites/worker/worker_run_tired/workerrun_tired03.png" id="17_33arh"]
-[ext_resource type="Texture2D" uid="uid://dg24rg1tkibor" path="res://assets/image/Sprites/worker/worker_bed/worker_bed05.png" id="18_h3yoj"]
 [ext_resource type="Texture2D" uid="uid://dr66muacqu0fx" path="res://assets/image/Sprites/worker/worker_run_tired/workerrun_tired04.png" id="18_wgqkg"]
-[ext_resource type="Texture2D" uid="uid://d8da6lqakn8r" path="res://assets/image/Sprites/worker/worker_bed/worker_bed06.png" id="19_f0syp"]
-[ext_resource type="Texture2D" uid="uid://bfo0j4xpaksws" path="res://assets/image/Sprites/worker/worker_bed/worker_bed07.png" id="20_w2mpd"]
-[ext_resource type="Texture2D" uid="uid://ba0unikrcildy" path="res://assets/image/Sprites/worker/worker_bed/worker_bed08.png" id="21_pff7x"]
-[ext_resource type="Texture2D" uid="uid://6uj5p2pihebs" path="res://assets/image/Sprites/worker/worker_bed/worker_bed09.png" id="22_b4wa3"]
-[ext_resource type="Texture2D" uid="uid://bx2xwrse5mrg2" path="res://assets/image/Sprites/worker/worker_bed/worker_bed10.png" id="23_w4dk1"]
-[ext_resource type="Texture2D" uid="uid://cwg67c35au0fi" path="res://assets/image/Sprites/worker/worker_bed/worker_bed11.png" id="24_mjhus"]
 [ext_resource type="Texture2D" uid="uid://cio2wd0um07rk" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c00.png" id="25_enbgy"]
 [ext_resource type="Texture2D" uid="uid://cydgnlq6dfyew" path="res://assets/image/Sprites/worker/worker_climb/worker_ladder00.png" id="25_sjxqk"]
 [ext_resource type="Texture2D" uid="uid://v075xh323nqm" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c01.png" id="26_42cgf"]
@@ -157,47 +145,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"action",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("13_sc3xs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_sdgx6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_ak5yh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_7ewqi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_7pk7q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_h3yoj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_f0syp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_w2mpd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_pff7x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_b4wa3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_w4dk1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_mjhus")
-}],
-"loop": false,
-"name": &"bed",
 "speed": 10.0
 }, {
 "frames": [{
@@ -397,7 +344,7 @@ rotation = 1.5708
 [node name="HighlightableSprite" parent="." instance=ExtResource("4_umj4u")]
 position = Vector2(6.66667, -68.3333)
 sprite_frames = SubResource("SpriteFrames_eec18")
-animation = &"tired"
+animation = &"action"
 
 [node name="WorkerSFXManager" type="Node" parent="."]
 script = ExtResource("65_42cgf")
