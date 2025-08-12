@@ -1,14 +1,51 @@
-[gd_scene load_steps=12 format=3 uid="uid://cv22d1biav7ty"]
+[gd_scene load_steps=19 format=3 uid="uid://cv22d1biav7ty"]
 
 [ext_resource type="Script" uid="uid://bfhwijksc0toe" path="res://source/scenes/smartObject/hamster_wheel.gd" id="1_71sad"]
 [ext_resource type="Resource" uid="uid://p84nqoys25gi" path="res://source/scenes/task/resource/fix_wheel.tres" id="2_1uav4"]
-[ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ybcke"]
+[ext_resource type="Material" uid="uid://cijv5jdbon53h" path="res://source/shaders/selected_material.tres" id="3_ly5o6"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_kevhg"]
 [ext_resource type="Script" uid="uid://di5igsnawm6u3" path="res://source/scenes/task/task_instance.gd" id="5_qhqgi"]
+[ext_resource type="Texture2D" uid="uid://cio2wd0um07rk" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c00.png" id="5_xw8cy"]
 [ext_resource type="Texture2D" uid="uid://b8cc0ethymehv" path="res://assets/image/Sprites/smart_objects/wheel00.png" id="5_y5vk7"]
 [ext_resource type="Shader" uid="uid://nuxqux6nbk45" path="res://source/shaders/task_progress_bar.gdshader" id="6_4nln0"]
+[ext_resource type="Texture2D" uid="uid://v075xh323nqm" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c01.png" id="6_whhgd"]
+[ext_resource type="Texture2D" uid="uid://bfk2pyqwir505" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c02.png" id="7_a4kvs"]
 [ext_resource type="Script" uid="uid://ccbox0euig52" path="res://source/scenes/task/circular_progress_bar.gd" id="7_fygty"]
+[ext_resource type="Texture2D" uid="uid://d37271rqr325k" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c03.png" id="8_lfswr"]
 [ext_resource type="Texture2D" uid="uid://0norla467lde" path="res://assets/icon/task.png" id="8_qbmbg"]
+[ext_resource type="Texture2D" uid="uid://brtdgpvpcuoji" path="res://assets/image/Sprites/worker/worker_charge_wheel/worker_wheel_c04.png" id="9_oo4on"]
+[ext_resource type="Script" uid="uid://cnphm6pv3k5ue" path="res://source/scenes/components/highlightable_animated_sprite.gd" id="10_fn1m4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xor62"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_y5vk7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xw8cy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_whhgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a4kvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lfswr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_oo4on")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nhd34"]
 shader = ExtResource("6_4nln0")
@@ -28,9 +65,11 @@ size = Vector2(142.8, 113.4)
 script = ExtResource("1_71sad")
 task_resource = ExtResource("2_1uav4")
 
-[node name="HighlightableSprite" parent="." instance=ExtResource("2_ybcke")]
-position = Vector2(2.99999, -14)
-texture = ExtResource("5_y5vk7")
+[node name="HighlightableSprite" type="AnimatedSprite2D" parent="."]
+material = ExtResource("3_ly5o6")
+sprite_frames = SubResource("SpriteFrames_xor62")
+script = ExtResource("10_fn1m4")
+metadata/_custom_type_script = "uid://cnphm6pv3k5ue"
 
 [node name="TaskInstance" type="Node2D" parent="." groups=["task"]]
 z_index = 1

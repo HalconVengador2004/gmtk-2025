@@ -64,6 +64,12 @@ func on_selected(_node):
 		selected_worker = target
 		selected_worker.get_node("HighlightableSprite").add_highlight()
 		selected_worker.is_selected()
+	# select the assigned sleeping worker when clicking the bed
+	elif target is Bed and target.is_occupied_by and target.is_occupied_by.state == Worker.States.BED:
+		select_worker_by_target_assignation(target)
+	# select the assigned charging worker when clicking the hamster wheel
+	elif target is HamsterWheel and target.is_occupied_by and target.is_occupied_by.state == Worker.States.CHARGING:
+		select_worker_by_target_assignation(target)
 	elif selected_worker:
 		if target.is_in_group("storage"):
 			move_worker_to_storage(target)
@@ -81,7 +87,13 @@ func on_selected(_node):
 				var task_instance = target.get_node_or_null("TaskInstance")
 				if task_instance:
 					move_worker_to_task(task_instance)
-
+					
+func select_worker_by_target_assignation(target):
+	if selected_worker:
+		selected_worker.get_node("HighlightableSprite").remove_highlight()
+	selected_worker = target.is_occupied_by
+	selected_worker.get_node("HighlightableSprite").add_highlight()
+	selected_worker.is_selected()
 func update_hover_highlight():
 	var highest_priority_node = get_highest_priority_node(hovered_nodes)
 	for node in get_tree().get_nodes_in_group("interactable"):
@@ -94,7 +106,18 @@ func update_hover_highlight():
 	if highest_priority_node and highest_priority_node != selected_worker:
 		var highlightable = highest_priority_node.get_node_or_null("HighlightableSprite")
 		if highlightable:
-			highlightable.add_highlight()
+			# highlight bed instead of worker if sleeping
+			if highest_priority_node is Worker and highest_priority_node.state == Worker.States.BED and highest_priority_node.assigned_bed:
+				var bed_highlightable = highest_priority_node.assigned_bed.get_node_or_null("HighlightableSprite")
+				if bed_highlightable:
+					bed_highlightable.add_highlight()
+			# highlight hamster wheel instead of worker if charging
+			elif highest_priority_node is Worker and highest_priority_node.state == Worker.States.CHARGING and highest_priority_node.assigned_hamster_wheel:
+				var hamster_highlightable = highest_priority_node.assigned_hamster_wheel.get_node_or_null("HighlightableSprite")
+				if hamster_highlightable:
+					hamster_highlightable.add_highlight()
+			else:
+				highlightable.add_highlight()
 
 # if there is more than one node being hovered 			
 func get_highest_priority_node(nodes: Array):
@@ -155,7 +178,11 @@ func move_worker_to_task(task_instance: TaskInstance):
 	if previous_task:
 		previous_task.task_data.set_is_assigned(false)
 		
-	if task_instance.task_data and task_instance.task_data.get_is_assigned():
+	if not task_instance or not task_instance.task_data:
+		print("There is no task here yet")
+		return
+		
+	if task_instance.task_data.get_is_assigned():
 		print("task is not available")
 		return
 
@@ -165,6 +192,7 @@ func move_worker_to_task(task_instance: TaskInstance):
 			print("Worker has no item")
 			return
 		if task_instance.task_data.resource.required_item != worker_item.resource:
+			print("Worker does")
 			return
 
 	print("Sending worker to:", task_instance)

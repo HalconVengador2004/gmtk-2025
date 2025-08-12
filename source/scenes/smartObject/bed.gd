@@ -1,4 +1,3 @@
-# Bed.gd
 extends SmartObject
 class_name Bed
 
@@ -26,4 +25,3 @@ func _on_worker_sleeping(bed: Bed):
 func _on_worker_stopped_sleeping(bed: Bed):
 	if is_occupied_by and bed == self:
 		anim_sprite.play('default');
-
