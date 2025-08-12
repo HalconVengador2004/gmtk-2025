@@ -240,6 +240,7 @@ func _determine_state():
 			
 func _update_anim():
 	if previous_state != state:
+		anim_sprite.visible = true
 		match state:
 			States.IDLE:
 				_play_animation("idle")
@@ -253,7 +254,7 @@ func _update_anim():
 				_play_animation("action")
 			States.BED:
 				SignalBus.worker_sleeping.emit(assigned_bed)
-				_play_animation("bed")
+				anim_sprite.visible = false
 			States.GRAB:
 				_play_animation("grab")
 			States.THROW:

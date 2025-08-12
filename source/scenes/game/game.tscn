@@ -148,10 +148,10 @@ battery_bar = NodePath("../Battery/ProgressBar")
 position = Vector2(1021.4, 512)
 
 [node name="Bed" parent="SoManager" instance=ExtResource("12_q0opv")]
-position = Vector2(477.4, 912)
+position = Vector2(477.4, 872)
 
 [node name="Bed2" parent="SoManager" instance=ExtResource("12_q0opv")]
-position = Vector2(845.4, 912)
+position = Vector2(845.4, 872)
 
 [node name="StorageManager" type="Node2D" parent="."]
 z_index = 1
