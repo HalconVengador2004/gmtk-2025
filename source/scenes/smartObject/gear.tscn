@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://c25swwfxgl50y" path="res://assets/image/Sprites/smart_objects/gear00.png" id="3_fdy3x"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_fdy3x"]
 [ext_resource type="Material" uid="uid://cijv5jdbon53h" path="res://source/shaders/selected_material.tres" id="4_mwvrt"]
-[ext_resource type="Script" path="res://source/scenes/components/highlightable_multi_sprite.gd" id="4_sj8ud"]
+[ext_resource type="Script" uid="uid://bbthy6y4uqn0n" path="res://source/scenes/components/highlightable_multi_sprite.gd" id="4_sj8ud"]
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_fdy3x"]
-[ext_resource type="Script" uid="uid://cmwuxr0aotnw8" path="res://source/scenes/smartObject/gear_sprite.gd" id="6_ykdml"]
+[ext_resource type="Script" path="res://source/scenes/smartObject/gear_sprite.gd" id="6_ykdml"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
 size = Vector2(223, 289.5)

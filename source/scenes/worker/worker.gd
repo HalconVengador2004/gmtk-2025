@@ -194,6 +194,7 @@ func _update_energy(delta: float) -> void:
 				SignalBus.worker_stopped_sleeping.emit(assigned_bed)
 				assigned_bed.release()
 				assigned_bed = null
+				interactable_component.input_pickable = false
 	else:
 		energy -= energy_spent_per_second * delta
 		if energy < 0:
@@ -255,6 +256,7 @@ func _update_anim():
 			States.BED:
 				SignalBus.worker_sleeping.emit(assigned_bed)
 				anim_sprite.visible = false
+				interactable_component.input_pickable = false
 			States.GRAB:
 				_play_animation("grab")
 			States.THROW:
@@ -264,8 +266,14 @@ func _update_anim():
 			States.CHARGING:
 				_play_animation("charging")
 				SignalBus.worker_charging.emit()
+				anim_sprite.visible = false
+				interactable_component.input_pickable = false
 		if previous_state == States.CHARGING:
 			SignalBus.worker_stopped_charging.emit()
+			interactable_component.input_pickable = true
+		if previous_state == States.BED:
+			SignalBus.worker_stopped_sleeping.emit(assigned_bed)
+			interactable_component.input_pickable = true
 
 		
 	previous_state = state

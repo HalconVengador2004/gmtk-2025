@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dd0psxjt4ox32"]
 
-[ext_resource type="Script" path="res://source/scenes/smartObject/cooling_pipe.gd" id="1_ktopq"]
+[ext_resource type="Script" uid="uid://dh5uby0k6820x" path="res://source/scenes/smartObject/cooling_pipe.gd" id="1_ktopq"]
 [ext_resource type="PackedScene" uid="uid://doi8lsmew464s" path="res://source/scenes/components/HighlightableSprite.tscn" id="2_ktopq"]
 [ext_resource type="Texture2D" uid="uid://d23j60uvrvcvb" path="res://assets/image/Sprites/tiles/coolingpipe_wheel.png" id="3_jhj41"]
 [ext_resource type="PackedScene" uid="uid://pqstkb1uaw28" path="res://source/scenes/task/task_instance.tscn" id="4_j0sep"]
