@@ -108,7 +108,7 @@ navigation_polygon = SubResource("NavigationPolygon_lfrn8")
 position = Vector2(-5.39999, 24)
 
 [node name="gear" parent="SoManager" instance=ExtResource("10_wcho7")]
-position = Vector2(500.4, 209)
+position = Vector2(873.4, 221)
 task_resource_2 = ExtResource("7_twy2d")
 task_resource = ExtResource("15_55dgt")
 
@@ -117,7 +117,7 @@ position = Vector2(110.4, 211)
 task_resource = ExtResource("17_y0uoq")
 
 [node name="Battery" type="Node2D" parent="SoManager"]
-position = Vector2(1272, 240)
+position = Vector2(1759.4, 228)
 
 [node name="cable" type="Sprite2D" parent="SoManager/Battery"]
 position = Vector2(-64, 8)
@@ -141,7 +141,7 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="HamsterWheel" parent="SoManager" node_paths=PackedStringArray("battery_bar") instance=ExtResource("16_55dgt")]
-position = Vector2(1112, 160)
+position = Vector2(1561.4, 153)
 battery_bar = NodePath("../Battery/ProgressBar")
 
 [node name="Clock" parent="SoManager" instance=ExtResource("10_q0opv")]

@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://buqvsj41ewcdi" path="res://source/scenes/components/interactable_component.tscn" id="5_fdy3x"]
 [ext_resource type="Script" path="res://source/scenes/smartObject/gear_sprite.gd" id="6_ykdml"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj8ud"]
-size = Vector2(223, 289.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwvrt"]
+radius = 76.5
+height = 254.0
 
 [node name="gear" type="Node2D" node_paths=PackedStringArray("multi_sprite") groups=["smart_object"]]
 script = ExtResource("1_fdy3x")
@@ -64,5 +65,5 @@ scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 z_index = 1
-position = Vector2(37, -95.75)
-shape = SubResource("RectangleShape2D_sj8ud")
+position = Vector2(1, -79)
+shape = SubResource("CapsuleShape2D_mwvrt")
